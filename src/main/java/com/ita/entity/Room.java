@@ -1,32 +1,33 @@
 package com.ita.entity;
 
-/**
- * Created by Skiller on 20.09.2016.
- */
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
+@Setter
 public class Room {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private int number;
-    public Long getId() {
-        return id;
+
+    private Integer number;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
+
+    private Boolean active;
+
+    public Room() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
+    public Room(Integer number, Address address, Boolean active) {
         this.number = number;
+        this.address = address;
+        this.active = active;
     }
 }
