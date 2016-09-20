@@ -9,7 +9,7 @@ public class TestController {
 
         @RequestMapping("/greeting")
         public String greeting(@RequestParam(value="name", defaultValue="World") String name) {
-            return "Hello World!!!";
+            return "Hello World!";
         }
 
 }
