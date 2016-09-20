@@ -17,7 +17,7 @@ public class Room {
 
     private Integer number;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Address address;
 
     private Boolean active;
