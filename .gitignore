@@ -1,0 +1,6 @@
+.idea
+*.jar
+*.war
+*.ear
+.classpath
+.project
