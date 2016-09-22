@@ -2,20 +2,23 @@ package com.ita.entity.projections;
 
 import com.ita.entity.Address;
 import com.ita.entity.City;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "AddressDetail", types = {Address.class})
+import java.time.LocalTime;
+
+@Projection(name = "detailed", types = {Address.class})
 public interface AddressDetail {
 
     String getAddress();
 
     String getCodeName();
 
-    String getWorkingHoursStart();
+    LocalTime getWorkingHoursStart();
 
-    String getWorkingHoursEnd();
+    LocalTime getWorkingHoursEnd();
 
     Boolean getActive();
-
-    City getCity();
+    @Value("#{target.city.name}")
+    String getCity();
 }

@@ -1,5 +1,6 @@
 package com.ita.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Teacher {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     @ManyToMany(mappedBy = "teachers")
