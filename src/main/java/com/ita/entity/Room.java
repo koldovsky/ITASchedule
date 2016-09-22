@@ -1,10 +1,12 @@
 package com.ita.entity;
 
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ public class Room {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private Integer number;
+    private String number;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Address address;
@@ -27,7 +29,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(Integer number, Address address, Boolean active) {
+    public Room(String number, Address address, Boolean active) {
         this.number = number;
         this.address = address;
         this.active = active;

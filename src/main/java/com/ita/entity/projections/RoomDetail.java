@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "detailed", types = {Room.class})
 public interface RoomDetail {
-    Integer getNumber();
+    String getNumber();
     Address getAddress();
     Boolean getActive();
     @Value("#{target.address.city.name}")
