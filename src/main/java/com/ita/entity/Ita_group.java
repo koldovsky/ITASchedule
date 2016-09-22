@@ -1,13 +1,14 @@
 package com.ita.entity;
 
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ita.utils.LocalDateTimeDeserializer;
+import com.ita.utils.LocalDateTimeSerializer;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -28,9 +29,13 @@ public class Ita_group {
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
-    private LocalDate startDate;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime startDate;
 
-    private LocalDate endDate;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime endDate;
 
     private int studentsCount;
 
@@ -39,8 +44,8 @@ public class Ita_group {
     public Ita_group() {
     }
 
-    public Ita_group(String title, List<Teacher> teachers, LocalDate startDate,
-                     LocalDate endDate, int studentsCount, boolean active) {
+    public Ita_group(String title, List<Teacher> teachers, LocalDateTime startDate,
+                     LocalDateTime endDate, int studentsCount, boolean active) {
         this.title=title;
         this.teachers=teachers;
         this.startDate=startDate;

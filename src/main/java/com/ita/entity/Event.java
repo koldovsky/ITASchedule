@@ -1,5 +1,9 @@
 package com.ita.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ita.utils.LocalDateTimeDeserializer;
+import com.ita.utils.LocalDateTimeSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +11,7 @@ import lombok.ToString;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -39,15 +43,19 @@ public class Event {
     @OneToOne
     private EventType type;
 
-    private LocalDate startTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime startTime;
 
-    private LocalDate endTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime  endTime;
 
     public Event() {
     }
 
     public Event(String title, Room room, List<Ita_group> ita_groups, List<Teacher> teachers,
-                 EventType type, LocalDate startTime, LocalDate endTime) {
+                 EventType type, LocalDateTime  startTime, LocalDateTime  endTime) {
         this.title=title;
         this.room=room;
         this.ita_groups=ita_groups;
