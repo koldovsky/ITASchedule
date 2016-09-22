@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 @RepositoryRestResource(path="events")
 public interface EventJpaRepository extends JpaRepository <Event,Long> {
-    List<Event>  findById(Long id);
+    List<Event> findById(Long id);
     List<Event> findByRoom(Long id_room);
-//    List<Event> findByEventType(Long id_eventType);
-
 }
