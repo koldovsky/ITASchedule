@@ -1,4 +1,4 @@
-package com.ita.utils;
+package com.ita.utils.attributeConverters;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

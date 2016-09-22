@@ -2,15 +2,15 @@ package com.ita.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.ita.utils.LocalDateTimeDeserializer;
-import com.ita.utils.LocalDateTimeSerializer;
+import com.ita.utils.serializers.LocalDateDeserializer;
+import com.ita.utils.serializers.LocalDateSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -27,17 +27,18 @@ public class Ita_group {
     private String title;
 
     @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "ita_group"),
+    @JoinTable(name = "ita_group_teachers",
+            joinColumns = @JoinColumn(name = "ita_group"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime startDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate startDate;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime endDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate endDate;
 
     private int studentsCount;
 
@@ -46,8 +47,8 @@ public class Ita_group {
     public Ita_group() {
     }
 
-    public Ita_group(String title, List<Teacher> teachers, LocalDateTime startDate,
-                     LocalDateTime endDate, int studentsCount, boolean active) {
+    public Ita_group(String title, List<Teacher> teachers, LocalDate startDate,
+                     LocalDate endDate, int studentsCount, boolean active) {
         this.title=title;
         this.teachers=teachers;
         this.startDate=startDate;

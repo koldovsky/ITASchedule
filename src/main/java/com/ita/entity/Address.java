@@ -1,11 +1,16 @@
 package com.ita.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ita.utils.serializers.LocalTimeDeserializer;
+import com.ita.utils.serializers.LocalTimeSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -22,9 +27,13 @@ public class Address {
 
     private String codeName;
 
-    private String workingHoursStart;
+    @JsonSerialize(using = LocalTimeSerializer.class)
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime workingHoursStart;
 
-    private String workingHoursEnd;
+    @JsonSerialize(using = LocalTimeSerializer.class)
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime workingHoursEnd;
 
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -34,7 +43,7 @@ public class Address {
 
     public Address() {
     }
-    public Address(String address,String codeName,String workingHoursStart,String workingHoursEnd,City city,Boolean active){
+    public Address(String address,String codeName,LocalTime workingHoursStart,LocalTime workingHoursEnd,City city,Boolean active){
         this.address = address;
         this.codeName = codeName;
         this.workingHoursStart = workingHoursStart;

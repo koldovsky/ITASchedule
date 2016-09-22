@@ -24,6 +24,12 @@ public class Teacher {
 
     private String password;
 
+    @ManyToMany(mappedBy = "teachers")
+    private List<Ita_group> groups;
+
+    @ManyToMany(mappedBy = "teachers")
+    private List<Event> events;
+
     private String contactInfo;
 
     @ManyToMany
@@ -38,11 +44,11 @@ public class Teacher {
 
     public Teacher(String fullName, String email, String password,
                    String contactInfo, List<Permission> permissions, boolean active) {
-        this.fullName=fullName;
-        this.email=email;
-        this.password=password;
-        this.contactInfo=contactInfo;
-        this.permissions=permissions;
-        this.active=active;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.contactInfo = contactInfo;
+        this.permissions = permissions;
+        this.active = active;
     }
 }

@@ -1,4 +1,4 @@
-package com.ita.utils;
+package com.ita.utils.serializers;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -2,8 +2,8 @@ package com.ita.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.ita.utils.LocalDateTimeDeserializer;
-import com.ita.utils.LocalDateTimeSerializer;
+import com.ita.utils.serializers.LocalDateTimeDeserializer;
+import com.ita.utils.serializers.LocalDateTimeSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +36,8 @@ public class Event {
     private List<Ita_group> ita_groups;
 
     @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "event"),
+    @JoinTable(name = "event_teachers",
+            joinColumns = @JoinColumn(name = "event"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
