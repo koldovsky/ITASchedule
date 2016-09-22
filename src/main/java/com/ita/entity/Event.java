@@ -4,8 +4,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ita.utils.LocalDateTimeDeserializer;
 import com.ita.utils.LocalDateTimeSerializer;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +18,8 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@ToString
+@EqualsAndHashCode(of = "id")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,9 +31,13 @@ public class Event {
     private Room room;
 
     @ManyToMany
-    private List<Ita_group> groups;
+    @JoinTable(joinColumns = @JoinColumn(name = "event"),
+            inverseJoinColumns = @JoinColumn(name = "ita_group"))
+    private List<Ita_group> ita_groups;
 
     @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "event"),
+            inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
     @OneToOne
@@ -45,11 +54,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, Room room, List<Ita_group> groups, List<Teacher> teachers,
+    public Event(String title, Room room, List<Ita_group> ita_groups, List<Teacher> teachers,
                  EventType type, LocalDateTime  startTime, LocalDateTime  endTime) {
         this.title=title;
         this.room=room;
-        this.groups=groups;
+        this.ita_groups=ita_groups;
         this.teachers=teachers;
         this.type=type;
         this.startTime=startTime;

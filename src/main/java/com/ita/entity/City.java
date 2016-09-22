@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode(of = "id")
 public class City {
 
     @Id

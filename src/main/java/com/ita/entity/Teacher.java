@@ -1,7 +1,9 @@
 package com.ita.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@ToString
+@EqualsAndHashCode(of = "id")
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +27,8 @@ public class Teacher {
     private String contactInfo;
 
     @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "teacher"),
+            inverseJoinColumns = @JoinColumn(name = "permission"))
     private List<Permission> permissions;
 
     private boolean active;
