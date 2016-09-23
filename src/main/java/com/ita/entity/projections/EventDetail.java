@@ -1,7 +1,7 @@
 package com.ita.entity.projections;
 
 import com.ita.entity.Event;
-import com.ita.entity.Ita_group;
+import com.ita.entity.ITAGroup;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -21,7 +21,7 @@ public interface EventDetail {
     @Value("#{target.type.color}")
     String getEventColor();
 
-    List<Ita_group> getIta_groups();
+    List<ITAGroup> getITAGroups();
 
     LocalDateTime getStartTime();
 

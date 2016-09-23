@@ -27,7 +27,7 @@ public class Teacher {
     private String password;
 
     @ManyToMany(mappedBy = "teachers")
-    private List<Ita_group> groups;
+    private List<ITAGroup> groups;
 
     @ManyToMany(mappedBy = "teachers")
     private List<Event> events;

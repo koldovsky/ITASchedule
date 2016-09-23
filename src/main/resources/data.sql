@@ -29,10 +29,10 @@ INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`,
 INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 6', '3', '2');
 INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 7', '3', '2');
 
-insert into itaschedule.ita_group (active, end_date, start_date, students_count, title) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193');
-insert into itaschedule.ita_group (active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200');
-insert into itaschedule.ita_group (active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228');
-insert into itaschedule.ita_group (active, end_date, start_date, students_count, title) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488');
+insert into itaschedule.itagroup (active, end_date, start_date, students_count, title) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193');
+insert into itaschedule.itagroup (active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200');
+insert into itaschedule.itagroup (active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228');
+insert into itaschedule.itagroup (active, end_date, start_date, students_count, title) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488');
 
 insert into itaschedule.permission (title) values ('Admin');
 insert into itaschedule.permission (title) values ('Teacher');
@@ -60,15 +60,15 @@ INSERT INTO `itaschedule`.`event_teachers` (`event`, `teacher`) VALUES ('2', '3'
 INSERT INTO `itaschedule`.`event_teachers` (`event`, `teacher`) VALUES ('4', '2');
 INSERT INTO `itaschedule`.`event_teachers` (`event`, `teacher`) VALUES ('5', '3');
 
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('1', '1');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('1', '2');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('1', '3');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('2', '1');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('2', '3');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('4', '1');
-INSERT INTO `itaschedule`.`event_ita_groups` (`event`, `ita_group`) VALUES ('5', '2');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('1', '1');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('1', '2');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('1', '3');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('2', '1');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('2', '3');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('4', '1');
+INSERT INTO `itaschedule`.`event_itagroups` (`event`, `itagroup`) VALUES ('5', '2');
 
-INSERT INTO `itaschedule`.`ita_group_teachers` (`ita_group`, `teacher`) VALUES ('1', '1');
-INSERT INTO `itaschedule`.`ita_group_teachers` (`ita_group`, `teacher`) VALUES ('2', '1');
-INSERT INTO `itaschedule`.`ita_group_teachers` (`ita_group`, `teacher`) VALUES ('3', '1');
-INSERT INTO `itaschedule`.`ita_group_teachers` (`ita_group`, `teacher`) VALUES ('4', '2');
+INSERT INTO `itaschedule`.`itagroup_teachers` (`itagroup`, `teacher`) VALUES ('1', '1');
+INSERT INTO `itaschedule`.`itagroup_teachers` (`itagroup`, `teacher`) VALUES ('2', '1');
+INSERT INTO `itaschedule`.`itagroup_teachers` (`itagroup`, `teacher`) VALUES ('3', '1');
+INSERT INTO `itaschedule`.`itagroup_teachers` (`itagroup`, `teacher`) VALUES ('4', '2');

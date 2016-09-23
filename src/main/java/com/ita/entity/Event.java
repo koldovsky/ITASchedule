@@ -32,8 +32,8 @@ public class Event {
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
-            inverseJoinColumns = @JoinColumn(name = "ita_group"))
-    private List<Ita_group> ita_groups;
+            inverseJoinColumns = @JoinColumn(name = "ITAGroup"))
+    private List<ITAGroup> ITAGroups;
 
     @ManyToMany
     @JoinTable(name = "event_teachers",
@@ -55,11 +55,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, Room room, List<Ita_group> ita_groups, List<Teacher> teachers,
+    public Event(String title, Room room, List<ITAGroup> ITAGroups, List<Teacher> teachers,
                  EventType type, LocalDateTime  startTime, LocalDateTime  endTime) {
         this.title=title;
         this.room=room;
-        this.ita_groups=ita_groups;
+        this.ITAGroups=ITAGroups;
         this.teachers=teachers;
         this.type=type;
         this.startTime=startTime;

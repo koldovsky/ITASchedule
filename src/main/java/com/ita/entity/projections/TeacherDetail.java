@@ -2,7 +2,7 @@ package com.ita.entity.projections;
 
 
 import com.ita.entity.Event;
-import com.ita.entity.Ita_group;
+import com.ita.entity.ITAGroup;
 import com.ita.entity.Permission;
 import com.ita.entity.Teacher;
 import org.springframework.data.rest.core.config.Projection;
@@ -14,7 +14,7 @@ public interface TeacherDetail {
     String getFullName();
     Boolean getActive();
     String getContactInfo();
-    List<Ita_group> getGroups();
+    List<ITAGroup> getGroups();
     List<Event> getEvents();
     List<Permission> getPermissions();
 }
