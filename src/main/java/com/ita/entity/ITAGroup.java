@@ -19,7 +19,7 @@ import java.util.List;
 @Getter
 @ToString
 @EqualsAndHashCode(of = "id")
-public class Ita_group {
+public class ITAGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -27,8 +27,8 @@ public class Ita_group {
     private String title;
 
     @ManyToMany
-    @JoinTable(name = "ita_group_teachers",
-            joinColumns = @JoinColumn(name = "ita_group"),
+    @JoinTable(name = "ITAGroup_teachers",
+            joinColumns = @JoinColumn(name = "ITAGroup"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
@@ -44,10 +44,10 @@ public class Ita_group {
 
     private boolean active;
 
-    public Ita_group() {
+    public ITAGroup() {
     }
 
-    public Ita_group(String title, List<Teacher> teachers, LocalDate startDate,
+    public ITAGroup(String title, List<Teacher> teachers, LocalDate startDate,
                      LocalDate endDate, int studentsCount, boolean active) {
         this.title=title;
         this.teachers=teachers;
