@@ -27,7 +27,7 @@ public class Event {
 
     private String title;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Room room;
 
     @ManyToMany
