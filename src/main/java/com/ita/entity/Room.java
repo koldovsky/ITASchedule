@@ -16,22 +16,17 @@ import javax.persistence.*;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String number;
 
+    private Boolean isActive;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Address address;
-
-    private Boolean active;
 
     public Room() {
     }
 
-    public Room(String number, Address address, Boolean active) {
-        this.number = number;
-        this.address = address;
-        this.active = active;
-    }
 }

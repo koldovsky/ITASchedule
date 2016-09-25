@@ -1,7 +1,6 @@
 package com.ita.entity.projections;
 
 import com.ita.entity.Address;
-import com.ita.entity.City;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -19,6 +18,7 @@ public interface AddressDetail {
     LocalTime getWorkingHoursEnd();
 
     Boolean getActive();
+
     @Value("#{target.city.name}")
     String getCity();
 }

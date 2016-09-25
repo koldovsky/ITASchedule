@@ -9,12 +9,18 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-@Projection(name = "detailed",types = {Teacher.class})
+@Projection(name = "detailed", types = {Teacher.class})
 public interface TeacherDetail {
+
     String getFullName();
+
     Boolean getActive();
+
     String getContactInfo();
+
     List<ITAGroup> getGroups();
+
     List<Event> getEvents();
+
     List<Permission> getPermissions();
 }

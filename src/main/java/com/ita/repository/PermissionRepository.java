@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RepositoryRestResource(path = "permissions")
-public interface PermissionJpaRepository extends JpaRepository<Permission, Long>{
+public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
 }

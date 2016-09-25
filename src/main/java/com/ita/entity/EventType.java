@@ -17,6 +17,7 @@ import javax.persistence.Id;
 @ToString
 @EqualsAndHashCode(of = "id")
 public class EventType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -28,8 +29,4 @@ public class EventType {
     public EventType() {
     }
 
-    public EventType(String type, String color) {
-        this.type=type;
-        this.color=color;
-    }
 }
