@@ -15,6 +15,7 @@ import java.util.List;
 
 @Projection(name = "detailed", types = {Event.class})
 public interface EventDetail {
+
     String getTitle();
 
     @Value("#{target.room.number}")
@@ -28,7 +29,6 @@ public interface EventDetail {
 
     List<ITAGroup> getITAGroups();
     List<Teacher> getTeachers();
-
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)

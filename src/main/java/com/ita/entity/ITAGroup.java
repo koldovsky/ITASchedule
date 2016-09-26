@@ -20,16 +20,14 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(of = "id")
 public class ITAGroup {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
 
-    @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
-            inverseJoinColumns = @JoinColumn(name = "teacher"))
-    private List<Teacher> teachers;
+    private int studentsCount;
 
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -39,9 +37,12 @@ public class ITAGroup {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
-    private int studentsCount;
-
     private boolean active;
+
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
+            inverseJoinColumns = @JoinColumn(name = "teacher"))
+    private List<Teacher> teachers;
 
     public ITAGroup() {
     }

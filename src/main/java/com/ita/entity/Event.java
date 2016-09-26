@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,8 +26,19 @@ public class Event {
 
     private String title;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime startTime;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime endTime;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Room room;
+
+    @OneToOne
+    private EventType type;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
@@ -40,28 +50,7 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
-    @OneToOne
-    private EventType type;
-
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime startTime;
-
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime  endTime;
-
     public Event() {
     }
 
-    public Event(String title, Room room, List<ITAGroup> ITAGroups, List<Teacher> teachers,
-                 EventType type, LocalDateTime  startTime, LocalDateTime  endTime) {
-        this.title=title;
-        this.room=room;
-        this.ITAGroups=ITAGroups;
-        this.teachers=teachers;
-        this.type=type;
-        this.startTime=startTime;
-        this.endTime=endTime;
-    }
 }

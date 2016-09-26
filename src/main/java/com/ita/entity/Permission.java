@@ -16,6 +16,7 @@ import javax.persistence.Id;
 @ToString
 @EqualsAndHashCode(of = "id")
 public class Permission {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,7 +26,4 @@ public class Permission {
     public Permission() {
     }
 
-    public Permission(String title) {
-        this.title=title;
-    }
 }

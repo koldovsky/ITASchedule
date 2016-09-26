@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(path="events", excerptProjection = EventDetail.class)
-public interface EventJpaRepository extends JpaRepository <Event,Long> {
+@RepositoryRestResource(path = "events", excerptProjection = EventDetail.class)
+public interface EventRepository extends JpaRepository<Event, Long> {
+
     List<Event> findById(Long id);
+
     List<Event> findByRoom(Long id_room);
 }
