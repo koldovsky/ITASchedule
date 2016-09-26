@@ -27,8 +27,7 @@ public class ITAGroup {
     private String title;
 
     @ManyToMany
-    @JoinTable(name = "ITAGroup_teachers",
-            joinColumns = @JoinColumn(name = "ITAGroup"),
+    @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 

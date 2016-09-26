@@ -36,8 +36,7 @@ public class Event {
     private List<ITAGroup> ITAGroups;
 
     @ManyToMany
-    @JoinTable(name = "event_teachers",
-            joinColumns = @JoinColumn(name = "event"),
+    @JoinTable(joinColumns = @JoinColumn(name = "event"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
     private List<Teacher> teachers;
 
