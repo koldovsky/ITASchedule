@@ -37,7 +37,7 @@ public class ITAGroup {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
-    private boolean active;
+    private boolean IsActive;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
@@ -54,6 +54,6 @@ public class ITAGroup {
         this.startDate=startDate;
         this.endDate=endDate;
         this.studentsCount=studentsCount;
-        this.active=active;
+        this.IsActive=active;
     }
 }
