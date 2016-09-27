@@ -21,29 +21,29 @@ INSERT INTO `itaschedule`.`room` (`is_active`, `number`, `address_id`) VALUES (t
 INSERT INTO `itaschedule`.`room` (`is_active`, `number`, `address_id`) VALUES (true, '2002', '2');
 INSERT INTO `itaschedule`.`room` (`is_active`, `number`, `address_id`) VALUES (true, '2003', '2');
 
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-23 15:00:00', '2016-09-23 17:00:00', 'Event 1', '1', '1');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-24 13:00:00', '2016-09-24 17:00:00', 'Event 2', '1', '1');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-27 13:00:00', '2016-09-27 15:00:00', 'Event 3', '1', '1');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-28 15:00:00', '2016-09-28 19:00:00', 'Event 4', '2', '1');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 5', '3', '2');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 6', '3', '2');
-INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 7', '3', '2');
-
-insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193');
-insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200');
-insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228');
-insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488');
-
 insert into itaschedule.permission (title) values ('Admin');
 insert into itaschedule.permission (title) values ('Teacher');
 insert into itaschedule.permission (title) values ('User');
-
 
 insert into itaschedule.teacher (is_active, contact_info, email, full_name, password) values (true, 'some text', 'konon@gmail.com', 'Kononchuk Bohdan', '12345');
 insert into itaschedule.teacher (is_active, contact_info, email, full_name, password) values (true, 'some text2', 'dima@gmail.com', 'Golodniy Dima', '23456');
 insert into itaschedule.teacher (is_active, contact_info, email, full_name, password) values (true, 'some text3', 'ruslan@gmail.com', 'Cool Ruslan', '34567');
 insert into itaschedule.teacher (is_active, contact_info, email, full_name, password) values (true, 'some text4', 'marian@gmail.com', 'Hiroku Marian', '45678');
 insert into itaschedule.teacher (is_active, contact_info, email, full_name, password) values (true, 'some text5', 'bodya@gmail.com', 'Drink Bodya', '56789');
+
+insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193', '1');
+insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200', '2');
+insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228', '3');
+insert into itaschedule.itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488', '4');
+
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-23 15:00:00', '2016-09-23 17:00:00', 'Event 1', '1', '1', '1');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-24 13:00:00', '2016-09-24 17:00:00', 'Event 2', '1', '1', '2');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-27 13:00:00', '2016-09-27 15:00:00', 'Event 3', '1', '1', '3');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-28 15:00:00', '2016-09-28 19:00:00', 'Event 4', '2', '1', '4');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 5', '3', '2', '5');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 6', '3', '2', '3');
+INSERT INTO `itaschedule`.`event` (`end_time`, `start_time`, `title`, `room_id`, `type_id`, `creator_id`) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 7', '3', '2', '2');
+
 
 INSERT INTO `itaschedule`.`teacher_permissions` (`teacher`, `permission`) VALUES ('1', '1');
 INSERT INTO `itaschedule`.`teacher_permissions` (`teacher`, `permission`) VALUES ('1', '2');

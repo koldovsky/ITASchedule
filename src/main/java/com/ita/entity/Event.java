@@ -40,6 +40,9 @@ public class Event {
     @OneToOne
     private EventType type;
 
+    @ManyToOne
+    private Teacher creator;
+
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
             inverseJoinColumns = @JoinColumn(name = "ITAGroup"))

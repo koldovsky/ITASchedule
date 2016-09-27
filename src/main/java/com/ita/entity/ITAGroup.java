@@ -39,6 +39,9 @@ public class ITAGroup {
 
     private boolean IsActive;
 
+    @ManyToOne
+    private Teacher creator;
+
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
             inverseJoinColumns = @JoinColumn(name = "teacher"))
