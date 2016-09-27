@@ -12,3 +12,6 @@ ITASchedule.iml
 src/main/resources/application.properties
 /src/main/webapp/bower_components/
 /src/main/webapp/components/
+/src/main/resources/static/bower_components/
+/src/main/resources/static/node_modules/angular-smart-table/
+/src/main/resources/static/components/version/
