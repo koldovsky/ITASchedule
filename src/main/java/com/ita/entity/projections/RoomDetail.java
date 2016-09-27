@@ -12,7 +12,7 @@ public interface RoomDetail {
 
     Address getAddress();
 
-    Boolean getActive();
+    Boolean getIsActive();
 
     @Value("#{target.address.city.name}")
     String getCity();

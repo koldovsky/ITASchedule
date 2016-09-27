@@ -14,7 +14,7 @@ public interface TeacherDetail {
 
     String getFullName();
 
-    Boolean getActive();
+    Boolean getIsActive();
 
     String getContactInfo();
 

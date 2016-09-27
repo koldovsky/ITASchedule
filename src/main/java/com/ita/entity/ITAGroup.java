@@ -37,7 +37,7 @@ public class ITAGroup {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
-    private boolean IsActive;
+    private boolean isActive;
 
     @ManyToOne
     private Teacher creator;
@@ -51,12 +51,12 @@ public class ITAGroup {
     }
 
     public ITAGroup(String title, List<Teacher> teachers, LocalDate startDate,
-                     LocalDate endDate, int studentsCount, boolean active) {
+                     LocalDate endDate, int studentsCount, boolean isActive) {
         this.title=title;
         this.teachers=teachers;
         this.startDate=startDate;
         this.endDate=endDate;
         this.studentsCount=studentsCount;
-        this.IsActive=active;
+        this.isActive =isActive;
     }
 }

@@ -10,3 +10,5 @@
 .settings/
 ITASchedule.iml
 src/main/resources/application.properties
+/src/main/webapp/bower_components/
+/src/main/webapp/components/
