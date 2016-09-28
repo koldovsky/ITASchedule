@@ -12,13 +12,22 @@ The below guides are targeted for Idea environment.
           spring.jpa.hibernate.ddl-auto = create
           spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
           
-  - create Run configuration for Maven,
+  - create Run configuration for Maven in Idea,
   - set target directory to: {project}/Server/  ,
   - set goals to: spring-boot:run.
 
 2) Launch Client:
+  Note: To run 
   
-  - create Run configuration for Gulp.js,
+  - install Node.js
+        on OSX use homebrew: brew install node
+        on Windows use chocolatey: choco install nodejs
+  - install Yeoman: npm install -g yo,
+  - install these NPM packages globally: npm install -g bower gulp nodemon,
+  - go to {project} root directory and install required packages: 
+        npm install 
+        bower install
+  - create Run configuration for Gulp.js in Idea,
   - set target directory to {project}/Client/,
   - set goals to: serve-dev
 
