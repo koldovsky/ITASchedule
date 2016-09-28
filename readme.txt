@@ -17,9 +17,9 @@ The below guides are targeted for Idea environment.
   - set goals to: spring-boot:run.
 
 2) Launch Client:
-
-Create file "application.properties" with appropriate code.
-
-src\main\resources\application.properties:
+  
+  - create Run configuration for Gulp.js,
+  - set target directory to {project}/Client/,
+  - set goals to: serve-dev
 
 
