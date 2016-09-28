@@ -24,7 +24,7 @@ The below guides are targeted for Idea environment.
         on Windows use chocolatey: choco install nodejs
   - install Yeoman: npm install -g yo,
   - install these NPM packages globally: npm install -g bower gulp nodemon,
-  - go to {project} root directory and install required packages: 
+  - go to {project}/Client/ directory and install required packages: 
         npm install 
         bower install
   - create Run configuration for Gulp.js in Idea,
