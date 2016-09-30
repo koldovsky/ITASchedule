@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @ToString
 @EqualsAndHashCode(of = "id")
-public class Teacher {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,18 +31,20 @@ public class Teacher {
 
     private boolean isActive;
 
-    @ManyToMany(mappedBy = "teachers")
+    @ManyToMany(mappedBy = "users")
     private List<ITAGroup> groups;
 
-    @ManyToMany(mappedBy = "teachers")
+    @ManyToMany(mappedBy = "users")
     private List<Event> events;
 
-    @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "teacher"),
-            inverseJoinColumns = @JoinColumn(name = "permission"))
-    private List<Permission> permissions;
+    @ElementCollection(targetClass = Role.class)
+    @CollectionTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user"))
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private List<Role> roles;
 
-    public Teacher() {
+    public User() {
     }
 
 }

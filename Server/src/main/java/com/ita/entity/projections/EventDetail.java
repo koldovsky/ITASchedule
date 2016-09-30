@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ita.entity.Event;
 import com.ita.entity.ITAGroup;
-import com.ita.entity.Teacher;
+import com.ita.entity.User;
 import com.ita.utils.serializers.LocalDateTimeDeserializer;
 import com.ita.utils.serializers.LocalDateTimeSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +28,7 @@ public interface EventDetail {
     String getEventColor();
 
     List<ITAGroup> getITAGroups();
-    List<Teacher> getTeachers();
+    List<User> getTeachers();
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
