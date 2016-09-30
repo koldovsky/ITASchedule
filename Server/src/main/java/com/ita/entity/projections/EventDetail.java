@@ -27,9 +27,6 @@ public interface EventDetail {
     @Value("#{target.type.color}")
     String getEventColor();
 
-    List<ITAGroup> getITAGroups();
-    List<User> getTeachers();
-
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     LocalDateTime getStartTime();
@@ -37,4 +34,8 @@ public interface EventDetail {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     LocalDateTime getEndTime();
+
+    List<ITAGroup> getITAGroups();
+
+    List<User> getUsers();
 }
