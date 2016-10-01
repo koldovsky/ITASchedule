@@ -4,6 +4,10 @@
   angular
     .module('app.core')
     .factory('dataservice', dataservice);
+  // .config(function($httpProvider) {
+  //   $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+  // });
+
 
   dataservice.$inject = ['$http', '$q', 'exception', 'logger'];
   /* @ngInject */
@@ -12,7 +16,6 @@
       getPeople: getPeople,
       getMessageCount: getMessageCount
     };
-
     return service;
 
     function getMessageCount() { return $q.when(72); }
@@ -30,5 +33,9 @@
         return exception.catcher('XHR Failed for getPeople')(e);
       }
     }
+
+
+
+
   }
 })();

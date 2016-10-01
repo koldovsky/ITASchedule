@@ -7,3 +7,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = ("com.ita.repository"))
 public class JpaConfiguration {
 }
+
