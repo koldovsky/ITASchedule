@@ -40,7 +40,7 @@ public class User {
     @ElementCollection(targetClass = Role.class)
     @CollectionTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user"))
-    @Column(name = "role", nullable = false)
+    @Column(name = "role")
     @Enumerated(EnumType.ORDINAL)
     private List<Role> roles;
 
