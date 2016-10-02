@@ -20,7 +20,7 @@
             return service;
 
             function getTeachers() {
-                return  $http.get('http://localhost:8080/teachers?projection=brief')
+                return  $http.get('http://localhost:8080/teachers?projection=editTeachers')
                     .then(success)
                     .catch(fail);
                 function success(response) {
@@ -32,27 +32,15 @@
             }
 
             function deleteTeacher(id) {
-                var deferred = $q.defer();
-                $http({
-                    method: 'DELETE',
-                    url: '/teachers',
-                    data: deletedMealIds,
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then (success)
+                return  $http.delete('http://localhost:8080/teachers/'+id)
+                    .then(success)
                     .catch(fail);
                 function success(response) {
-                    return deferred.resolve();
+                    return response.data;
                 }
                 function fail(e) {
                     return exception.catcher('XHR Failed for getPeople')(e);
-                    // return deferred.reject('Error deleting meals');
                 }
-
-
-                return deferred.promise;
             }
 
         function createTeacher(teacherToAdd) {
@@ -69,6 +57,8 @@
                 .catch(fail);
             function success(response) {
                 console.log('Teacher created successfully');
+                console.log('Sent:'+ !(teacherToAdd.isActive==="true"));
+                console.log('Received:'+ response.isActive);
                 return response.data;
             }
             function fail(e) {
