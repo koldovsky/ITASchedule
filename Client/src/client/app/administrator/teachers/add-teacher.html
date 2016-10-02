@@ -8,22 +8,72 @@
                     <div class="widget-content user">
 
                             <md-content layout-padding>
-                                <form name="teacherForm" ng-submit="vm.submit()">
+                                <form name="vm.addTeacherForm" ng-submit="vm.submit()">
 
                                     <md-input-container class="md-block">
                                         <label>Teacher's name</label>
                                         <input required md-no-asterisk md-maxlength="100" name="teacherFullname" ng-model="vm.teacher.fullName" minlength="10" maxlength="100">
-                                        <div ng-messages="teacherForm.teacherFullname.$error" role="alert">
+                                        <div ng-messages="addTeacherForm.teacherFullname.$error" role="alert">
                                             <div ng-message="required">This is required.</div>
                                             <div ng-message="md-maxlength">The description must be less than 100 characters long.</div>
                                         </div>
                                     </md-input-container>
 
                                     <md-input-container class="md-block">
+                                        <label>Password</label>
+                                        <input type="password" required md-maxlength="100" name="password" ng-model="vm.teacher.password" minlength="8" maxlength="100">
+                                        <div ng-messages="addTeacherForm.teacherFullname.$error" role="alert">
+                                            <div ng-message="required">This is required.</div>
+                                            <div ng-message="md-maxlength">The description must be less than 100 characters long.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block">
+                                        <label>Confirm password</label>
+                                        <input type="password" required md-maxlength="100" name="password" ng-model="vm.teacher.password" minlength="8" maxlength="100">
+                                        <div ng-messages="addTeacherForm.teacherFullname.$error" role="alert">
+                                            <div ng-message="required">This is required.</div>
+                                            <div ng-message="md-maxlength">The description must be less than 100 characters long.</div>
+                                        </div>
+                                    </md-input-container>
+
+
+
+
+
+
+                                    <fieldset>
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" name="newPassword" ng-model="password.new" required=""/>
+                                        <div class="clearfix">
+                                            <div ng-messages="profileForm.newPassword.$error" ng-if="profileForm.$submitted || profileForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                                <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+                                            </div>
+                                        </div>
+                                        <label for="confirmPassword">Re-Type New Password</label>
+                                        <input type="password" name="confirmPassword" ng-model="password.confirm" match-password="newPassword" required=""/>
+                                        <div class="clearfix">
+                                            <div ng-messages="profileForm.confirmPassword.$error" ng-if="profileForm.$submitted || profileForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                                <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+                                                <div ng-message="passwordMatch" class="message slide-left">Your passwords did not match</div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+                                    <md-input-container class="md-block">
                                         <label>Teacher's Email</label>
                                         <input required type="email" name="teacherEmail" ng-model="vm.teacher.email"
                                                minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-                                        <div ng-messages="teacherForm.teacherEmail.$error" role="alert">
+                                        <div ng-messages="addTeacherForm.teacherEmail.$error" role="alert">
                                             <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
                                                 Your email must be between 10 and 100 characters long and look like an e-mail address.
                                             </div>
@@ -41,16 +91,15 @@
                                     <md-input-container class="md-block" >
                                         <label>Contact info</label>
                                         <input name="description" ng-model="vm.teacher.contactInfo" maxlength="200">
-                                        <div ng-messages="teacherForm.contactInfo.$error">
+                                        <div ng-messages="addTeacherForm.contactInfo.$error">
                                             <div ng-message="md-maxlength">The contact info must be less than 200 characters long.</div>
                                         </div>
                                     </md-input-container>
 
-
-                                    <div>
-                                        <md-button type="submit">Submit</md-button>
-                                    </div>
-
+                                    <section layout="row"  layout-align="center center" layout-wrap>
+                                        <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+                                        <md-button type="button" class="md-raised md-warn" ng-click="vm.reset()" >Cancel</md-button>
+                                    </section>
                                 </form>
                             </md-content>
 

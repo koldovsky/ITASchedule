@@ -14,7 +14,7 @@
     function teacherservice($http, $q, exception, logger) {
             var service = {
                 getTeachers: getTeachers,
-                addTeacher: addTeacher,
+                createTeacher: createTeacher,
                 deleteTeacher: deleteTeacher
             };
             return service;
@@ -32,28 +32,49 @@
             }
 
             function deleteTeacher(id) {
-                return  $http.delete('http://localhost:8080/teacher/'+id)
-                    .then(success)
+                var deferred = $q.defer();
+                $http({
+                    method: 'DELETE',
+                    url: '/teachers',
+                    data: deletedMealIds,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then (success)
                     .catch(fail);
                 function success(response) {
-                    return response.data;
+                    return deferred.resolve();
                 }
                 function fail(e) {
                     return exception.catcher('XHR Failed for getPeople')(e);
+                    // return deferred.reject('Error deleting meals');
                 }
+
+
+                return deferred.promise;
             }
 
-        function addTeacher(id) {
-            return  $http.delete('http://localhost:8080/teacher/'+id)
-                .then(success)
+        function createTeacher(teacherToAdd) {
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/teachers',
+                data: teacherToAdd,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+            })
+                .then (success)
                 .catch(fail);
             function success(response) {
+                console.log('Teacher created successfully');
                 return response.data;
             }
             function fail(e) {
+                console.log('Creating teacher - fail');
                 return exception.catcher('XHR Failed for getPeople')(e);
             }
         }
-
     }
 })();
