@@ -5,14 +5,16 @@
         .controller('addTeachersController', addTeachersController);
 
     addTeachersController.$inject = ['$q', 'teacherservice', 'logger'];
-    function addTeachersController($q, teacherservice, logger) {
+    function addTeachersController($q, teacherservice, logger, editedTeacher) {
         var vm = this;
-        vm.teacher={};
+        vm.teacher=editedTeacher;
         vm.submit=submit;
         vm.create=create;
         vm.reset=reset;
         vm.teacherStatus=true;
         vm.addTeacherForm={};
+        console.log('editedTeacher:'+editedTeacher);
+        console.log('vm.teacher:'+vm.teacher);
 
         function submit(){
             var promises = [create(vm.teacher)];

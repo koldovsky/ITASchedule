@@ -22,23 +22,24 @@
                     controllerAs: 'vm',
                     title: 'teachers',
                     settings: {
-                        nav: 1,
+                        nav: 3,
                         content: '<i class="fa fa-user-secret"></i> Teachers'
                     }
                 }
             },
             {
-                state: 'addTeachers',
+                state: 'addTeacher',
                 config: {
                     url: '/add-teacher',
                     templateUrl: 'app/administrator/teachers/add-teacher.html',
-                    controller: 'addTeachersController',
+                    controller: 'teachersController',
                     controllerAs: 'vm',
                     title: 'addTeachers',
                     settings: {
-                        nav: 1,
+                        nav: 4,
                         content: '<i class="fa fa-user-secret"></i> Add Teacher'
-                    }
+                    },
+                    params : { teacher: 5}
                 }
             }
 

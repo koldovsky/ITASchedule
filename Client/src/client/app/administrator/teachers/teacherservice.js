@@ -46,7 +46,7 @@
         function createTeacher(teacherToAdd) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/teachers',
+                url: 'http://localhost:8080/teachers?projection=editTeachers',
                 data: teacherToAdd,
                 headers: {
                     "Content-Type": "application/json",

@@ -5,8 +5,8 @@ describe('layout', function() {
     var views = {
       dashboard: 'app/dashboard/dashboard.html',
       customers: 'app/customers/customers.html',
-      teachers: 'app/administrator/teachers/teacher.html',
-      addTeachers: 'app/administrator/teachers/add-teacher.html'
+      teachers: 'app/administrator/teachers/teacher.html'
+      // addTeachers: 'app/administrator/teachers/add-teacher.html'
     };
 
     beforeEach(function() {
