@@ -9,5 +9,6 @@
         'ngMessages',
         'ngAria',
         'ngPassword'
+
     ]);
 })();

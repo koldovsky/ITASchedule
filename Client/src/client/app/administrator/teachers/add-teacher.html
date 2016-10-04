@@ -12,7 +12,7 @@
 
                                     <md-input-container class="md-block">
                                         <label>Teacher's name</label>
-                                        <input required name="teacherFullname" ng-model="vm.teacher.fullName" minlength="5" maxlength="100">
+                                        <input required name="teacherFullname" ng-model="vm.editTeacher.fullName" minlength="5" maxlength="100">
                                         <div ng-show="vm.addTeacherForm.$dirty" ng-messages="vm.addTeacherForm.teacherFullname.$error" role="alert">
                                             <div ng-message="required">This is required.</div>
                                             <div ng-message="maxlength">The full name must be less than 100 characters long.</div>
@@ -20,6 +20,7 @@
                                         </div>
                                     </md-input-container>
 
+<!--
                                     <md-input-container class="md-block">
                                         <label>Password</label>
                                         <input type="password" required md-maxlength="100" name="teacherPassword" ng-model="vm.teacher.password" minlength="8" maxlength="100">
@@ -39,11 +40,12 @@
                                             <div ng-message="passwordMatch">Your passwords did not match</div>
                                         </div>
                                     </md-input-container>
+-->
 
 
                                     <md-input-container class="md-block">
                                         <label>Teacher's Email</label>
-                                        <input required type="email" name="teacherEmail" ng-model="vm.teacher.email"
+                                        <input required type="email" name="teacherEmail" ng-model="vm.editTeacher.email"
                                                minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                                         <div ng-messages="vm.addTeacherForm.teacherEmail.$error" role="alert"  >
                                             <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
@@ -54,7 +56,7 @@
 
                                     <md-input-container>
                                         <label>Teacher's status</label>
-                                        <md-select ng-model="vm.teacher.isActive" style="min-width: 200px;">
+                                        <md-select ng-model="vm.editTeacher.active" style="min-width: 200px;">
                                             <md-option ng-value=true ng-selected=true>Active</md-option>
                                             <md-option ng-value=false>Inactive</md-option>
                                         </md-select>
@@ -71,7 +73,7 @@ ng-selected="{{ mod.id === vmIdPage.number.id ? 'true' : 'false' }}
 
                                     <md-input-container class="md-block" >
                                         <label>Contact info</label>
-                                        <input name="description" ng-model="vm.teacher.contactInfo" maxlength="200">
+                                        <input name="description" ng-model="vm.editTeacher.contactInfo" maxlength="200">
                                         <div ng-messages="vm.addTeacherForm.contactInfo.$error">
                                             <div ng-message="md-maxlength">The contact info must be less than 200 characters long.</div>
                                         </div>
