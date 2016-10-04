@@ -56,7 +56,7 @@
 
                                     <md-input-container>
                                         <label>Teacher's status</label>
-                                        <md-select ng-model="vm.editTeacher.active" style="min-width: 200px;">
+                                        <md-select ng-model="vm.teacher.active" style="min-width: 200px;">
                                             <md-option ng-value=true ng-selected=true>Active</md-option>
                                             <md-option ng-value=false>Inactive</md-option>
                                         </md-select>
@@ -73,7 +73,7 @@ ng-selected="{{ mod.id === vmIdPage.number.id ? 'true' : 'false' }}
 
                                     <md-input-container class="md-block" >
                                         <label>Contact info</label>
-                                        <input name="description" ng-model="vm.editTeacher.contactInfo" maxlength="200">
+                                        <input name="description" ng-model="vm.teacher.contactInfo" maxlength="200">
                                         <div ng-messages="vm.addTeacherForm.contactInfo.$error">
                                             <div ng-message="md-maxlength">The contact info must be less than 200 characters long.</div>
                                         </div>

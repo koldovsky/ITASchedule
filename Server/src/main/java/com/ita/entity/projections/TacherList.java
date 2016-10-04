@@ -1,9 +1,9 @@
 package com.ita.entity.projections;
 
-import com.ita.entity.Teacher;
+import com.ita.entity.User;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "brief", types = {Teacher.class})
+@Projection(name = "brief", types = {User.class})
 public interface TacherList {
 
         String getFullName();

@@ -20,10 +20,11 @@
             return service;
 
             function getTeachers() {
-                return  $http.get('http://localhost:8080/teachers?projection=editTeachers')
+                return  $http.get('http://localhost:8080/users')
                     .then(success)
                     .catch(fail);
                 function success(response) {
+                    console.log('getTeachers. success. response: '+response);
                     return response.data;
                 }
                 function fail(e) {
@@ -32,7 +33,7 @@
             }
 
             function deleteTeacher(id) {
-                return  $http.delete('http://localhost:8080/teachers/'+id)
+                return  $http.delete('http://localhost:8080/users/'+id)
                     .then(success)
                     .catch(fail);
                 function success(response) {
@@ -46,7 +47,7 @@
         function createTeacher(teacherToAdd) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/teachers?projection=editTeachers',
+                url: 'http://localhost:8080/users',
                 data: teacherToAdd,
                 headers: {
                     "Content-Type": "application/json",

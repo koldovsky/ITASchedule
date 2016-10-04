@@ -2,13 +2,13 @@ package com.ita.entity.projections;
 
 import com.ita.entity.Event;
 import com.ita.entity.ITAGroup;
-import com.ita.entity.Permission;
-import com.ita.entity.Teacher;
+import com.ita.entity.Role;
+import com.ita.entity.User;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-@Projection(name = "editTeachers", types = {Teacher.class})
+@Projection(name = "editTeachers", types = {User.class})
 public interface EditTeachers {
 
     Long getId();
@@ -25,5 +25,5 @@ public interface EditTeachers {
 
     List<Event> getEvents();
 
-    List<Permission> getPermissions();
+    List<Role> getRole();
 }
