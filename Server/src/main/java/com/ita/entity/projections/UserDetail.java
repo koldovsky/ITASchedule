@@ -3,14 +3,14 @@ package com.ita.entity.projections;
 
 import com.ita.entity.Event;
 import com.ita.entity.ITAGroup;
-import com.ita.entity.Permission;
-import com.ita.entity.Teacher;
+import com.ita.entity.Role;
+import com.ita.entity.User;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-@Projection(name = "detailed", types = {Teacher.class})
-public interface TeacherDetail {
+@Projection(name = "detailed", types = {User.class})
+public interface UserDetail {
 
     String getFullName();
 
@@ -22,5 +22,5 @@ public interface TeacherDetail {
 
     List<Event> getEvents();
 
-    List<Permission> getPermissions();
+    List<Role> getRoles();
 }

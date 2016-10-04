@@ -41,7 +41,7 @@ public class Event {
     private EventType type;
 
     @ManyToOne
-    private Teacher creator;
+    private User creator;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
@@ -50,8 +50,8 @@ public class Event {
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
-            inverseJoinColumns = @JoinColumn(name = "teacher"))
-    private List<Teacher> teachers;
+            inverseJoinColumns = @JoinColumn(name = "user"))
+    private List<User> users;
 
     public Event() {
     }

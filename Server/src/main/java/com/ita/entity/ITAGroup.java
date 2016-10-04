@@ -40,20 +40,20 @@ public class ITAGroup {
     private boolean isActive;
 
     @ManyToOne
-    private Teacher creator;
+    private User creator;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "ITAGroup"),
-            inverseJoinColumns = @JoinColumn(name = "teacher"))
-    private List<Teacher> teachers;
+            inverseJoinColumns = @JoinColumn(name = "user"))
+    private List<User> users;
 
     public ITAGroup() {
     }
 
-    public ITAGroup(String title, List<Teacher> teachers, LocalDate startDate,
-                     LocalDate endDate, int studentsCount, boolean isActive) {
+    public ITAGroup(String title, List<User> users, LocalDate startDate,
+                    LocalDate endDate, int studentsCount, boolean isActive) {
         this.title=title;
-        this.teachers=teachers;
+        this.users = users;
         this.startDate=startDate;
         this.endDate=endDate;
         this.studentsCount=studentsCount;

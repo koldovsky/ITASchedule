@@ -1,12 +1,12 @@
 package com.ita.repository;
 
-import com.ita.entity.Permission;
+import com.ita.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "permissions")
-public interface PermissionRepository extends JpaRepository<Permission, Long> {
+@RepositoryRestResource(path = "users")
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }
