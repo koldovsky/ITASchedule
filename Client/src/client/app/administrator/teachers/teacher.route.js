@@ -67,7 +67,7 @@
                 }
             },
             {
-                state: 'addAdministrators',
+                state: 'addAdministrator',
                 config: {
                     url: '/add-administrators',
                     templateUrl: 'app/administrator/teachers/add-teacher.html',

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="widget wviolet">
-                    <div ht-widget-header title="Add new teacher">
+                    <div ht-widget-header title="{{vm.teacher.id==null ? 'Add new '+vm.roleName : 'Edit '+vm.roleName + '  ' + vm.teacher.fullName}}">
                     </div>
                     <div class="widget-content user">
 
