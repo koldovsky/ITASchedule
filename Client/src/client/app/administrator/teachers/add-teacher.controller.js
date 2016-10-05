@@ -4,17 +4,36 @@
         .module('app.administrator.teachers')
         .controller('addTeachersController', addTeachersController);
 
-    addTeachersController.$inject = ['$q', 'teacherservice', 'logger'];
-    function addTeachersController($q, teacherservice, logger, editedTeacher) {
+    addTeachersController.$inject = ['$q', 'teacherservice', 'logger','$stateParams'];
+    function addTeachersController($q, teacherservice, logger, $stateParams) {
         var vm = this;
-        vm.teacher=editedTeacher;
+        vm.teacher={};
+        vm.teacher=$stateParams.teacher;
         vm.submit=submit;
         vm.create=create;
         vm.reset=reset;
         vm.teacherStatus=true;
         vm.addTeacherForm={};
-        console.log('editedTeacher:'+editedTeacher);
         console.log('vm.teacher:'+vm.teacher);
+
+
+        function remove(teacher){
+            console.log('remove button pressed');
+            console.log('Teacher to be deleted', teacher);
+            console.log('id to be deleted', teacher.id);
+            var promises = [deleteTeacher(teacher.id)];
+            return $q.all(promises).then(function() {
+                fetchAllTeachers();
+                logger.info('Techer is deleted!');
+            });
+        }
+
+        function deleteTeacher(id){
+            return teacherservice.deleteTeacher(id).then(function(data) {
+                console.log('id to service:', id);
+                return vm.teachers;
+            })
+        }
 
         function submit(){
             var promises = [create(vm.teacher)];
@@ -42,5 +61,6 @@
             vm.addTeacherForm.$setUntouched(); //reset Form
             console.log('reset pressed');
         }
+
     }
 })();

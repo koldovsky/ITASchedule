@@ -24,6 +24,9 @@
                     settings: {
                         nav: 3,
                         content: '<i class="fa fa-user-secret"></i> Teachers'
+                    },
+                    params:{
+                        roleName:"SuperTeacher"
                     }
                 }
             },
@@ -32,14 +35,14 @@
                 config: {
                     url: '/add-teacher',
                     templateUrl: 'app/administrator/teachers/add-teacher.html',
-                    controller: 'teachersController',
+                    controller: 'addTeachersController',
                     controllerAs: 'vm',
                     title: 'addTeachers',
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-user-secret"></i> Add Teacher'
                     },
-                    params : { teacher: 5}
+                    params : { teacher: null},
                 }
             }
 

@@ -12,7 +12,7 @@
 
                                     <md-input-container class="md-block">
                                         <label>Teacher's name</label>
-                                        <input required name="teacherFullname" ng-model="vm.editTeacher.fullName" minlength="5" maxlength="100">
+                                        <input required name="teacherFullname" ng-model="vm.teacher.fullName" minlength="5" maxlength="100">
                                         <div ng-show="vm.addTeacherForm.$dirty" ng-messages="vm.addTeacherForm.teacherFullname.$error" role="alert">
                                             <div ng-message="required">This is required.</div>
                                             <div ng-message="maxlength">The full name must be less than 100 characters long.</div>
@@ -45,7 +45,7 @@
 
                                     <md-input-container class="md-block">
                                         <label>Teacher's Email</label>
-                                        <input required type="email" name="teacherEmail" ng-model="vm.editTeacher.email"
+                                        <input required type="email" name="teacherEmail" ng-model="vm.teacher.email"
                                                minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                                         <div ng-messages="vm.addTeacherForm.teacherEmail.$error" role="alert"  >
                                             <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
