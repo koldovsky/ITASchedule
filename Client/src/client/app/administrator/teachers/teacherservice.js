@@ -4,18 +4,16 @@
     angular
         .module('app.core')
         .factory('teacherservice', teacherservice);
-    // .config(function($httpProvider) {
-    //   $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-    // });
-
 
     teacherservice.$inject = ['$http', '$q', 'exception', 'logger'];
         /* @ngInject */
+
     function teacherservice($http, $q, exception, logger) {
             var service = {
                 getTeachers: getTeachers,
                 createTeacher: createTeacher,
-                deleteTeacher: deleteTeacher
+                deleteTeacher: deleteTeacher,
+                updateTeacher: updateTeacher
             };
             return service;
 
@@ -58,12 +56,32 @@
                 .catch(fail);
             function success(response) {
                 console.log('Teacher created successfully');
-                console.log('Sent:'+ !(teacherToAdd.isActive==="true"));
-                console.log('Received:'+ response.isActive);
                 return response.data;
             }
             function fail(e) {
                 console.log('Creating teacher - fail');
+                return exception.catcher('XHR Failed for getPeople')(e);
+            }
+        }
+
+        function updateTeacher(teacherToUpdate) {
+            $http({
+                method: 'PATCH',
+                url: 'http://localhost:8080/users/'+teacherToUpdate.id,
+                data: teacherToUpdate,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+            })
+                .then (success)
+                .catch(fail);
+            function success(response) {
+                console.log('Teacher updated successfully');
+                return response.data;
+            }
+            function fail(e) {
+                console.log('Updating teacher - fail');
                 return exception.catcher('XHR Failed for getPeople')(e);
             }
         }

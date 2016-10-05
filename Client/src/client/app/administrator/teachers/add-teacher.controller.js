@@ -55,6 +55,7 @@
             }else{
                 // teacherservice.updateUser(newTeacher,newTeacher.id);
                 console.log('User updated with id ' + vm.teacher.id);
+                return teacherservice.updateTeacher(newTeacher)
             }
         }
 
