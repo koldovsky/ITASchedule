@@ -20,7 +20,7 @@
             return service;
 
             function getTeachers() {
-                return  $http.get('http://localhost:8080/users')
+                return  $http.get('http://localhost:8080/users?projection=userslist')
                     .then(success)
                     .catch(fail);
                 function success(response) {
