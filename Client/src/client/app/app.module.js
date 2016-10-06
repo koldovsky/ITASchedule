@@ -8,6 +8,7 @@
     'app.dashboard',
     'app.layout',
     'app.calendar',
+    'app.administrator.teachers',
     'ui.calendar',
     'ui.bootstrap'
   ]);

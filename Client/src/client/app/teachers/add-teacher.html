@@ -1,0 +1,127 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div ht-widget-header title="{{vm.teacher.id==null ? 'Add new '+vm.roleName : 'Edit '+vm.roleName + '  ' + vm.teacher.fullName}}">
+                    </div>
+                    <div class="widget-content user">
+
+                            <md-content layout-padding>
+                                <form name="vm.addTeacherForm" ng-submit="vm.submit()">
+
+                                    <md-input-container class="md-block">
+                                        <label>Teacher's name</label>
+                                        <input required name="teacherFullname" ng-model="vm.teacher.fullName" minlength="5" maxlength="100">
+                                        <div ng-show="vm.addTeacherForm.$dirty" ng-messages="vm.addTeacherForm.teacherFullname.$error" role="alert">
+                                            <div ng-message="required">This is required.</div>
+                                            <div ng-message="maxlength">The full name must be less than 100 characters long.</div>
+                                            <div ng-message="minlength">The full name  must be 5 characters at least.</div>
+                                        </div>
+                                    </md-input-container>
+
+<!--
+                                    <md-input-container class="md-block">
+                                        <label>Password</label>
+                                        <input type="password" required md-maxlength="100" name="teacherPassword" ng-model="vm.teacher.password" minlength="8" maxlength="100">
+                                        <div ng-messages="vm.addTeacherForm.teacherPassword.$error" role="alert">
+                                            <div ng-message="required">This is required.</div>
+                                            <div ng-message="maxlength">The password must be less than 100 characters long.</div>
+                                            <div ng-message="minlength">The password  must be 8 characters at least.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block">
+                                        <label>Confirm password</label>
+                                        <input type="password" required md-maxlength="100" name="teacherPasswordConfirm" ng-model="vm.teacher.passwordConfirm" match-password="teacherPassword"  minlength="8" maxlength="100">
+                                        <div ng-messages="vm.addTeacherForm.teacherPasswordConfirm.$error" ng-messages-multiple role="alert">
+                                            <div ng-message="required">This is required.</div>
+                                            <div ng-message="maxlength">The password must be less than 100 characters long.</div>
+                                            <div ng-message="minlength">The password  must be 8 characters at least.</div>
+                                            <div ng-message="passwordMatch">Your passwords did not match</div>
+                                        </div>
+                                    </md-input-container>
+-->
+
+
+                                    <md-input-container class="md-block">
+                                        <label>Teacher's Email</label>
+                                        <input required type="email" name="teacherEmail" ng-model="vm.teacher.email"
+                                               minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                        <div ng-messages="vm.addTeacherForm.teacherEmail.$error" role="alert"  >
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Your email must be between 5 and 100 characters long and look like an e-mail address.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Teacher's status</label>
+                                        <md-select ng-model="vm.teacher.active" style="min-width: 200px;">
+                                            <md-option ng-value=true ng-selected=true>Active</md-option>
+                                            <md-option ng-value=false>Inactive</md-option>
+                                        </md-select>
+<!--
+
+ng-selected="{{ mod.id === vmIdPage.number.id ? 'true' : 'false' }}
+                                        <md-select name="type" ng-model="vm.teacher.isActive" required>
+                                            <md-option value="app">Active</md-option>
+                                            <md-option value="web">InActive</md-option>
+                                        </md-select>
+-->
+
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" >
+                                        <label>Contact info</label>
+                                        <input name="description" ng-model="vm.teacher.contactInfo" maxlength="200">
+                                        <div ng-messages="vm.addTeacherForm.contactInfo.$error">
+                                            <div ng-message="md-maxlength">The contact info must be less than 200 characters long.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <section layout="row"  layout-align="center center" layout-wrap>
+                                        <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+                                        <md-button type="button" class="md-raised md-warn" ng-click="vm.reset()" >Cancel</md-button>
+                                    </section>
+                                </form>
+                            </md-content>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

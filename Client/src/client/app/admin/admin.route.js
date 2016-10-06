@@ -17,7 +17,7 @@
         state: 'admin',
         config: {
           url: '/listGroups',
-          templateUrl: 'admin/dashboard-groups-list.html',
+          templateUrl: 'app/admin/dashboard-groups-list.html',
           controller: 'groupsListController',
           controllerAs: 'vm',
           title: 'groupsList',
@@ -26,7 +26,16 @@
             content: '<i class="fa fa-lock"></i> Admin'
           }
         }
-      }
-    ];
+      },
+      {
+        state: 'createGroup',
+        config: {
+          url: '/createGroup',
+          templateUrl: 'app/admin/create-edit-group-dialog.html',
+          controller: 'CreateGroupFormInstanceController',
+          controllerAs: 'vm',
+          title: 'groupsCreate',
+        }
+      }    ];
   }
 })();

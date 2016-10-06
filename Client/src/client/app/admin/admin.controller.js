@@ -32,12 +32,12 @@
         }
 
         vm.createGroup = function(){
-          $state.go('groupsDashboard.createGroup',{"groupObject": null});
+          $state.go('createGroup',{"groupObject": null});
         }
 
         vm.editGroup = function(index){
           if(index>=0 && index<(vm.groupsList.length-1)){
-            $state.go('groupsDashboard.createGroup',{"groupObject": vm.groupsList[index]});
+            $state.go('createGroup',{"groupObject": vm.groupsList[index]});
           }
 
         }

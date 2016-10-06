@@ -5,7 +5,70 @@
                 <div class="widget wviolet">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <h3>TODO: Implement Your Features</h3>
+                        <style>
+                            #createButton{
+                                float: right;
+                                margin-bottom: 5px;
+                            }
+                            #header{
+                                color: black;
+                                background-color: white;
+                                font-weight: bold;
+                                font-size: larger;
+                            }
+                        </style>
+                        <header id="header">Managing Groups</header>
+                        <a id="createButton" ng-click="vm.createGroup()" class="btn btn-primary">Create Group</a>
+                        <div class="text-center">
+                            <table st-table="vm.groupsList" class="table table-bordered table-hover">
+                                <thead>
+                                <tr class="success">
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Students count</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    <th>Active</th>
+                                    <th>Created by</th>
+                                    <th>Students</th>
+                                    <th>Edit</th>
+                                    <th>Remove</th>
+                                    <th>Schedule</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="groupItem in vm.groupsList">
+                                    <th scope="row">{{$index+1}}</th>
+                                    <td>{{groupItem.title}}</td>
+                                    <td>{{groupItem.studentsCount}}</td>
+                                    <td>{{groupItem.startDate}}</td>
+                                    <td>{{groupItem.endDate}}</td>
+                                    <td>{{groupItem.isActive}}</td>
+                                    <td>{{groupItem.creator}}</td>
+                                    <td>
+                                        <p ng-repeat="student in groupItem.users">
+                                            {{student.fullName}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <button id="editGroupItemButton" class="btn btn-sm btn-info" ng-click="vm.editGroup($index)" type="button">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button id="deleteGroupItemButton" class="btn btn-sm btn-danger" ng-click="vm.deleteGroup($index)" type="button">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button id="scheduleGroupItemButton" class="btn btn-sm btn-success" type="button">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>
@@ -15,3 +78,5 @@
         </div>
     </section>
 </section>
+
+
