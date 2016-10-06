@@ -9,11 +9,16 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "angular-aria": "^1.5.8",
     "angular-material": "^1.1.1",
+    "angular-messages": "^1.5.8",
+    "angular-password": "^1.0.3",
+    "angular-smart-table": "^2.1.8",
     "body-parser": "^1.8.2",
     "express": "^4.9.3",
     "morgan": "^1.1.1",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "ui-grid": "0.0.0"
   },
   "devDependencies": {
     "browser-sync": "~2.11.2",
