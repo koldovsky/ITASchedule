@@ -1,0 +1,13 @@
+/* app css stylesheet */
+.myGrid {
+    width: 500px;
+    height: 250px;
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
