@@ -33,8 +33,7 @@ public interface GroupDetail{
     //@Value("#{target.isActive}")
     boolean getIsActive();
 
-    @Value("#{target.creator.fullName}")
-    String getCreator();
+    User getCreator();
 
     List<UserFullName> getUsers();
 
