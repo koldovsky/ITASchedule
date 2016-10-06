@@ -14,7 +14,9 @@
                                         <th st-sort='email'>email</th>
                                         <th>status</th>
                                         <th>contact info</th>
+<!--
                                         <th>role</th>
+-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,7 +34,9 @@
 
                                                     <td>{{teacher.contactInfo}}</td>
 
+<!--
                                                     <td >{{teacher.roles}}</td>
+-->
                                                     <td>
             <!--
                                                         <a ui-sref="addTeacher({teacher})"  class="btn btn-sm btn-success">
@@ -56,7 +60,7 @@
                             </table>
                             <br>
                             <div class="">
-                                <a ui-sref={{"Аdd"+vm.roleName}} class="btn btn-success">Add new teacher</a>
+                                <a ui-sref={{"add"+vm.roleName}} class="btn btn-success">Add new teacher</a>
                             </div>
 
                         </div>

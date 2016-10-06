@@ -18,23 +18,6 @@
         console.log('vm.teacher:'+vm.teacher);
 
 
-        function remove(teacher){
-            console.log('remove button pressed');
-            console.log('Teacher to be deleted', teacher);
-            console.log('id to be deleted', teacher.id);
-            var promises = [deleteTeacher(teacher.id)];
-            return $q.all(promises).then(function() {
-                fetchAllTeachers();
-                logger.info('Techer is deleted!');
-            });
-        }
-
-        function deleteTeacher(id){
-            return teacherservice.deleteTeacher(id).then(function(data) {
-                console.log('id to service:', id);
-                return vm.teachers;
-            })
-        }
 
         function submit(){
             var promises = [create(vm.teacher)];

@@ -14,6 +14,7 @@
         vm.state=$state;
         vm.isTeacher=isTeacher;
         vm.editTeacher=editTeacher;
+        vm.remove=remove;
 
         fetchAllTeachers();
 
@@ -57,5 +58,23 @@
             console.log('editTeacher pressed. vm.editTeacher.fullName: ' + vm.editTeacher.fullName);
             vm.state.go('add'+vm.roleName,{'teacher': teacher});
         };
+
+        function remove(teacher){
+            console.log('remove button pressed');
+            console.log('Teacher to be deleted', teacher);
+            console.log('id to be deleted', teacher.id);
+            var promises = [deleteTeacher(teacher.id)];
+            return $q.all(promises).then(function() {
+                fetchAllTeachers();
+                logger.info('Techer is deleted!');
+            });
+        }
+
+        function deleteTeacher(id){
+            return teacherservice.deleteTeacher(id).then(function(data) {
+                console.log('id to service:', id);
+                return vm.teachers;
+            })
+        }
     }
 })();
