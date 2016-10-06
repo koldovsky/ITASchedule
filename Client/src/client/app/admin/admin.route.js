@@ -16,11 +16,11 @@
       {
         state: 'admin',
         config: {
-          url: '/admin',
-          templateUrl: 'app/admin/admin.html',
-          controller: 'AdminController',
+          url: '/listGroups',
+          templateUrl: 'admin/dashboard-groups-list.html',
+          controller: 'groupsListController',
           controllerAs: 'vm',
-          title: 'Admin',
+          title: 'groupsList',
           settings: {
             nav: 2,
             content: '<i class="fa fa-lock"></i> Admin'

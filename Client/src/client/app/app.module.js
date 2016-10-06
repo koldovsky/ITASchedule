@@ -8,7 +8,8 @@
     'app.dashboard',
     'app.layout',
     'app.calendar',
-    'ui.calendar'
+    'ui.calendar',
+    'ui.bootstrap'
   ]);
 
 })();
