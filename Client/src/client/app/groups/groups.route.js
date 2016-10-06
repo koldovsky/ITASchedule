@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.admin')
+    .module('app.groups')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -14,16 +14,16 @@
   function getStates() {
     return [
       {
-        state: 'admin',
+        state: 'groups',
         config: {
           url: '/listGroups',
-          templateUrl: 'app/admin/dashboard-groups-list.html',
+          templateUrl: 'app/groups/dashboard-groups-list.html',
           controller: 'groupsListController',
           controllerAs: 'vm',
           title: 'groupsList',
           settings: {
             nav: 2,
-            content: '<i class="fa fa-lock"></i> Admin'
+            content: '<i class="fa fa-lock"></i> Groups'
           }
         }
       },
@@ -31,10 +31,15 @@
         state: 'createGroup',
         config: {
           url: '/createGroup',
-          templateUrl: 'app/admin/create-edit-group-dialog.html',
+          templateUrl: 'app/groups/create-edit-group-dialog.html',
           controller: 'CreateGroupFormInstanceController',
           controllerAs: 'vm',
           title: 'groupsCreate',
+          params: {"groupObject":null},
+          settings: {
+            nav: 3,
+            content: '<i class="fa fa-lock"></i> Create Groups'
+          }
         }
       }    ];
   }

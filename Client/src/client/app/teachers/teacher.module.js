@@ -6,7 +6,7 @@
         'smart-table',
         'ngMaterial',
         'ngMessages',
-        'ngAria',
+        'ngAria'
 
     ]);
 })();

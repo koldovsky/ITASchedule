@@ -17,7 +17,7 @@
                 state: 'teachers',
                 config: {
                     url: '/teacher',
-                    templateUrl: 'app/administrator/teachers/teacher.html',
+                    templateUrl: 'app/teachers/teacher.html',
                     controller: 'teachersController',
                     controllerAs: 'vm',
                     title: 'teachers',
@@ -34,7 +34,7 @@
                 state: 'addTeacher',
                 config: {
                     url: '/add-teacher',
-                    templateUrl: 'app/administrator/teachers/add-teacher.html',
+                    templateUrl: 'app/teachers/add-teacher.html',
                     controller: 'addTeachersController',
                     controllerAs: 'vm',
                     title: 'addTeachers',
@@ -53,7 +53,7 @@
                 state: 'administrators',
                 config: {
                     url: '/administrators',
-                    templateUrl: 'app/administrator/teachers/teacher.html',
+                    templateUrl: 'app/teachers/teacher.html',
                     controller: 'teachersController',
                     controllerAs: 'vm',
                     title: 'administrators',
@@ -70,7 +70,7 @@
                 state: 'addAdministrator',
                 config: {
                     url: '/add-administrators',
-                    templateUrl: 'app/administrator/teachers/add-teacher.html',
+                    templateUrl: 'app/teachers/add-teacher.html',
                     controller: 'addTeachersController',
                     controllerAs: 'vm',
                     title: 'addAdministrators',

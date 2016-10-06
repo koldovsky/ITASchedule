@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('app.admin', [])
+  angular.module('app.groups', [])
 
       .controller('groupsListController',function($http, $window, $state){
         var vm = this;
-        vm.title = 'Admin';
+        vm.title = 'Groups';
         vm.groupsList = [];
         $http({
           method: 'GET',
