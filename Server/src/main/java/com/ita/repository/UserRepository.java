@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource(path = "users")
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    public User findByFullName(String fullName);
+
 }
