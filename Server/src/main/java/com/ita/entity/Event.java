@@ -43,7 +43,7 @@ public class Event {
     @ManyToOne
     private User creator;
 
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.ALL})
     @JoinTable(joinColumns = @JoinColumn(name = "event"),
             inverseJoinColumns = @JoinColumn(name = "ITAGroup"))
     private List<ITAGroup> ITAGroups;

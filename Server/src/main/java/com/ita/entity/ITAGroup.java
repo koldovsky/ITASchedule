@@ -15,8 +15,8 @@ import java.util.List;
 
 
 @Entity
-@Setter
 @Getter
+@Setter
 @ToString
 @EqualsAndHashCode(of = "id")
 public class ITAGroup {
@@ -50,6 +50,7 @@ public class ITAGroup {
     public ITAGroup() {
     }
 
+
     public ITAGroup(String title, List<User> users, LocalDate startDate,
                     LocalDate endDate, int studentsCount, boolean isActive) {
         this.title=title;
@@ -59,4 +60,5 @@ public class ITAGroup {
         this.studentsCount=studentsCount;
         this.isActive =isActive;
     }
+
 }
