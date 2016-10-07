@@ -23,7 +23,7 @@
                     title: 'Calendar',
                     settings: {
                         nav: 8,
-                        content: '<i class="fa fa-lock"></i> Calendar'
+                        content: '<i class="fa fa-calendar"></i> Calendar'
                     }
                 }
             }

@@ -4,6 +4,10 @@
       <div ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
         <md-nav-item md-nav-sref="{{r.name}}" ><a ng-bind-html="r.settings.content"></a></md-nav-item>
       </div>
+<span flex></span>
+      <md-button class="md-fab" aria-label="Eat cake">
+        <i class="fa fa-sign-out"></i>
+      </md-button>
     </md-nav-bar>
   </md-content>
 </div>

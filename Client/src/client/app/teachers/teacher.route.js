@@ -23,7 +23,7 @@
                     title: 'teachers',
                     settings: {
                         nav: 4,
-                        content: '<i class="fa fa-user-secret"></i> Teachers'
+                        content: '<i class="fa fa-users"></i> Teachers'
                     },
                     params:{
                         roleName:"Teacher"
@@ -40,7 +40,7 @@
                     title: 'addTeachers',
                     settings: {
                         nav: 5,
-                        content: '<i class="fa fa-user-secret"></i> Add Teacher'
+                        content: '<i class="fa fa-user-plus"></i> Add Teacher'
                     },
                     params :
                     {
@@ -59,7 +59,7 @@
                     title: 'administrators',
                     settings: {
                         nav: 6,
-                        content: '<i class="fa fa-user-secret"></i> Administrators'
+                        content: '<i class="fa fa-user"></i>Administrators'
                     },
                     params:{
                         roleName:"Administrator"
@@ -76,7 +76,7 @@
                     title: 'addAdministrators',
                     settings: {
                         nav: 7,
-                        content: '<i class="fa fa-user-secret"></i> Add Administrators'
+                        content: '<i class="fa fa-user-plus"></i> Add Administrators'
                     },
                     params :
                     {
