@@ -4,14 +4,14 @@
         .module('app.administrator.teachers')
         .controller('teachersController', teachersController);
 
-    teachersController.$inject = ['$q', 'teacherservice', 'logger','$scope', '$stateParams', '$state' ];
-    function teachersController($q, teacherservice, logger, $scope, $stateParams,$state) {
+    teachersController.$inject = ['$q', 'teacherservice', 'logger','$scope', '$state' ];
+    function teachersController($q, teacherservice, logger, $scope, $state) {
         var vm = this;
-        vm.roleName=$stateParams.params.roleName;
+        vm.roleName=$state.params.roleName;
         vm.teacher={};
         vm.teachers=[];
         vm.displayedTeachers=[];
-        vm.state=$stateParams;
+        vm.state=$state;
         vm.isTeacher=isTeacher;
         vm.editTeacher=editTeacher;
 
