@@ -27,7 +27,10 @@
             return $q.all(promises).then(function() {
                 reset();
                 logger.info('New teacher added!');
-            });
+            }, function(){
+                 logger.info('Can not update a teacher!');
+            }
+            );
         }
 
         function create(newTeacher){
