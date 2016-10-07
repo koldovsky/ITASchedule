@@ -14,16 +14,50 @@
     function getStates() {
         return [
             {
-                state: 'calendar',
+                state: 'calendarshell',
+                config: {
+                    url: '/calendarshell',
+                    templateUrl: 'app/calendar/calendar-shell.html',
+                    controller: 'CalendarShellController',
+                    controllerAs: 'vm',
+                    title: 'CalendarShell',
+/*                    settings: {
+                        nav: 8,
+                        content: '<i class="fa fa-lock"></i> CalendarShell'
+                    }*/
+                }
+            },
+            {   state: 'calendarshell.filtredcalendar3',
                 config: {
                     url: '/calendar',
-                    templateUrl: 'app/calendar/calendar.html',
-                    controller: 'CalendarController',
-                    controllerAs: 'vm',
-                    title: 'Calendar',
+                    title: 'CalendarShell',
                     settings: {
-                        nav: 8,
+                        nav: 15,
                         content: '<i class="fa fa-lock"></i> Calendar'
+                    },
+                    views: {
+                        'filters': {
+
+                            templateUrl: 'app/calendar/filter-calendar.html',
+                            controller: 'FilterCalendarController',
+                            controllerAs: 'vm',
+                            title: 'Filters',
+                            settings: {
+                                nav: 15,
+                                content: '<i class="fa fa-lock"></i> filtredcalendar3'
+                            }
+                        },
+                        'calendar': {
+//                            url: '/calendar',
+//                             templateUrl: 'app/calendar/calendar.html',
+                            controller: 'CalendarController',
+                            controllerAs: 'vm',
+                            title: 'Calendar',
+                            settings: {
+                                nav: 17,
+                                content: '<i class="fa fa-lock"></i> filtredcalendar4'
+                            }
+                        }
                     }
                 }
             }
