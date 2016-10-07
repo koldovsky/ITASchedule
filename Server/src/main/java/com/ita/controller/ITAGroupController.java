@@ -24,4 +24,12 @@ public class ITAGroupController{
         return new ResponseEntity<ITAGroup>(HttpStatus.CREATED);
     }
 
+    @RequestMapping(value="/updateGroup",
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ITAGroup> updateGroup(@RequestBody ITAGroupDto groupDto){
+        itaGroupService.updateGroup(groupDto);
+        return new ResponseEntity<ITAGroup>(HttpStatus.OK);
+    }
+
 }
