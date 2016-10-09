@@ -1,10 +1,11 @@
-.md-chips-input {
-    font-size: x-small;
-    width: 10px; }
-.md-item-text  {
-    font-size: x-small;
-    width: 10px;
-    padding: 0}
+
+.md-chips .md-chip-input-container md-autocomplete input {
+    padding-top: 8px;
+    font-size: 12px;
+}
+.md-chips .md-chip div.md-chip-content {
+    font-size: 8px;
+}
 
 .chipsdemoCustomInputs md-content.autocomplete {
     min-height: 200px; }

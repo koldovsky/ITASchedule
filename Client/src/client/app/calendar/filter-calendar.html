@@ -1,15 +1,11 @@
-<div ng-repeat="i in [1,2,3]">
+<!--<div ng-repeat="i in [1,2,3]">
     <md-chips>
         <md-chip>Normal Static Chip</md-chip>
     </md-chips>
-</div>
-
-<md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
-    <span md-highlight-text="searchText">{{item.display}}</span>
-</md-autocomplete>
+</div>-->
 
 
-<md-chips class="md-chips-input" ng-model="vm.selectedTeachers" md-autocomplete-snap
+<md-chips class="md-chips-input mdchip-small-font-size" ng-model="vm.selectedTeachers" md-autocomplete-snap
           md-transform-chip="vm.transformChip($chip)"
           md-require-match="true">
     <md-autocomplete
@@ -21,10 +17,12 @@
             placeholder="Search for a teacher">
             <span md-highlight-text="vm.searchText">{{item.fullName}}</span>
     </md-autocomplete>
+
     <md-chip-template>
             <span>
-              <strong>{{$chip.fullNname}}</strong>
+              <strong>{{$chip.fullName}}</strong>
               <em>({{$chip.email}})</em>
             </span>
     </md-chip-template>
+
 </md-chips>

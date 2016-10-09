@@ -21,7 +21,7 @@
         vm.selectedTeachers = [];
         vm.searchText = null;
         vm.querySearch = querySearch;
-        vm.vegetables = loadVegetables();
+        // vm.vegetables = loadVegetables();
 
         vm.readonly = false;
         vm.selectedVegetables = [];
@@ -51,7 +51,7 @@
          * Search for vegetables.
          */
         function querySearch (query) {
-            var results = query ? vm.vegetables.filter(createFilterFor(query)) : [];
+            var results = query ? vm.teacherList.filter(createFilterFor(query)) : [];
             return results;
         }
 
@@ -60,42 +60,17 @@
          */
         function createFilterFor(query) {
             var lowercaseQuery = angular.lowercase(query);
+            var teacherListLC=teacherListWithLovercase(vm.teacherList)
+            return function filterFn(teacherListLC) {
+                return (teacherListLC._lowername.indexOf(lowercaseQuery) === 0);
 
-            return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
-                    (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
             };
-
         }
 
-        function loadVegetables() {
-            var veggies = [
-                {
-                    'name': 'Broccoli',
-                    'type': 'Brassica'
-                },
-                {
-                    'name': 'Cabbage',
-                    'type': 'Brassica'
-                },
-                {
-                    'name': 'Carrot',
-                    'type': 'Umbelliferous'
-                },
-                {
-                    'name': 'Lettuce',
-                    'type': 'Composite'
-                },
-                {
-                    'name': 'Spinach',
-                    'type': 'Goosefoot'
-                }
-            ];
-
-            return veggies.map(function (veg) {
-                veg._lowername = veg.name.toLowerCase();
-                veg._lowertype = veg.type.toLowerCase();
-                return veg;
+        function teacherListWithLovercase(teacherList){
+            return teacherList.map(function (teacher) {
+                teacher._lowername = teacher.fullName.toLowerCase();
+                return teacher;
             });
         }
 
