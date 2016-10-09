@@ -15,7 +15,7 @@
                                         <th>status</th>
                                         <th>contact info</th>
                                         <th>Edit</th>
-                                        <th>Deactivate</th>
+<!--                                        <th>Deactivate</th>-->
                                         <th>Schedule</th>
 <!--
                                         <th>role</th>
@@ -41,24 +41,19 @@
                                                     <td >{{teacher.roles}}</td>
 -->
                                                     <td>
-            <!--
-                                                        <a ui-sref="addTeacher({teacher})"  class="btn btn-sm btn-success">
-                                                            <i class="glyphicon glyphicon-pencil"></i></a>
-            -->
-
                                                         <button type="button" ng-click="vm.editTeacher (teacher)" class="btn btn-sm btn-success">
                                                             <i class="glyphicon glyphicon-pencil"></i>
                                                         </button>
 
                                                     </td>
+                                                    <!--<td>-->
+                                                        <!--<button type="button" ng-click="vm.remove(teacher)" class="btn btn-sm btn-danger">-->
+                                                            <!--<i class="glyphicon glyphicon-remove">-->
+                                                            <!--</i>-->
+                                                        <!--</button>-->
+                                                    <!--</td>-->
                                                     <td>
-                                                        <button type="button" ng-click="vm.remove(teacher)" class="btn btn-sm btn-danger">
-                                                            <i class="glyphicon glyphicon-remove">
-                                                            </i>
-                                                        </button>
-                                                    </td>
-                                                    <td>
-                                                        <button id="scheduleGroupItemButton" class="btn btn-sm btn-success" type="button">
+                                                        <button ng-click="vm.calendar (teacher)" class="btn btn-sm btn-success" type="button">
                                                             <i class="glyphicon glyphicon-calendar"></i>
                                                         </button>
                                                     </td>`
@@ -72,17 +67,6 @@
                             </div>
 
                         </div>
-
-
-
-
-
-                        <!--The another kind of table-->
-                        <!--<div>-->
-                            <!--<div id="grid2" ui-grid="vm.teachersGrid" ui-grid-edit class="grid"></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
 
                     <div class="widget-foot">
                         <div class="clearfix"></div>

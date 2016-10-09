@@ -15,6 +15,7 @@
         vm.isTeacher=isTeacher;
         vm.editTeacher=editTeacher;
         vm.remove=remove;
+        vm.calendar=calendar;
 
         fetchAllTeachers();
 
@@ -27,8 +28,6 @@
         function getTeachers() {
             return teacherservice.getTeachers().then(function(data) {
                 vm.teachers = data._embedded.users;
-                console.log("---------------teachers----------------");
-                console.log(vm.teachers);
                 return vm.teachers;
             });
         }
@@ -50,19 +49,14 @@
 
 
         function editTeacher (teacher ) {
-            console.log('editTeacher pressed. Teacher: ' + teacher.fullName);
-            console.log('editTeacher pressed. $state: ' + $state);
-            console.log('editTeacher pressed. vm.state: ' + vm.state);
-
-            vm.editTeacher.fullName = (teacher.fullName);
-            console.log('editTeacher pressed. vm.editTeacher.fullName: ' + vm.editTeacher.fullName);
             vm.state.go('add'+vm.roleName,{'teacher': teacher});
         };
 
+        function calendar (teacher ) {
+            vm.state.go('calendar');
+        };
+
         function remove(teacher){
-            console.log('remove button pressed');
-            console.log('Teacher to be deleted', teacher);
-            console.log('id to be deleted', teacher.id);
             var promises = [deleteTeacher(teacher.id)];
             return $q.all(promises).then(function() {
                 fetchAllTeachers();
@@ -72,7 +66,6 @@
 
         function deleteTeacher(id){
             return teacherservice.deleteTeacher(id).then(function(data) {
-                console.log('id to service:', id);
                 return vm.teachers;
             })
         }
