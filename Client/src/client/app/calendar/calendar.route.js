@@ -27,7 +27,7 @@
                     }*/
                 }
             },
-            {   state: 'calendarshell.filtredcalendar3',
+            {   state: 'calendarshell.filterpannel',
                 config: {
                     url: '/calendar',
                     title: 'CalendarShell',
@@ -36,20 +36,28 @@
                         content: '<i class="fa fa-lock"></i> Calendar'
                     },
                     views: {
-                        'filters': {
-
-                            templateUrl: 'app/calendar/filter-calendar.html',
-                            controller: 'FilterCalendarController',
+                        'filter-room': {
+                            templateUrl: 'app/calendar/filter-room.html',
+                            controller: 'FilterRoomController',
                             controllerAs: 'vm',
-                            title: 'Filters',
-                            settings: {
-                                nav: 15,
-                                content: '<i class="fa fa-lock"></i> filtredcalendar3'
-                            }
+                            title: 'Filter-Room',
                         },
+                        'filter-teacher': {
+                            templateUrl: 'app/calendar/filter-teacher.html',
+                            controller: 'FilterTeacherController',
+                            controllerAs: 'vm',
+                            title: 'Filter-Teacher',
+                        },
+                          'filter-group': {
+                            templateUrl: 'app/calendar/filter-group.html',
+                            controller: 'FilterGroupController',
+                            controllerAs: 'vm',
+                            title: 'Filter-Group',
+                        },
+
                         'calendar': {
 //                            url: '/calendar',
-//                             templateUrl: 'app/calendar/calendar.html',
+                            templateUrl: 'app/calendar/calendar.html',
                             controller: 'CalendarController',
                             controllerAs: 'vm',
                             title: 'Calendar',

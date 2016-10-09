@@ -4,12 +4,17 @@
             <div class="row">
                 <div class="widget wviolet">
 
-                    <div ht-widget-header title="{{vm.title}}"></div>
+                    <div ht-widget-header title="Callendar"></div>
                     <div layout="row">
-                        <div flex="70">
-                            <div ui-view="filters"></div>
+                        <div flex="20">
+                            <h3>Rooms:</h3>
+                            <div ui-view="filter-room"></div>
+                            <h3>Teachers:</h3>
+                            <div ui-view="filter-teacher"></div>
+                            <h3>Groups:</h3>
+                            <div ui-view="filter-group"></div>
                         </div>
-                        <div flex="30">
+                        <div flex="80">
                             <div ui-view="calendar"></div>
                         </div>
                     </div>
