@@ -34,7 +34,7 @@
                 return chip;
             }
             // Otherwise, create a new one
-            return { name: chip, type: 'new' }
+            return { title: chip}
         }
 
         /**

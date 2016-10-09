@@ -1,14 +1,12 @@
 .pannel-text {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .md-chips .md-chip-input-container md-autocomplete input {
     padding-top: 8px;
-    font-size: 12px;
+    font-size: 16px;
 }
-.md-chips .md-chip div.md-chip-content {
-    font-size: 8px;
-}
+
 
 .chipsdemoCustomInputs md-content.autocomplete {
     min-height: 200px; }

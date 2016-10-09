@@ -53,7 +53,7 @@
         };
 
         function calendar (teacher ) {
-            vm.state.go('calendar');
+            vm.state.go('calendarshell.filterpannel');
         };
 
         function remove(teacher){
