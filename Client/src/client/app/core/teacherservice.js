@@ -22,11 +22,10 @@
                     .then(success)
                     .catch(fail);
                 function success(response) {
-                    console.log('getTeachers. success. response: '+response);
                     return response.data;
                 }
                 function fail(e) {
-                    return exception.catcher('XHR Failed for getPeople')(e);
+                    return exception.catcher('XHR Failed for getTeachers')(e);
                 }
             }
 
@@ -38,7 +37,7 @@
                     return response.data;
                 }
                 function fail(e) {
-                    return exception.catcher('XHR Failed for getPeople')(e);
+                    return exception.catcher('XHR Failed for deleteTeacher')(e);
                 }
             }
 
@@ -60,7 +59,7 @@
             }
             function fail(e) {
                 console.log('Creating teacher - fail');
-                return exception.catcher('XHR Failed for getPeople')(e);
+                return exception.catcher('XHR Failed for createTeacher')(e);
             }
         }
 

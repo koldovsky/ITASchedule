@@ -20,29 +20,6 @@
                                         </div>
                                     </md-input-container>
 
-<!--
-                                    <md-input-container class="md-block">
-                                        <label>Password</label>
-                                        <input type="password" required md-maxlength="100" name="teacherPassword" ng-model="vm.teacher.password" minlength="8" maxlength="100">
-                                        <div ng-messages="vm.addTeacherForm.teacherPassword.$error" role="alert">
-                                            <div ng-message="required">This is required.</div>
-                                            <div ng-message="maxlength">The password must be less than 100 characters long.</div>
-                                            <div ng-message="minlength">The password  must be 8 characters at least.</div>
-                                        </div>
-                                    </md-input-container>
-                                    <md-input-container class="md-block">
-                                        <label>Confirm password</label>
-                                        <input type="password" required md-maxlength="100" name="teacherPasswordConfirm" ng-model="vm.teacher.passwordConfirm" match-password="teacherPassword"  minlength="8" maxlength="100">
-                                        <div ng-messages="vm.addTeacherForm.teacherPasswordConfirm.$error" ng-messages-multiple role="alert">
-                                            <div ng-message="required">This is required.</div>
-                                            <div ng-message="maxlength">The password must be less than 100 characters long.</div>
-                                            <div ng-message="minlength">The password  must be 8 characters at least.</div>
-                                            <div ng-message="passwordMatch">Your passwords did not match</div>
-                                        </div>
-                                    </md-input-container>
--->
-
-
                                     <md-input-container class="md-block">
                                         <label>Teacher's Email</label>
                                         <input required type="email" name="teacherEmail" ng-model="vm.teacher.email"
@@ -60,14 +37,6 @@
                                             <md-option ng-value=true ng-selected=true>Active</md-option>
                                             <md-option ng-value=false>Inactive</md-option>
                                         </md-select>
-<!--
-
-ng-selected="{{ mod.id === vmIdPage.number.id ? 'true' : 'false' }}
-                                        <md-select name="type" ng-model="vm.teacher.isActive" required>
-                                            <md-option value="app">Active</md-option>
-                                            <md-option value="web">InActive</md-option>
-                                        </md-select>
--->
 
                                     </md-input-container>
 
