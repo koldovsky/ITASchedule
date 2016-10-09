@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('app.groups')
-        .factory('ITAGroupsService',function($http, $window){
+        .factory('ITAGroupsService',function($http, $window, logger){
         //http://stackoverflow.com/questions/18421830/how-to-wait-till-the-response-comes-from-the-http-request-in-angularjs
 
         return{
@@ -23,6 +23,7 @@
                     }
                     callback(groupsList);
                 }, function(response){
+                    logger.error("Unable to load list of groups, error:"+response.error+", status:"+response.status+", message:"+response.message);
                     callback(response);
                 });
             },
@@ -31,10 +32,11 @@
                  $http({
                     url: 'http://localhost:8080/groups/'+id,
                     method: 'DELETE'
-                }).then(function(data,status,headers,config){
+                }).then(function(response){
+                     logger.info("The group has been successfully deleted!");
                     callback(index);
                 }, function(response){
-                     $window.alert("Unable to delete the object: "+response.error+", "+response.message);
+                     logger.error("Unable to delete the group, error:"+response.error+", status:"+response.status+", message:"+response.message);
                 });
             },
 
@@ -44,11 +46,11 @@
                     method: 'POST',
                     data: JSON.stringify(newGroup),
                     headers: {'Content-Type':'application/json'}
-                }).success(function(data,status,headers,config){
-                    $window.alert("User has been successfully created!");
+                }).success(function(response){
+                    logger.info("User has been successfully created!");
                     callback(true);
                 }).error(function(response){
-                    $window.alert(response.error+", "+response.status+", "+response.message);
+                    logger.error("Unable to create new group, error:"+response.error+", status:"+response.status+", message:"+response.message);
                     callback(false);
                 })
             },
@@ -60,11 +62,11 @@
                     data: JSON.stringify(updateGroup),
                     headers: {'Content-Type':'application/json'}
 
-                }).success(function(data,status,headers,config){
-                    $window.alert("Group has been successfully updated!");
+                }).success(function(response){
+                    logger.info("Group has been successfully updated!");
                     callback(true);
-                }).error(function(data,status,headers,config){
-                    $window.alert(status);
+                }).error(function(response){
+                    logger.error("Unable to update the group, error:"+response.error+", status:"+response.status+", message:"+response.message);
                     callback(false);
                 })
             }

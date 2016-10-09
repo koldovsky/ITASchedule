@@ -6,22 +6,37 @@
 
     angular.module('app.groups', [])
 
-        .controller('groupsListController',function($http, $window, $state, ITAGroupsService){
+        .controller('groupsListController',function($scope, logger, $http, $window, $state, ITAGroupsService, $mdDialog){
             var vm = this;
             vm.groupsList = [];
 
             ITAGroupsService.getITAGroups(function(response){
                 if(Object.prototype.toString.call(response) === '[object Array]'){
                     vm.groupsList = response;
-                }else{
-                    $window.alert(response.error+", "+response.status+", "+response.message);
                 }
             });
             vm.deleteGroup = function (index){
-                ITAGroupsService.deleteGroup(vm.groupsList[index].id, index, function(index){
-                    vm.groupsList.splice(index,1);
-                });
+                    ITAGroupsService.deleteGroup(vm.groupsList[index].id, index, function(index){
+                        vm.groupsList.splice(index,1);
+                    });
+
+
             }
+
+            vm.showConfirmDeleteDialog = function(index) {
+                // Appending dialog to document.body to cover sidenav in docs app
+                var confirm = $mdDialog.confirm()
+                    .title("Deleting group " + vm.groupsList[index].title)
+                    .textContent('Would you like to delete group ' +vm.groupsList[index].title+'?')
+                    .ok('Delete')
+                    .cancel('Cancel');
+                $mdDialog.show(confirm).then(function() {
+                    vm.deleteGroup(index);
+                }, function() {
+                    //logger.error("afbtrn");
+                    return false;
+                });
+            };
 
             vm.createGroup = function(){
                 $state.go('createGroup',{"groupObject": null});
@@ -30,14 +45,18 @@
                 if(index>=0 && index<(vm.groupsList.length)){
                     $state.go('createGroup',{"groupObject": vm.groupsList[index]});
                 }
-
             }
+            vm.showCalendar = function($index){
+                $state.go('calendar');
+            }
+
+
+
         })
-        .controller('CreateGroupFormInstanceController', function($window, $http, $filter, $state, $stateParams, uibDateParser, ITAGroupsService){
+        .controller('CreateGroupFormInstanceController', function(logger, $window, $http, $filter, $state, $stateParams, uibDateParser, ITAGroupsService){
             //======================== General initialization ====================
             var vm = this;
             this.format = "yyyy-MM-dd";
-
             vm.addedTeachersList=[];
             vm.allTeachers = [];
             //======================== Initialize form in Update mode ================
@@ -58,6 +77,8 @@
                 vm.startDate = new Date();
                 vm.endDate = new Date();
             }
+
+
             //======================== Initializing lists of teachers ==============================
             $http({
                 method: 'GET',
@@ -65,27 +86,22 @@
             }).then(function(response){
                 var teachers = response.data._embedded.users;
                 for(var i=0; i<teachers.length; i++){
-                    vm.allTeachers.push(teachers[i].fullName);
+                    /*var contains = false;
+                    for(var teacher in vm.addedTeachersList){
+                        if(teacher == teachers[i].fullName)
+                            contains = true;
+                    }*/
+                    //if(!contains)
+                    if(vm.addedTeachersList.indexOf(teachers[i].fullName)<0)
+                        vm.allTeachers.push(teachers[i].fullName);
                 }
-                vm.selectedTeacher = vm.allTeachers[0];
             }, function(response){
-                //$window.alert('Can not download the list of users: '+response.status);
+                logger.error("Unable to load list of available teachers from the server.");
             });
-
             //====================== Students Number Controller ==========================
             vm.MAX_VALUE = 100;
             vm.MIN_VALUE = 1;
 
-            vm.incrementValue = function(){
-                if(vm.studentsCount<vm.MAX_VALUE){
-                    vm.studentsCount += 1;
-                }
-            }
-            vm.decrementValue = function(){
-                if(vm.studentsCount>vm.MIN_VALUE){
-                    vm.studentsCount -= 1;
-                }
-            }
             //=======================Date pickers Controller ==============================
 
             vm.currentDate = new Date();
@@ -103,13 +119,12 @@
             }
             //===================== Teachers List Controller ==============================
             vm.selectedTeacher = null;
-            vm.addTeacherToTheList = function(){
-                if (vm.addedTeachersList.indexOf(vm.selectedTeacher)>-1){
-                    return;
-                }
-                vm.addedTeachersList.push(vm.selectedTeacher);
+            vm.addTeacherToTheList = function(index){
+                vm.addedTeachersList.push(vm.allTeachers[index]);
+                vm.allTeachers.splice(index,1);
             }
             vm.removeTeacherFromTheList = function(index){
+                vm.allTeachers.push(vm.addedTeachersList[index]);
                 vm.addedTeachersList.splice(index,1);
             }
             //==================== From validation ========================
@@ -118,7 +133,7 @@
                     vm.groupTitle.length<1        ||
                     vm.endDate<vm.startDate       ||
                     vm.startDate<vm.currentDate){
-                    $window.alert("Form is not complete!");
+                    logger.alert("Form is not complete!");
                     return false;
                 }
                 return true;
@@ -139,8 +154,10 @@
                 ITAGroupsService.updateGroup(updateGroup, successfullCreateOrUpdateCallback);
             }
             var successfullCreateOrUpdateCallback = function(isSuccessfull){
-                if(isSuccessfull)
+                if(isSuccessfull) {
                     $state.go('listGroups');
+                }
+
             }
             vm.instantiateNewObject = function(passedGroupObject){
                 var newGroup = {
@@ -157,6 +174,9 @@
                     newGroup["creatorFullName"] = passedGroupObject.creator.fullName
                 }
                 return newGroup;
+            }
+            vm.cancelCreation = function(){
+                $state.go('listGroups');
             }
 
         });

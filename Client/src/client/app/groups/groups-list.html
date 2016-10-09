@@ -10,7 +10,7 @@
         font-size: larger;
     }
 </style>
-<section class="mainbar">
+<section class="mainbar" ng-controller="groupsListController">
     <section class="matter">
         <div class="container">
             <div class="row">
@@ -23,7 +23,7 @@
 
                             <a id="createButton" ng-click="vm.createGroup()" class="btn btn-primary">Create Group</a>
                             <div class="text-center">
-                                <table st-table="vm.groupsList" class="table table-bordered table-hover">
+                                <table st-table="vm.groupsList" class="table table-bordered table-hover" style="font-size: medium">
                                      <thead>
                                          <tr class="success">
                                              <th>#</th>
@@ -54,17 +54,17 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                <button id="editGroupItemButton" class="btn btn-sm btn-info" ng-click="vm.editGroup($index)" type="button">
+                                                <button id="editGroupItemButton" class="btn btn-info" ng-click="vm.editGroup($index)" type="button">
                                                     <i class="glyphicon glyphicon-pencil"></i>
                                                 </button>
                                             </td>
                                             <td>
-                                                <button id="deleteGroupItemButton" class="btn btn-sm btn-danger" ng-click="vm.deleteGroup($index)" type="button">
+                                                <button id="deleteGroupItemButton" class="btn btn-danger" ng-click="vm.showConfirmDeleteDialog($index)">
                                                     <i class="glyphicon glyphicon-remove"></i>
                                                 </button>
                                             </td>
                                             <td>
-                                                <button id="scheduleGroupItemButton" class="btn btn-sm btn-success" type="button">
+                                                <button id="scheduleGroupItemButton" class="btn btn-success" ng-click="vm.showCalendar($index)" type="button">
                                                     <i class="glyphicon glyphicon-calendar"></i>
                                                 </button>
                                             </td>
