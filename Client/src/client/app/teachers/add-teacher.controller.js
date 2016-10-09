@@ -15,15 +15,10 @@
         vm.reset=reset;
         vm.teacherStatus=true;
         vm.addTeacherForm={};
-        console.log('vm.teacher:'+vm.teacher);
-
 
 
         function submit(){
             var promises = [create(vm.teacher)];
-            console.log('Submit pressed');
-            console.log(vm.teacher);
-            console.log('status:'+vm.teacher.isActive);
             return $q.all(promises).then(function() {
                 reset();
                 logger.info('New teacher added!');
@@ -39,8 +34,6 @@
                 newTeacher.roles=[role];
                 return teacherservice.createTeacher(newTeacher)
             }else{
-                // teacherservice.updateUser(newTeacher,newTeacher.id);
-                console.log('User updated with id ' + vm.teacher.id);
                 return teacherservice.updateTeacher(newTeacher)
             }
         }
@@ -49,7 +42,6 @@
             vm.teacher={fullName:null,email:null,isActive:true,contactInfo:null,password:null,passwordConfirm:null};
             vm.addTeacherForm.$setPristine(); //reset Form
             vm.addTeacherForm.$setUntouched(); //reset Form
-            console.log('reset pressed');
         }
 
     }
