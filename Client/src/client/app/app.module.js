@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('app', [
+      'app.login',
     'app.core',
     'app.widgets',
     'app.groups',

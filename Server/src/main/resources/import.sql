@@ -24,7 +24,7 @@ insert into user (is_active, contact_info, email, full_name, password) values (t
 insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text2', 'dima@gmailcom', 'Golodniy Dima', '23456');
 insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text3', 'ruslan@gmailcom', 'Cool Ruslan', '34567');
 insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text4', 'marian@gmailcom', 'Hiroku Marian', '45678');
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text5', 'bodya@gmailcom', 'Drink Bodya', '56789');
+insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text5', 'bodya@gmailcom', 'Zog Bodya', '56789');
 
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193', 1);
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200', 2);
