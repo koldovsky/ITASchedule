@@ -10,6 +10,8 @@ import java.util.List;
 @ToString
 public class ITAGroupDto {
 
+    private Long id;
+
     private String title;
 
     private Integer studentsCount;
@@ -28,9 +30,10 @@ public class ITAGroupDto {
 
     }
 
-    public ITAGroupDto(String title, Integer studentsCount, String startDate,
+    public ITAGroupDto(Long id, String title, Integer studentsCount, String startDate,
                     String endDate, Boolean isActive,
                     String creatorFullName, List<String> usersFullNames) {
+        this.id=id;
         this.title=title;
         this.studentsCount=studentsCount;
         this.startDate=startDate;

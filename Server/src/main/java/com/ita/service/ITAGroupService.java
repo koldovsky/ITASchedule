@@ -6,7 +6,8 @@ import com.ita.dto.ITAGroupDto;
 
 public interface ITAGroupService{
 
-    public void createGroup(ITAGroupDto groupDto);
+    public ITAGroupDto createGroup(ITAGroupDto groupDto);
+    public ITAGroupDto updateGroup(ITAGroupDto groupDto);
     //public Collection<ITAGroup> findAll();
 
 }
