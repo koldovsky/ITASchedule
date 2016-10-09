@@ -14,10 +14,10 @@
     function getStates() {
         return [
             {
-                state: 'groups',
+                state: 'listGroups',
                 config: {
                     url: '/listGroups',
-                    templateUrl: 'app/groups/dashboard-groups-list.html',
+                    templateUrl: 'app/groups/groups-list.html',
                     controller: 'groupsListController',
                     controllerAs: 'vm',
                     title: 'groupsList',
