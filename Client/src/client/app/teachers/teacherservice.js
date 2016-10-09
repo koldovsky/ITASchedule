@@ -82,7 +82,7 @@
             }
             function fail(e) {
                 console.log('Updating teacher - fail');
-                return exception.catcher('XHR Failed for getPeople')(e);
+                return exception.catcher('User not found!')(e);
             }
         }
     }

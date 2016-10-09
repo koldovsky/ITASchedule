@@ -15,12 +15,15 @@
     function catcher(message) {
       return function(e) {
         var thrownDescription;
-        var newMessage;
+        var newMessage = 'Error: '+message+" "+e.status+" / "+e.statusText;
         if (e.data && e.data.description) {
           thrownDescription = '\n' + e.data.description;
           newMessage = message + thrownDescription;
-        }
-        e.data.description = newMessage;
+        } else if(!e.data) {
+          e.data={};
+        };
+        console.log('error message: '+newMessage);
+        // e.data.description = 'error:'+newMessage;
         logger.error(newMessage);
         return $q.reject(e);
       };
