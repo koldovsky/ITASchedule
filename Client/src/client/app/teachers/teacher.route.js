@@ -38,10 +38,6 @@
                     controller: 'addTeachersController',
                     controllerAs: 'vm',
                     title: 'addTeachers',
-                    settings: {
-                        nav: 5,
-                        content: '<i class="fa fa-user-plus"></i> Add Teacher'
-                    },
                     params :
                     {
                         teacher: null,
@@ -74,10 +70,6 @@
                     controller: 'addTeachersController',
                     controllerAs: 'vm',
                     title: 'addAdministrators',
-                    settings: {
-                        nav: 7,
-                        content: '<i class="fa fa-user-plus"></i> Add Administrators'
-                    },
                     params :
                     {
                         teacher: null,

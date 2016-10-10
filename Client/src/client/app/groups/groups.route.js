@@ -35,11 +35,7 @@
                     controller: 'CreateGroupFormInstanceController',
                     controllerAs: 'vm',
                     title: 'groupsCreate',
-                    params: {"groupObject": null},
-                    settings: {
-                        nav: 3,
-                        content: '<i class="fa fa-user-plus"></i> Create Groups'
-                    }
+                    params: {"groupObject": null}
                 }
             }];
     }
