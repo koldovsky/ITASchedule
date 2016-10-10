@@ -2,6 +2,7 @@ package com.ita.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ita.dto.ITAGroupDto;
 import com.ita.utils.serializers.LocalDateDeserializer;
 import com.ita.utils.serializers.LocalDateSerializer;
 import lombok.EqualsAndHashCode;
@@ -52,13 +53,13 @@ public class ITAGroup {
 
 
     public ITAGroup(String title, List<User> users, LocalDate startDate,
-                    LocalDate endDate, int studentsCount, boolean isActive) {
+                    LocalDate endDate, int studentsCount, boolean isActive, User creator) {
         this.title=title;
         this.users = users;
         this.startDate=startDate;
         this.endDate=endDate;
         this.studentsCount=studentsCount;
         this.isActive =isActive;
+        this.creator = creator;
     }
-
 }

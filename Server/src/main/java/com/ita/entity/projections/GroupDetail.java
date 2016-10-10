@@ -16,6 +16,8 @@ import java.util.List;
 @Projection(name="groupItem", types = {ITAGroup.class})
 public interface GroupDetail{
 
+    Long getId();
+
     @Value("#{target.title}")
     String getTitle();
 
@@ -30,7 +32,6 @@ public interface GroupDetail{
     @JsonDeserialize(using = LocalDateDeserializer.class)
     LocalDate getEndDate();
 
-    //@Value("#{target.isActive}")
     boolean getIsActive();
 
     User getCreator();
