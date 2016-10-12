@@ -1,4 +1,5 @@
 package com.ita.service;
+import com.ita.service.impl.ITAGroupService;
 import com.ita.utils.exceptions.BrokenITAGroupObjectException;
 import com.ita.utils.exceptions.ITAGroupValidationException;
 import com.ita.utils.validators.ITAGroupValidator;
@@ -14,11 +15,10 @@ import java.util.List;
 import java.util.ArrayList;
 import com.ita.entity.User;
 import com.ita.constants.ErrorConstants;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 
 @Service
-public class ITAGroupServiceImpl implements ITAGroupService{
+public class ITAGroupServiceImpl implements ITAGroupService {
 
     @Autowired
     ITAGroupRepository itaGroupRepository;
