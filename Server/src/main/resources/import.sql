@@ -20,11 +20,11 @@ INSERT INTO room (is_active, number, address_id) VALUES (true, '2001', 2);
 INSERT INTO room (is_active, number, address_id) VALUES (true, '2002', 2);
 INSERT INTO room (is_active, number, address_id) VALUES (true, '2003', 2);
 
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text', 'konon@gmailcom', 'Kononchuk Bohdan', '12345');
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text2', 'dima@gmailcom', 'Golodniy Dima', '23456');
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text3', 'ruslan@gmailcom', 'Cool Ruslan', '34567');
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text4', 'marian@gmailcom', 'Hiroku Marian', '45678');
-insert into user (is_active, contact_info, email, full_name, password) values (true, 'some text5', 'bodya@gmailcom', 'Zog Bodya', '56789');
+insert into user (is_active, contact_info, email, full_name, password) values (true, '80631488228', 'konon@gmailcom', 'Kononchuk Bohdan', '12345');
+insert into user (is_active, contact_info, email, full_name, password) values (true, '80194519923', 'dima@gmailcom', 'Golodniy Dima', '23456');
+insert into user (is_active, contact_info, email, full_name, password) values (true, '80961236549', 'ruslan@gmailcom', 'Cool Ruslan', '34567');
+insert into user (is_active, contact_info, email, full_name, password) values (true, '80124578951', 'marian@gmailcom', 'Hiroku Marian', '45678');
+insert into user (is_active, contact_info, email, full_name, password) values (true, '80501234569', 'bodya@gmailcom', 'Zog Bodya', '56789');
 
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193', 1);
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200', 2);
