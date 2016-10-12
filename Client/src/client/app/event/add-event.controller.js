@@ -112,7 +112,7 @@
         };
         vm.isEventValid = function (event) {
             if (event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
-                if (event.teacherList[0] === null || event.groupList[0] === undefined) {
+                if (event.teacherList[0] === undefined || event.groupList[0] === undefined) {
                     vm.showAlert('At least on teacher and group needs to be selected');
                     return false;
                 } return true ;
