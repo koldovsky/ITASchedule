@@ -7,11 +7,30 @@
                     <div ht-widget-header title="Callendar"></div>
                     <div layout="row">
                         <div flex="20">
-                            <h3>Rooms:</h3>
+                            <br>
+                            <md-toolbar class="md-theme-light">
+                                <h2 class="md-toolbar-tools filter-titles">
+                                    <span>Rooms</span>
+                                </h2>
+                            </md-toolbar>
                             <div ui-view="filter-room"></div>
+
                             <h3>Teachers:</h3>
+                            <md-toolbar class="md-theme-light">
+                                <h2 class="md-toolbar-tools filter-titles">
+                                    <span>Teachers</span>
+                                </h2>
+                            </md-toolbar>
+
                             <div ui-view="filter-teacher"></div>
+
                             <h3>Groups:</h3>
+                            <md-toolbar class="md-theme-light">
+                                <h2 class="md-toolbar-tools filter-titles">
+                                    <span>Groups</span>
+                                </h2>
+                            </md-toolbar>
+
                             <div ui-view="filter-group"></div>
                         </div>
                         <div flex="80">

@@ -1,10 +1,25 @@
+md-icon {
+    min-height: 10px;
+    min-width: 10px;
+}
+
 .pannel-text {
-    font-size: 16px;
+    font-size: 14px;
+}
+.md-toolbar {
+    min-height: 10px;
+    color: white;
+    border-radius: 22px;
+}
+.filter-titles{
+    color: white;
+}
+.md-chip-input-container{
+    width:auto;
 }
 
 .md-chips .md-chip-input-container md-autocomplete input {
-    padding-top: 8px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 
