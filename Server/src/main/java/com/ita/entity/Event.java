@@ -34,7 +34,7 @@ public class Event {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endTime;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     private Room room;
 
     @OneToOne(cascade = CascadeType.ALL)
