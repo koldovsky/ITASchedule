@@ -23,24 +23,20 @@ public class ITAGroupValidator implements Validator {
 
     @Override
     public void validate(Object obj, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "title", "field.required");
+
         ITAGroup group = (ITAGroup)obj;
-        if(group.getStudentsCount()< ErrorConstants.MIN_ITAGROUP_STUDENTS_COUNT &&
-                group.getStudentsCount()>ErrorConstants.MAX_ITAGROUP_STUDENTS_COUNT){
-            errors.rejectValue("studentsCount", ErrorConstants.STUDENTS_COUNT_OUT_OF_RANGE);
-        }
-        if(group.getStartDate().isBefore(LocalDate.now())){
-            errors.rejectValue("startDate", ErrorConstants.STARTDATE_IS_BEFORE_CURRENTDATE);
-        }
+
         if(group.getEndDate().isBefore(group.getStartDate())){
             errors.rejectValue("endDate", ErrorConstants.ENDDATE_IS_BEFORE_STARTDATE);
         }
-        /**
-         * List of teachers and creator are not validated here
-         * since they are built in the service method that will
-         * throw exception to the client of they are not found
-         * in the database.
-         */
+        if(group.getCreator() == null){
+            errors.rejectValue("creatorFullName", ErrorConstants.NO_CREATOR_SPECIFIED);
+        }
+        if(group.getUsers().isEmpty()){
+            System.out.println("-----"+group.getUsers().size());
+            errors.rejectValue("usersFullNames", ErrorConstants.NO_USERS_SPECIFIED);
+        }
+
 
 
 

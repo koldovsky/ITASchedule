@@ -1,11 +1,8 @@
 package com.ita.controller;
 
 import com.ita.dto.EventDto;
-import com.ita.dto.ITAGroupDto;
 import com.ita.entity.Event;
-import com.ita.entity.ITAGroup;
 import com.ita.service.impl.EventService;
-import com.ita.service.impl.ITAGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
