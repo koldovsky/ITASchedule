@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,8 @@ public class UsersController {
 
     @RequestMapping(value="/users/{role}", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(@RequestBody Role role){
-        List<User> users = userRepository.findByRole(role);
+        List<User> users = new ArrayList<>();
+                userRepository.findByIsActiveTrue();
         if(users.isEmpty()){
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
         }

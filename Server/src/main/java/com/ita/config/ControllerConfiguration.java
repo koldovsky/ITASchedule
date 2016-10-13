@@ -1,7 +1,6 @@
 package com.ita.config;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -10,7 +9,7 @@ import javax.validation.ConstraintViolationException;
 /**
  * Created by sdub on 13.10.2016.
  */
-    @ControllerAdvice
+//    @ControllerAdvice
     public class ControllerConfiguration {
 
         @ExceptionHandler(ConstraintViolationException.class)

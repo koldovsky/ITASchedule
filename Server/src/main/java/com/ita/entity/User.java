@@ -51,8 +51,4 @@ public class User {
 
     public User() {
     }
-
-    public boolean isActive() {
-        return isActive;
-    }
 }

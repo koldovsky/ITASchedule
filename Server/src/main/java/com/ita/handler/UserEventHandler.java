@@ -10,8 +10,17 @@ import org.springframework.stereotype.Component;
 public class UserEventHandler {
     @HandleBeforeCreate
     public void handleBeforeCreate(User user) {
-        if(!user.isActive()) {
-            throw new IllegalArgumentException("New user must be 'active'");
+        System.out.println("Before User create");
+        if(user.getFullName().isEmpty()) {
+            throw new IllegalArgumentException("Name can't be empty");
         }
+
+        if(user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email can't be empty");
+        }
+
+/*        if(!user.getEmail()) {
+            throw new IllegalArgumentException("New user must be 'active'");
+        }*/
     }
 }
