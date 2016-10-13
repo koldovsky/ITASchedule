@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String fullName;
 
+    @NotNull
     private String email;
 
     @JsonIgnore
@@ -29,6 +32,8 @@ public class User {
 
     private String contactInfo;
 
+
+    @NotNull
     private boolean isActive;
 
     @ManyToMany(mappedBy = "users")
@@ -47,4 +52,7 @@ public class User {
     public User() {
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
 }
