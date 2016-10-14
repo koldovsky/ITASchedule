@@ -17,5 +17,6 @@ public final class ErrorConstants {
     public static final String ENDDATE_IS_BEFORE_STARTDATE = "End date is before the start date";
     public static final String NO_CREATOR_SPECIFIED = "Can't find the specified creator";
     public static final String NO_USERS_SPECIFIED = "List of the teachers is not valid";
-    public static final String BLANK_TITLE = "Group must have a title";
+    public static final String BLANK_TITLE = "Missing title";
+
 }
