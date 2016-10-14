@@ -29,6 +29,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         super.configure(security);
+        security.allowFormAuthenticationForClients();
     }
 
     @Override
@@ -47,6 +48,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints
                 .authenticationManager(authenticationManager)
                 .accessTokenConverter(accessTokenConverter())
+                .pathMapping("/oauth/token", "/oauth2/token")
                 .tokenStore(tokenStore());
     }
 

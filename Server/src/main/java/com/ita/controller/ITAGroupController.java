@@ -1,35 +1,46 @@
 package com.ita.controller;
 
 
+import com.google.gson.Gson;
 import com.ita.entity.ITAGroup;
-import com.ita.service.impl.ITAGroupService;
+import com.ita.repository.ITAGroupRepository;
+import com.ita.repository.UserRepository;
+import com.ita.utils.validators.ITAGroupValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.ita.dto.ITAGroupDto;
+
+import javax.validation.Valid;
 
 @RestController
 public class ITAGroupController{
 
+
     @Autowired
-    private ITAGroupService itaGroupService;
+    private UserRepository userRepository;
 
-    @RequestMapping(value="/createGroup",
-                    method = RequestMethod.POST,
-                    consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ITAGroup> createGroup(@RequestBody ITAGroupDto groupDto){
-        itaGroupService.createGroup(groupDto);
-        return new ResponseEntity<ITAGroup>(HttpStatus.CREATED);
-    }
+    @Autowired
+    ITAGroupRepository itaGroupRepository;
 
-    @RequestMapping(value="/updateGroup",
-            method = RequestMethod.PUT,
+    @Autowired
+    private ITAGroupValidator itaGroupValidator;
+
+
+    @RequestMapping(value="/writeGroup",
+            method = {RequestMethod.PUT, RequestMethod.POST},
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ITAGroup> updateGroup(@RequestBody ITAGroupDto groupDto){
-        itaGroupService.updateGroup(groupDto);
-        return new ResponseEntity<ITAGroup>(HttpStatus.OK);
+    public ResponseEntity updateGroup(@RequestBody @Valid ITAGroupDto groupDto, BindingResult bindingResult){
+        ITAGroup group = groupDto.buildITAGroup(userRepository);
+        itaGroupValidator.validate(group,bindingResult);
+        if(bindingResult.hasErrors()){
+            String jsonValidationMessage = new Gson().toJson(bindingResult.getFieldErrors());
+            return ResponseEntity.badRequest().body(jsonValidationMessage);
+        }
+        itaGroupRepository.save(group);
+        return ResponseEntity.ok().build();
     }
 
 }

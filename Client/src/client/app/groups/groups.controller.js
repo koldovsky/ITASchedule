@@ -62,20 +62,24 @@
             //======================== Initialize form in Update mode ================
             vm.passedGroupObject = $stateParams.groupObject;
             if(vm.passedGroupObject!=null){
+                vm.id = vm.passedGroupObject.id;
                 vm.groupTitle = vm.passedGroupObject.title;
                 vm.studentsCount = vm.passedGroupObject.studentsCount;
                 vm.startDate = uibDateParser.parse(vm.passedGroupObject.startDate, this.format);
                 vm.endDate = uibDateParser.parse(vm.passedGroupObject.endDate, this.format);
+                vm.active =  vm.passedGroupObject.isActive;
                 for(var i=0; i<vm.passedGroupObject.users.length; i++){
                     vm.addedTeachersList.push(vm.passedGroupObject.users[i].fullName);
                 }
             }
             //======================== Initialize form in Create mode ================
             else{
+                vm.id = null;
                 vm.groupTitle = '';
                 vm.studentsCount = 7;
                 vm.startDate = new Date();
                 vm.endDate = new Date();
+                vm.active = true;
             }
 
 
@@ -165,12 +169,13 @@
                     "studentsCount": vm.studentsCount,
                     "startDate": $filter('date')(vm.startDate, 'yyyy-MM-dd'),
                     "endDate": $filter('date')(vm.endDate, 'yyyy-MM-dd'),
-                    "isActive": true,
+                    "isActive": vm.active,
                     "creatorFullName": "Hiroku Marian",
                     "usersFullNames": vm.addedTeachersList
                 }
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
+                    logger.info("-----------"+passedGroupObject.id);
                     newGroup["creatorFullName"] = passedGroupObject.creator.fullName
                 }
                 return newGroup;

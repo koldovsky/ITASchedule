@@ -96,9 +96,12 @@
                                                         <span ng-show="vm.endDate<vm.startDate" class="error_message">End date must be later than the start date.</span>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
-
+                                        <md-checkbox ng-model="vm.active" aria-label="Active">
+                                            Active
+                                        </md-checkbox>
                                         <div ng-cloak layout-gt-sm="row" layout="column">
                                             <div flex-gt-sm="50" flex >
                                                 <md-content layout="row" style="background-color: #337ab7;">
