@@ -19,8 +19,5 @@ public class UserEventHandler {
             throw new IllegalArgumentException("Email can't be empty");
         }
 
-/*        if(!user.getEmail()) {
-            throw new IllegalArgumentException("New user must be 'active'");
-        }*/
     }
 }
