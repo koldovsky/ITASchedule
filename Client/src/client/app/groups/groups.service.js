@@ -9,8 +9,6 @@
         //http://stackoverflow.com/questions/18421830/how-to-wait-till-the-response-comes-from-the-http-request-in-angularjs
 
         return{
-
-
             getITAGroups: function(callback){
                 $http({
                     method: 'GET',
@@ -42,31 +40,41 @@
 
             createGroup: function(newGroup, callback){
                 $http({
-                    url: 'http://localhost:8080/createGroup',
+                    url: 'http://localhost:8080/writeGroup',
                     method: 'POST',
                     data: JSON.stringify(newGroup),
                     headers: {'Content-Type':'application/json'}
-                }).success(function(response){
+                }).then(function(response){
                     logger.info("User has been successfully created!");
                     callback(true);
-                }).error(function(response){
-                    logger.error("Unable to create new group, error:"+response.error+", status:"+response.status+", message:"+response.message);
+                }, function(response){
+                    var errors = response.data;
+                    var errorMessage = 'Unable to create new group:\n';
+                    for(var i=0; i<errors.length; i++ ){
+                        errorMessage += (i+1)+') '+errors[i].rejectedValue +': '+ errors[i].codes[3]+'\n';
+                    }
+                    logger.error(errorMessage);
                     callback(false);
                 })
             },
 
             updateGroup: function(updateGroup, callback){
                 $http({
-                    url: 'http://localhost:8080/updateGroup',
+                    url: 'http://localhost:8080/writeGroup',
                     method: 'PUT',
                     data: JSON.stringify(updateGroup),
                     headers: {'Content-Type':'application/json'}
 
-                }).success(function(response){
+                }).then(function(response){
                     logger.info("Group has been successfully updated!");
                     callback(true);
-                }).error(function(response){
-                    logger.error("Unable to update the group, error:"+response.error+", status:"+response.status+", message:"+response.message);
+                }, function(response){
+                    var errors = response.data;
+                    var errorMessage = 'Unable to create new group:\n';
+                    for(var i=0; i<errors.length; i++ ){
+                        errorMessage += (i+1)+') '+errors[i].rejectedValue +': '+ errors[i].codes[3]+'\n';
+                    }
+                    logger.error(errorMessage);
                     callback(false);
                 })
             }

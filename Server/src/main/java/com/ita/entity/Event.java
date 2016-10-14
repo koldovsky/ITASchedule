@@ -37,7 +37,7 @@ public class Event {
     @OneToOne(fetch = FetchType.EAGER)
     private Room room;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private EventType type;
 
     @ManyToOne

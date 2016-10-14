@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.administrator.teachers')
+        .module('app.administrator.users')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -17,8 +17,8 @@
                 state: 'teachers',
                 config: {
                     url: '/teacher',
-                    templateUrl: 'app/teachers/teacher.html',
-                    controller: 'teachersController',
+                    templateUrl: 'app/users/user.html',
+                    controller: 'usersController',
                     controllerAs: 'vm',
                     title: 'teachers',
                     settings: {
@@ -34,17 +34,13 @@
                 state: 'addTeacher',
                 config: {
                     url: '/add-teacher',
-                    templateUrl: 'app/teachers/add-teacher.html',
-                    controller: 'addTeachersController',
+                    templateUrl: 'app/users/add-user.html',
+                    controller: 'addUsersController',
                     controllerAs: 'vm',
-                    title: 'addTeachers',
-                    settings: {
-                        nav: 5,
-                        content: '<i class="fa fa-user-plus"></i> Add Teacher'
-                    },
+                    title: 'addUsers',
                     params :
                     {
-                        teacher: null,
+                        user: null,
                         roleName:"Teacher"
                     }
                 }
@@ -53,8 +49,8 @@
                 state: 'administrators',
                 config: {
                     url: '/administrators',
-                    templateUrl: 'app/teachers/teacher.html',
-                    controller: 'teachersController',
+                    templateUrl: 'app/users/user.html',
+                    controller: 'usersController',
                     controllerAs: 'vm',
                     title: 'administrators',
                     settings: {
@@ -70,17 +66,13 @@
                 state: 'addAdministrator',
                 config: {
                     url: '/add-administrators',
-                    templateUrl: 'app/teachers/add-teacher.html',
-                    controller: 'addTeachersController',
+                    templateUrl: 'app/users/add-user.html',
+                    controller: 'addUsersController',
                     controllerAs: 'vm',
                     title: 'addAdministrators',
-                    settings: {
-                        nav: 7,
-                        content: '<i class="fa fa-user-plus"></i> Add Administrators'
-                    },
                     params :
                     {
-                        teacher: null,
+                        user: null,
                         roleName: "Administrator"
                     }
                 }

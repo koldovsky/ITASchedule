@@ -1,0 +1,53 @@
+<md-button ui-sref="addEvent" class="md-fab md-primary " aria-label="Use Android">
+    <i class="fa fa-plus"></i>
+</md-button>
+<div class="col-xs-offset-2  col-xs-8 ">
+    <div class=" text-center ">
+        <table st-table="vm.events" class="table table-bordered table-hover"
+               style="font-size: medium">
+            <thead>
+            <tr class="success">
+                <th>#</th>
+                <th>Title</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Type</th>
+                <th class="text-center">Color</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="event in vm.events">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{event.title}}</td>
+                <td>{{event.startTime}}</td>
+                <td>{{event.endTime}}</td>
+                <td>{{event.eventType}}</td>
+                <td class="text-center">
+                    <div class=" input-color">
+                        <div class="color-box" style="background-color:{{event.eventColor}};"></div>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <button class="btn  btn-success"><span class="glyphicon glyphicon-edit"></span></button>
+                </td>
+                <td class="text-center">
+                    <button class="btn   btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li class="disabled"><a href="#">«</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">»</a></li>
+        </ul>
+    </div>
+</div>
+
+

@@ -24,12 +24,14 @@
   <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
   <link rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.css" />
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="/bower_components/mdPickers/dist/mdPickers.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- build:css styles/app.css -->
   <!-- inject:css -->
   <link rel="stylesheet" href="/.tmp/styles.css">
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- endinject -->
   <!-- endbuild -->
   <link rel="stylesheet" href="/src/client/styles/filter-calendar.css" />
@@ -70,6 +72,10 @@
   <script src="/bower_components/angular-messages/angular-messages.js"></script>
   <script src="/bower_components/angular-material/angular-material.js"></script>
   <script src="/bower_components/angular-password/angular-password.js"></script>
+  <script src="/bower_components/mdPickers/dist/mdPickers.min.js"></script>
+  <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="/bower_components/query-string/query-string.js"></script>
+  <script src="/bower_components/angular-oauth2/dist/angular-oauth2.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -82,9 +88,11 @@
   <script src="/src/client/app/calendar/calendar.module.js"></script>
   <script src="/src/client/app/core/core.module.js"></script>
   <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+  <script src="/src/client/app/event/event.module.js"></script>
   <script src="/src/client/app/groups/groups.module.js"></script>
   <script src="/src/client/app/layout/layout.module.js"></script>
-  <script src="/src/client/app/teachers/teacher.module.js"></script>
+  <script src="/src/client/app/login/login.module.js"></script>
+  <script src="/src/client/app/users/user.module.js"></script>
   <script src="/src/client/app/widgets/widgets.module.js"></script>
   <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
   <script src="/src/client/app/blocks/exception/exception.js"></script>
@@ -93,31 +101,32 @@
   <script src="/src/client/app/calendar/calendar-shell.controller.js"></script>
   <script src="/src/client/app/calendar/calendar.controller.js"></script>
   <script src="/src/client/app/calendar/calendar.route.js"></script>
+  <script src="/src/client/app/calendar/filter-group.controller.js"></script>
   <script src="/src/client/app/calendar/filter-room.controller.js"></script>
   <script src="/src/client/app/calendar/filter-teacher.controller.js"></script>
-  <script src="/src/client/app/calendar/filter-group.controller.js"></script>
   <script src="/src/client/app/core/config.js"></script>
   <script src="/src/client/app/core/constants.js"></script>
   <script src="/src/client/app/core/core.route.js"></script>
   <script src="/src/client/app/core/dataservice.js"></script>
+  <script src="/src/client/app/core/groupservice.js"></script>
+  <script src="/src/client/app/core/roomservice.js"></script>
   <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
   <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+  <script src="/src/client/app/event/event.controller.js"></script>
+  <script src="/src/client/app/event/event.route.js"></script>
+  <script src="/src/client/app/event/event.service.js"></script>
   <script src="/src/client/app/groups/groups.controller.js"></script>
   <script src="/src/client/app/groups/groups.route.js"></script>
   <script src="/src/client/app/groups/groups.service.js"></script>
-  <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
   <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
   <script src="/src/client/app/layout/shell.controller.js"></script>
   <script src="/src/client/app/layout/sidebar.controller.js"></script>
   <script src="/src/client/app/login/login.controller.js"></script>
-  <script src="/src/client/app/login/login.modeul.js"></script>
   <script src="/src/client/app/login/login.route.js"></script>
-  <script src="/src/client/app/teachers/add-teacher.controller.js"></script>
-  <script src="/src/client/app/teachers/teacher.controller.js"></script>
-  <script src="/src/client/app/teachers/teacher.route.js"></script>
-  <script src="/src/client/app/core/teacherservice.js"></script>
-  <script src="/src/client/app/core/roomservice.js"></script>
-  <script src="/src/client/app/core/groupservice.js"></script>
+  <script src="/src/client/app/users/add-user.controller.js"></script>
+  <script src="/src/client/app/users/user.controller.js"></script>
+  <script src="/src/client/app/users/user.route.js"></script>
+  <script src="/src/client/app/users/userservice.js"></script>
   <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
   <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
   <!-- endinject -->

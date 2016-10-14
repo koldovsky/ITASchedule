@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource(path = "eventtypes")
 public interface EventTypeRepository extends JpaRepository<EventType, Long> {
 
+    EventType findByType(String type);
+
 }

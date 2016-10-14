@@ -5,9 +5,9 @@
         .module('app.calendar')
         .controller('FilterTeacherController', FilterTeacherController);
 
-    FilterTeacherController.$inject = ['$q', 'logger', '$scope', '$compile', 'uiCalendarConfig', 'teacherservice'];
+    FilterTeacherController.$inject = ['$q', 'logger', '$scope', '$compile', 'uiCalendarConfig', 'userservice'];
     /* @ngInject */
-    function FilterTeacherController($q, logger, $scope, $compile, uiCalendarConfig , teacherservice) {
+    function FilterTeacherController($q, logger, $scope, $compile, uiCalendarConfig , userservice) {
         var vm = this;
         vm.teachers=[];
         vm.teacherList=[
@@ -71,8 +71,8 @@
             });
         }
         function getTeachers() {
-            return teacherservice.getTeachers().then(function(data) {
-                vm.teachers = data._embedded.users;
+            return userservice.getActiveTeachers().then(function(users) {
+                vm.teachers = users;
                 vm.teacherList=vm.teachers;
                 return vm.teacherList;
             });

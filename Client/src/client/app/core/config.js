@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   var core = angular.module('app.core');
@@ -21,14 +21,25 @@
 
   core.config(configure);
 
-  configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
+  configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider', 'OAuthProvider', 'OAuthTokenProvider'];
   /* @ngInject */
-  function configure($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+  function configure($logProvider, routerHelperProvider, exceptionHandlerProvider, OAuthProvider, OAuthTokenProvider) {
     if ($logProvider.debugEnabled) {
       $logProvider.debugEnabled(true);
     }
     exceptionHandlerProvider.configure(config.appErrorPrefix);
-    routerHelperProvider.configure({ docTitle: config.appTitle + ': ' });
+    routerHelperProvider.configure({docTitle: config.appTitle + ': '});
+
+    OAuthProvider.configure({
+      baseUrl: 'http://localhost:8080/',
+      clientId: 'ITASchedule'
+    });
+    OAuthTokenProvider.configure({
+      name: 'token',
+      options: {
+        secure: false
+      }
+    });
   }
 
 })();

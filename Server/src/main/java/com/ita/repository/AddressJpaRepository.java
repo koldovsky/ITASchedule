@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource(path = "locations", excerptProjection = AddressDetail.class)
 public interface AddressJpaRepository extends JpaRepository<Address, Long> {
 
+    Address findByCodeName(String codeName);
 }

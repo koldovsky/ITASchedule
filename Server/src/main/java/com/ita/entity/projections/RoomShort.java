@@ -1,22 +1,22 @@
 package com.ita.entity.projections;
 
-import com.ita.entity.Address;
 import com.ita.entity.Room;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "detailed", types = {Room.class})
-public interface RoomDetail {
+/**
+ * Created by sdub on 14.10.2016.
+ */
+@Projection(name = "shortinfo", types = {Room.class})
+public interface RoomShort {
+
+    Long getId();
 
     String getNumber();
-
-    Address getAddress();
 
     @Value("#{target.address.codeName}")
     String getCodeName();
 
     Boolean getIsActive();
-
-    @Value("#{target.address.city.name}")
-    String getCity();
+    
 }
