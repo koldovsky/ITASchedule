@@ -52,7 +52,7 @@
             var lowercaseQuery = angular.lowercase(query);
             var groupListLC=groupListWithLovercase(vm.groupList)
             return function filterFn(groupListLC) {
-                return (groupListLC._lowername.indexOf(lowercaseQuery) === 0);
+                return (groupListLC._lowername.indexOf(lowercaseQuery) >= 0);
 
             };
         }

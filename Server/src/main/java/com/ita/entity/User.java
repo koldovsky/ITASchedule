@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = {"email","fullName"})
+
 public class User {
 
     @Id
@@ -31,7 +32,7 @@ public class User {
     private String contactInfo;
 
     @NotNull
-    private boolean isActive;
+    private boolean active;
 
     @ManyToMany(mappedBy = "users")
     private List<ITAGroup> groups;
@@ -48,4 +49,5 @@ public class User {
 
     public User() {
     }
+
 }

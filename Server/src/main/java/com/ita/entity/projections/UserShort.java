@@ -13,7 +13,7 @@ public interface UserShort {
 
     String getFullName();
 
-    Boolean getIsActive();
+    Boolean getActive();
 
     List<Role> getRoles();
 

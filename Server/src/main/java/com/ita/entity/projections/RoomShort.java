@@ -17,6 +17,6 @@ public interface RoomShort {
     @Value("#{target.address.codeName}")
     String getCodeName();
 
-    Boolean getIsActive();
+    Boolean getActive();
     
 }

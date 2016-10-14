@@ -14,6 +14,6 @@ public interface GroupShort{
 
     String getTitle();
 
-    boolean getIsActive();
+    boolean getActive();
 
 }

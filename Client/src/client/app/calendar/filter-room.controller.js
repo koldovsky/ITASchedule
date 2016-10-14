@@ -52,7 +52,7 @@
             var lowercaseQuery = angular.lowercase(query);
             var roomListLC=roomListWithLovercase(vm.roomList)
             return function filterFn(roomListLC) {
-                return (roomListLC._lowername.indexOf(lowercaseQuery) === 0);
+                return (roomListLC._lowername.indexOf(lowercaseQuery) >= 0);
 
             };
         }

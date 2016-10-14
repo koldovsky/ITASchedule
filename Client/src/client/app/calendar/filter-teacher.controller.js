@@ -52,7 +52,7 @@
             var lowercaseQuery = angular.lowercase(query);
             var teacherListLC=teacherListWithLovercase(vm.teacherList)
             return function filterFn(teacherListLC) {
-                return (teacherListLC._lowername.indexOf(lowercaseQuery) === 0);
+                return (teacherListLC._lowername.indexOf(lowercaseQuery) >= 0);
 
             };
         }

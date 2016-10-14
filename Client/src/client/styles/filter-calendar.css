@@ -3,6 +3,13 @@ md-icon {
     min-width: 10px;
 }
 
+.filter-title{
+    font-size: 18px;
+    font-style: italic;
+    background-color: rgb(190,190,220);
+    padding: 6px;
+}
+
 .pannel-text {
     font-size: 14px;
 }
@@ -16,10 +23,25 @@ md-icon {
 }
 .md-chip-input-container{
     width:auto;
+
 }
 
+.height-chips .md-chips .md-chip {
+    height: 60px;
+    line-height: 60px;
+    border-radius: 10px;
+}
 .md-chips .md-chip-input-container md-autocomplete input {
     font-size: 12px;
+    border-radius: 6px;
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
 }
 
 

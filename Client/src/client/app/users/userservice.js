@@ -40,7 +40,7 @@
                 function success(response) {
                     var users=response.data._embedded.users;
                     return users.filter(function (user) {
-                        var ans = user.isActive;
+                        var ans = user.active;
                         var ans2 = user.roles.some(isTeacher);
                         return ans&&ans2;
                             });

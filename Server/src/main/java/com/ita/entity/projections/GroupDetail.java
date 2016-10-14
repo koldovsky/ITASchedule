@@ -32,7 +32,7 @@ public interface GroupDetail{
     @JsonDeserialize(using = LocalDateDeserializer.class)
     LocalDate getEndDate();
 
-    boolean getIsActive();
+    boolean getActive();
 
     User getCreator();
 
