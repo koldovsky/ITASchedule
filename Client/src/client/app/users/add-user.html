@@ -1,0 +1,64 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div ht-widget-header title="{{vm.user.id==null ? 'Add new '+vm.roleName : 'Edit '+vm.roleName + '  ' }}">
+                    </div>
+                    <div class="widget-content user">
+                        <md-content layout-padding>
+                            <form name="vm.addUserForm" ng-submit="vm.submit()">
+
+                                <md-input-container class="md-block">
+                                    <label>User's name</label>
+                                    <input required name="userFullname" ng-model="vm.user.fullName" minlength="5" maxlength="100">
+                                    <div ng-show="vm.addUserForm.$dirty" ng-messages="vm.addUserForm.userFullname.$error" role="alert">
+                                        <div ng-message="required">This is required.</div>
+                                        <div ng-message="maxlength">The full name must be less than 100 characters long.</div>
+                                        <div ng-message="minlength">The full name  must be 5 characters at least.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block">
+                                    <label>User's Email</label>
+                                    <input required type="email" name="userEmail" ng-model="vm.user.email"
+                                           minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                    <div ng-messages="vm.addUserForm.userEmail.$error" role="alert"  >
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            Your email must be between 5 and 100 characters long and look like an e-mail address.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>User's status</label>
+                                    <md-select ng-model="vm.user.active" style="min-width: 200px;">
+                                        <md-option ng-value=true ng-selected=true>Active</md-option>
+                                        <md-option ng-value=false>Inactive</md-option>
+                                    </md-select>
+
+                                </md-input-container>
+
+                                <md-input-container class="md-block" >
+                                    <label>Contact info</label>
+                                    <input name="description" ng-model="vm.user.contactInfo" maxlength="200">
+                                    <div ng-messages="vm.addUserForm.contactInfo.$error">
+                                        <div ng-message="md-maxlength">The contact info must be less than 200 characters long.</div>
+                                    </div>
+                                </md-input-container>
+                                <section layout="row"  layout-align="center center" layout-wrap>
+                                    <md-button  type="submit" class="md-raised md-primary md-hue-1" ng-show="vm.user.id==null" >Create</md-button>
+                                    <md-button  type="submit" class="md-raised md-primary md-hue-1" ng-show="vm.user.id!=null" >Update</md-button>
+                                    <md-button class="md-raised md-warn" ng-click="vm.cancel()">Cancel</md-button>
+                                </section>
+                            </form>
+                        </md-content>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

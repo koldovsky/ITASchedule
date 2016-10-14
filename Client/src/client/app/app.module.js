@@ -10,7 +10,7 @@
         'app.dashboard',
         'app.layout',
         'app.calendar',
-        'app.administrator.teachers',
+        'app.administrator.users',
         'ui.calendar',
         'ui.bootstrap'
     ]);
