@@ -6,21 +6,62 @@
 
     angular.module('app.groups', [])
 
-        .controller('groupsListController',function($scope, logger, $http, $window, $state, ITAGroupsService, $mdDialog){
+        .controller('groupsListController',function($scope, logger, $http, $window,
+                                                    $state, ITAGroupsService, $mdDialog, $location){
             var vm = this;
             vm.groupsList = [];
+            vm.getGroupsForPage = getGroupsForPage;
+            getGroupsForPage(0);
 
-            ITAGroupsService.getITAGroups(function(response){
-                if(Object.prototype.toString.call(response) === '[object Array]'){
-                    vm.groupsList = response;
+            var search = $location.search();
+            vm.page = search.page||0;
+            vm.size = search.size||3;
+
+            vm.sortByField = "title";
+            vm.sortReverse = false;
+            vm.searchGroupTitle = ''
+
+
+            vm.getPagesArray = function(index){
+                var MAX_PAGES_COUNT = 3;
+                var side = MAX_PAGES_COUNT%2;
+                var minPage = 0;
+                var maxPage = MAX_PAGES_COUNT;
+                var input = [];
+                var totalPages = vm.page.totalPages;
+                if(index<=MAX_PAGES_COUNT-side-1){
+                    if(totalPages<MAX_PAGES_COUNT){
+                        maxPage = totalPages;
+                    }else{
+                        maxPage = MAX_PAGES_COUNT;
+                    }
+                }else{
+                    if(index>(totalPages-side-1)){
+                        maxPage = totalPages;
+                        minPage = index-(MAX_PAGES_COUNT-(totalPages-index));
+                    }else{
+                        minPage = index - side;
+                        maxPage = index + side+1;
+                    }
                 }
-            });
+                for(var i=minPage; i<maxPage; i++) {
+                    input.push(i);
+                }
+                return input;
+            }
+
+
+            function getGroupsForPage(index){
+                ITAGroupsService.getITAGroupsPage(index, function(groupsList,pageInfo){
+                    vm.groupsList = groupsList;
+                    vm.page = pageInfo;
+                })
+            }
+
             vm.deleteGroup = function (index){
                     ITAGroupsService.deleteGroup(vm.groupsList[index].id, index, function(index){
                         vm.groupsList.splice(index,1);
                     });
-
-
             }
 
             vm.showConfirmDeleteDialog = function(index) {

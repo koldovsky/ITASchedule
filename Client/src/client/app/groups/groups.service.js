@@ -9,6 +9,32 @@
         //http://stackoverflow.com/questions/18421830/how-to-wait-till-the-response-comes-from-the-http-request-in-angularjs
 
         return{
+
+            getITAGroupsPage: function(page, callback){
+                $http({
+                    method: "GET",
+                    url: 'http://localhost:8080/groups?page='+page+'&size=3'
+                }).then(function (response) {
+
+                    //================= Parsing groups ==================
+                    var groupsList = [];
+                    var groupsArray = response.data._embedded.iTAGroups;
+                    for(var i=0; i<groupsArray.length; i++){
+                        groupsList.push(groupsArray[i]);
+                    }
+
+                    //================= Parsing page ====================
+                    var page = response.data.page;
+
+
+                    callback(groupsList,page);
+
+                }, function (response) {
+                    logger.error("CANT RECEIVE PAGES");
+                });
+            },
+
+
             getITAGroups: function(callback){
                 $http({
                     method: 'GET',

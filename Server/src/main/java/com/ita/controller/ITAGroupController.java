@@ -5,8 +5,13 @@ import com.google.gson.Gson;
 import com.ita.entity.ITAGroup;
 import com.ita.repository.ITAGroupRepository;
 import com.ita.repository.UserRepository;
+import com.ita.utils.assemblers.ITAGroupResourceAssembler;
 import com.ita.utils.validators.ITAGroupValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -27,6 +32,20 @@ public class ITAGroupController{
 
     @Autowired
     private ITAGroupValidator itaGroupValidator;
+
+    @Autowired
+    private ITAGroupResourceAssembler itaGroupResourceAssembler;
+
+
+    @RequestMapping(
+            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PagedResources<ITAGroup> groups(Pageable pageable, PagedResourcesAssembler assembler){
+        System.out.println(pageable.toString());
+        Page<ITAGroup> groups = itaGroupRepository.findAll(pageable);
+        PagedResources<ITAGroup> pp = assembler.toResource(groups,itaGroupResourceAssembler);
+        //System.out.println(new Gson().toJson(pp));
+        return pp;
+    }
 
 
     @RequestMapping(value="/writeGroup",

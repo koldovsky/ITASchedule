@@ -3,6 +3,7 @@
         float: right;
         margin-bottom: 5px;
     }
+
     #header{
         color: black;
         background-color: white;
@@ -19,20 +20,62 @@
                     </div>
                     <div class="widget-content user">
                         <div>
-
-
                             <a id="createButton" ng-click="vm.createGroup()" class="btn btn-primary">Create Group</a>
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchGroupTitle">
+                                </div>
+                            </form>
                             <div class="text-center">
                                 <table st-table="vm.groupsList" class="table table-bordered table-hover" style="font-size: medium">
                                      <thead>
                                          <tr class="success">
                                              <th>#</th>
-                                             <th>Title</th>
-                                             <th>Students count</th>
-                                             <th>Start date</th>
-                                             <th>End date</th>
-                                             <th>Active</th>
-                                             <th>Created by</th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='title'; vm.sortReverse = !vm.sortReverse">
+                                                     <span ng-show="vm.sortByField=='title' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='title' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                    Title
+                                                 </a>
+                                             </th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='studentsCount'; vm.sortReverse = !vm.sortReverse">
+                                                     Students count
+                                                     <span ng-show="vm.sortByField=='studentsCount' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='studentsCount' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                 </a>
+                                             </th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='startDate'; vm.sortReverse = !vm.sortReverse">
+                                                     Start date
+                                                     <span ng-show="vm.sortByField=='startDate' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='startDate' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                 </a>
+                                             </th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='endDate'; vm.sortReverse = !vm.sortReverse">
+                                                     End date
+                                                     <span ng-show="vm.sortByField=='endDate' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='endDate' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                 </a>
+                                             </th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='isActive'; vm.sortReverse = !vm.sortReverse">
+                                                     Active
+                                                     <span ng-show="vm.sortByField=='isActive' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='isActive' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                 </a>
+                                             </th>
+                                             <th>
+                                                 <a href="#" ng-click="vm.sortByField='creator.fullName'; vm.sortReverse = !vm.sortReverse">
+                                                     Created by
+                                                     <span ng-show="vm.sortByField=='creator.fullName' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                                                     <span ng-show="vm.sortByField=='creator.fullName' && vm.sortReverse" class="fa fa-caret-up"></span>
+                                                 </a>
+                                             </th>
                                              <th>Teachers</th>
                                              <th>Edit</th>
                                              <th>Remove</th>
@@ -40,7 +83,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="groupItem in vm.groupsList">
+                                        <tr ng-repeat="groupItem in vm.groupsList | orderBy:vm.sortByField:vm.sortReverse | filter:vm.searchGroupTitle">
                                             <th scope="row">{{$index+1}}</th>
                                             <td>{{groupItem.title}}</td>
                                             <td>{{groupItem.studentsCount}}</td>
@@ -72,9 +115,32 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="text-center">
+                                <ul class="pagination">
+                                    <li id="firstPage" ng-class="{disabled: vm.page.number === 0}">
+                                        <a ng-show="vm.page.number !== 0" ng-click="vm.getGroupsForPage(0)">First</a>
+                                        <!--<span ng-show="vm.page.number === 0">First</span>-->
+                                    </li>
+                                    <li id="previousPage" ng-class="{disabled: vm.page.number === 0}">
+                                        <a ng-show="vm.page.number !== 0" ng-click="vm.getGroupsForPage(vm.page.number-1)">Prev</a>
+                                        <!--<span ng-show="vm.page.number === 0">Prev</span>-->
+                                    </li>
+                                    <li ng-repeat="n in vm.getPagesArray(vm.page.number)" ng-class="{active: n === vm.page.number}">
+                                        <a ng-click="vm.getGroupsForPage(n)">{{n+1}}</a>
+                                        <!--<span ng-show="vm.page.number === n"></span>-->
+                                    </li>
+                                    <li id="nextPage" ng-class="{disabled: vm.page.number === vm.page.totalPages - 1}">
+                                        <a ng-show="vm.page.number !== vm.page.totalPages - 1" ng-click="vm.getGroupsForPage(vm.page.number+1)">Next</a>
+                                        <!--<span ng-show="vm.page.number === vm.page.totalPages - 1">Next</span>-->
+                                    </li>
+                                    <li id="lastPage" ng-class="{disabled: vm.page.number === vm.page.totalPages - 1}">
+                                        <a ng-show="vm.page.number !== vm.page.totalPages - 1" ng-click="vm.getGroupsForPage(vm.page.totalPages - 1)">Last</a>
+                                        <!--<span ng-show="vm.page.number === vm.page.totalPages - 1" >Last</span>-->
+                                    </li>
+                                </ul>
+                            </div>
 
                         </div>
-
 
 
 
