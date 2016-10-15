@@ -124,9 +124,6 @@
         vm.createStartEndDate = function (date, time) {
             return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
         };
-        vm.createStartEndDate = function (date, time) {
-            return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
-        };
         vm.builtEvent = function () {
             var event = {};
             event.title = vm.event.title;
@@ -139,9 +136,9 @@
             event.startTime = vm.createStartEndDate(vm.date,vm.startTime);
             event.endTime = vm.createStartEndDate(vm.date,vm.endTime);
             return event;
-         };
-        vm.senEventOnServer = function () {
-            if(vm.isEventValid(vm.builtEvent())){
+        };
+        vm.sendEventOnServer = function () {
+            if (vm.isEventValid(vm.builtEvent())) {
                 eventService.createEvent(vm.builtEvent())
             } else {
                 logger.error('Event is not created!');
