@@ -11,11 +11,8 @@
         var vm = this;
         vm.title = 'Calendar';
 
-        vm.feed={};
         $scope.events=[];
         getEvents().then(function(result) {
-            vm.feed=result[0];
-            console.log(vm.feed);
             for (var i in result){
             $scope.events.push({title: result[i].title, start: result[i].startTime, end:result[i].endTime,  stick: true});}
         });
