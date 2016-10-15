@@ -36,7 +36,7 @@
                         content: '<i class="fa fa-lock"></i> Calendar'
                     },
                     views: {
-                        'filter-room': {
+/*                        'filter-room': {
                             templateUrl: 'app/calendar/filter-room.html',
                             controller: 'FilterRoomController',
                             controllerAs: 'vm',
@@ -53,7 +53,7 @@
                             controller: 'FilterGroupController',
                             controllerAs: 'vm',
                             title: 'Filter-Group',
-                        },
+                        },*/
 
                         'calendar': {
 //                            url: '/calendar',

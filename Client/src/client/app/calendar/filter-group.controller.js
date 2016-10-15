@@ -77,6 +77,19 @@
                 return vm.groupList;
             });
         }
+        function fetchAllRooms(){
+            var promises = [getRooms()];
+            return $q.all(promises).then(function() {
+                // logger.info('Activated Rooms View');
+            });
+        }
+        function getRooms() {
+            return roomservice.getRooms().then(function(data) {
+                vm.rooms = data._embedded.rooms;
+                vm.roomList=vm.rooms;
+                return vm.roomList;
+            });
+        }
 
     }
 })()

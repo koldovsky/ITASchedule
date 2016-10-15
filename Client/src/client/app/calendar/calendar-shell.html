@@ -8,34 +8,29 @@
                     <div layout="row">
 
                         <div flex="20">
-<!--                            <md-toolbar class="md-theme-light">
-                                <h3 class="md-toolbar-tools filter-titles">
-                                    <span>Rooms</span>
-                                </h3>
-                            </md-toolbar>-->
                             <br>
+                            <div class="filter-title">Rooms new:</div>
+                            <calendar-filter-panel list="vm.roomList" result="vm.roomSelected"></calendar-filter-panel>
+                            <div class="filter-title">Teachers new:</div>
+                            <calendar-filter-panel list="vm.teacherList" result="vm.teacherSelected"></calendar-filter-panel>
+                            <div class="filter-title">Groups new:</div>
+                            <calendar-filter-panel list="vm.groupList" result="vm.groupSelected"></calendar-filter-panel>
+
+<!--
                             <div class="filter-title">Rooms:</div>
                             <div ui-view="filter-room"></div>
 
                             <div class="filter-title">Teachers:</div>
-<!--                            <md-toolbar class="md-theme-light">
-                                <h2 class="md-toolbar-tools filter-titles">
-                                    <span>Teachers</span>
-                                </h2>
-                            </md-toolbar>-->
                             <div ui-view="filter-teacher"></div>
 
                             <div class="filter-title">Groups:</div>
-<!--
-                            <md-toolbar class="md-theme-light">
-                                <h2 class="md-toolbar-tools filter-titles">
-                                    <span>Groups</span>
-                                </h2>
-                            </md-toolbar>
--->
-                            <div ui-view="filter-group"></div>
+                            <div ui-view="filter-group"></div>-->
+
                         </div>
                         <div flex="80">
+                            <div>{{vm.roomSelected}}</div>
+                            <div>{{vm.teacherSelected}}</div>
+                            <div>{{vm.groupSelected}}</div>
                             <div ui-view="calendar"></div>
                         </div>
                     </div>

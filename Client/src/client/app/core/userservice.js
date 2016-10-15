@@ -18,7 +18,7 @@
             };
             return service;
 
-            function getUsers(role) {
+            function getUsers() {
                 // $http.get('http://localhost:8080/users/search/findbyroles?roles='+role.toUpperCase())
 
                 return  $http.get('http://localhost:8080/users?projection=userslist')
@@ -40,9 +40,7 @@
                 function success(response) {
                     var users=response.data._embedded.users;
                     return users.filter(function (user) {
-                        var ans = user.active;
-                        var ans2 = user.roles.some(isTeacher);
-                        return ans&&ans2;
+                        return user.active&&user.roles.some(isTeacher);
                             });
 
                     }
