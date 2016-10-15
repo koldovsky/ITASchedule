@@ -5,19 +5,29 @@ import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 @RepositoryEventHandler(User.class)
 public class UserEventHandler {
     @HandleBeforeCreate
     public void handleBeforeCreate(User user) {
-        System.out.println("Before User create");
-        if(user.getFullName().isEmpty()) {
+        if(user.getFullName()==null||user.getFullName().isEmpty()) {
             throw new IllegalArgumentException("Name can't be empty");
         }
 
-        if(user.getEmail().isEmpty()) {
+        if(user.getEmail()==null||user.getEmail().isEmpty()) {
             throw new IllegalArgumentException("Email can't be empty");
         }
 
+        String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        String email = user.getEmail();
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        boolean r = matcher.matches();
+        if(!r) {
+            throw new IllegalArgumentException("Email isn't valid");
+        }
     }
 }

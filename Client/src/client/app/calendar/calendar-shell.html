@@ -1,0 +1,52 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+
+                    <div ht-widget-header title="Callendar"></div>
+                    <div layout="row">
+
+                        <div flex="20">
+<!--                            <md-toolbar class="md-theme-light">
+                                <h3 class="md-toolbar-tools filter-titles">
+                                    <span>Rooms</span>
+                                </h3>
+                            </md-toolbar>-->
+                            <br>
+                            <div class="filter-title">Rooms:</div>
+                            <div ui-view="filter-room"></div>
+
+                            <div class="filter-title">Teachers:</div>
+<!--                            <md-toolbar class="md-theme-light">
+                                <h2 class="md-toolbar-tools filter-titles">
+                                    <span>Teachers</span>
+                                </h2>
+                            </md-toolbar>-->
+                            <div ui-view="filter-teacher"></div>
+
+                            <div class="filter-title">Groups:</div>
+<!--
+                            <md-toolbar class="md-theme-light">
+                                <h2 class="md-toolbar-tools filter-titles">
+                                    <span>Groups</span>
+                                </h2>
+                            </md-toolbar>
+-->
+                            <div ui-view="filter-group"></div>
+                        </div>
+                        <div flex="80">
+                            <div ui-view="calendar"></div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+

@@ -15,7 +15,7 @@ public interface RoomDetail {
     @Value("#{target.address.codeName}")
     String getCodeName();
 
-    Boolean getIsActive();
+    Boolean getActive();
 
     @Value("#{target.address.city.name}")
     String getCity();

@@ -62,7 +62,9 @@
        * @example
        *     throw { message: 'error message we added' };
        */
+      if (exception.message==="[itascheduleClient Error] Cannot read property 'nextTick' of undefined") return;
       logger.error(exception.message, errorData);
+
     };
   }
 })();
