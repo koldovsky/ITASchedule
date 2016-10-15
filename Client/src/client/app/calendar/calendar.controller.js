@@ -5,11 +5,32 @@
         .module('app.calendar')
         .controller('CalendarController', CalendarController);
 
-    CalendarController.$inject = ['logger','$scope','$compile','uiCalendarConfig'];
+    CalendarController.$inject = ['logger','$scope','$compile','uiCalendarConfig', '$q','eventService','$state'];
     /* @ngInject */
-    function CalendarController(logger,$scope,$compile,uiCalendarConfig) {
+    function CalendarController(logger,$scope,$compile,uiCalendarConfig, $q, eventService, $state) {
         var vm = this;
         vm.title = 'Calendar';
+
+        vm.feed={};
+        $scope.events=[];
+        getEvents().then(function(result) {
+            vm.feed=result[0];
+            console.log(vm.feed);
+            for (var i in result){
+            $scope.events.push({title: result[i].title, start: result[i].startTime, end:result[i].endTime,  stick: true});}
+        });
+
+
+
+        function getEvents() {
+            return eventService.getEvents().then(function(data) {
+                vm.events = data._embedded.events;
+                return vm.events;
+            });
+        }
+
+
+
 
         activate();
 
@@ -22,6 +43,7 @@
         var m = date.getMonth();
         var y = date.getFullYear();
 
+        var a = new Date(y, m, 1);
         $scope.changeTo = 'Hungarian';
         /* event source that pulls from google.com */
         $scope.eventSource = {
@@ -30,14 +52,6 @@
             currentTimezone: 'America/Chicago' // an option!
         };
         /* event source that contains custom events on the scope */
-        $scope.events = [
-            {title: 'All Day Event',start: new Date(y, m, 1)},
-            {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-            {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-            {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-            {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-            {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-        ];
         /* event source that calls a function on every view switch */
         $scope.eventsF = function (start, end, timezone, callback) {
             var s = new Date(start).getTime() / 1000;

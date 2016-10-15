@@ -31,13 +31,13 @@ insert into itagroup (is_active, end_date, start_date, students_count, title, cr
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228', 3);
 insert into itagroup (is_active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488', 4);
 
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-23 15:00:00', '2016-09-23 17:00:00', 'Event 1', 1, 1, 1);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-24 13:00:00', '2016-09-24 17:00:00', 'Event 2', 1, 1, 2);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-27 13:00:00', '2016-09-27 15:00:00', 'Event 3', 1, 1, 3);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-28 15:00:00', '2016-09-28 19:00:00', 'Event 4', 2, 1, 4);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 5', 3, 2, 5);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 6', 3, 2, 3);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-09-30 17:00:00', '2016-09-30 19:00:00', 'Event 7', 3, 2, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-10 15:00:00', '2016-10-10 17:00:00', 'Event 1', 1, 1, 1);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-24 13:00:00', '2016-10-27 17:00:00', 'Event 2', 1, 1, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-27 13:00:00', '2016-10-27 15:00:00', 'Event 3', 1, 1, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-28 15:00:00', '2016-10-28 19:00:00', 'Event 4', 2, 1, 4);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-10 17:00:00', '2016-10-15 19:00:00', 'Event 5', 3, 2, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-30 17:00:00', '2016-10-30 19:00:00', 'Event 6', 3, 2, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-30 17:00:00', '2016-10-30 19:00:00', 'Event 7', 3, 2, 2);
 
 
 INSERT INTO user_roles (user, role) VALUES (1, 1);
