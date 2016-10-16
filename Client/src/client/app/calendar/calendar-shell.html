@@ -18,10 +18,11 @@
                         </div>
                         <div flex="80">
                             <div ui-view="calendar"></div>
-                            <span class="row"> Filters:
-                                <span ng-repeat="room in vm.roomSelected"> {{room.name}} </span>
-                                <span ng-repeat="teacher in vm.teacherSelected"> {{teacher.name}} </span>
-                                <span ng-repeat="group in vm.groupSelected"> {{group.name}} </span>
+                                <div> Filters:
+                                    <span ng-repeat="room in vm.roomSelected"> {{room.name}} </span>
+                                    <span ng-repeat="teacher in vm.teacherSelected"> {{teacher.name}} </span>
+                                    <span ng-repeat="group in vm.groupSelected"> {{group.name}} </span>
+                                </div>
                             </div>
                         </div>
                     </div>
