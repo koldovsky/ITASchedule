@@ -5,6 +5,9 @@
                 <div class="widget wviolet">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
+                        <md-button class="md-primary md-raised" ng-click="showTabDialog($event)">
+                            Create Event
+                        </md-button>
                         <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
                     </div>
                     <div class="widget-foot">
