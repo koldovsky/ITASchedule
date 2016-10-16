@@ -113,7 +113,6 @@
 
             }
             vm.instantiateNewObject = function(passedGroupObject){
-                $window.alert(vm.active);
                 var newGroup = {
                     "title": vm.groupTitle,
                     "studentsCount": vm.studentsCount,

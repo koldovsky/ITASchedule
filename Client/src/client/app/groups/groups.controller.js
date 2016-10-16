@@ -19,7 +19,7 @@
             var search = $location.search();
             vm.pageInfo = search.page||0;
             vm.pageSizeOptions = [1,5,10,20,50,100,500,1000];
-            vm.pageSize = 1;
+            vm.pageSize = 5;
             vm.paginationPanelNumbers = [];
 
             // tables content sorting and searching variables
