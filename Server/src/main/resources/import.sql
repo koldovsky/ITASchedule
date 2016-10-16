@@ -5,7 +5,7 @@ INSERT INTO city (name) VALUES ('Sofia');
 
 INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Pasternaka 228', 'Lviv1', '12:00:00', '10:00:00', 1);
 INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Smalstockoho 322', 'Lviv2', '22:00:00', '08:00:00', 1);
-INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Heroiv Upa 12', 'K', '21:00:00', '11:00:00', 2);
+INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Heroiv Upa 12', 'Kiyv1', '21:00:00', '11:00:00', 2);
 INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Lubinska 164', 'lviv4', '16:00:00', '08:00:00', 1);
 
 INSERT INTO event_type (color, type) VALUES ('red',   'training');
@@ -19,6 +19,10 @@ INSERT INTO room (active, number, address_id) VALUES (true, '1004', 1);
 INSERT INTO room (active, number, address_id) VALUES (true, '2001', 2);
 INSERT INTO room (active, number, address_id) VALUES (true, '2002', 2);
 INSERT INTO room (active, number, address_id) VALUES (true, '2003', 2);
+INSERT INTO room (active, number, address_id) VALUES (true, '4001', 3);
+INSERT INTO room (active, number, address_id) VALUES (true, '4002', 3);
+INSERT INTO room (active, number, address_id) VALUES (true, '4004', 3);
+INSERT INTO room (active, number, address_id) VALUES (true, '4003', 3);
 
 insert into user (active, contact_info, email, full_name, password) values (true, '80631488228', 'konon@gmail.com', 'Kononchuk Bohdan', '12345');
 insert into user (active, contact_info, email, full_name, password) values (true, '80194519923', 'dima@gmail.com', 'Golodniy Dima', '23456');
