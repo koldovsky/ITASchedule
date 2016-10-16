@@ -15,6 +15,7 @@
         vm.isUser=isUser;
         vm.editUser=editUser;
         vm.calendar=calendar;
+        vm.userSearch="";
 
         fetchAllUsers();
 

@@ -14,7 +14,7 @@ public interface UserDetail {
 
     String getFullName();
 
-    Boolean getIsActive();
+    Boolean getActive();
 
     String getContactInfo();
 

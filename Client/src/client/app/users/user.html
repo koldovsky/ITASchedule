@@ -7,12 +7,18 @@
                     </div>
                     <div class="widget-content user">
                         <div>
+<!--                            <div>
+                                <input type="text" ng-model="userSearch.fullName" class="search-query" placeholder="Search {{vm.roleName}}">
+                            </div>-->
                             <table st-table="displayedUsers" st-safe-src="vm.users" class="table table-striped table-hover">
                                 <thead>
+                                <tr>
+                                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search" type="text"/></th>
+                                </tr>
                                     <tr>
                                         <th st-sort="fullName">Full name</th>
                                         <th st-sort='email'>email</th>
-                                        <th>status</th>
+                                        <th st-sort='active'>status</th>
                                         <th>contact info</th>
                                         <th>Edit</th>
 <!--                                        <th>Deactivate</th>-->
@@ -23,7 +29,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="user in displayedUsers" ng-show="vm.isUser(user)">
+<!--
+                                <tr ng-repeat="user in displayedUsers | filter: userSearch"  ng-show="vm.isUser(user)">
+-->
+                                <tr ng-repeat="user in displayedUsers"  ng-show="vm.isUser(user)">
                                         <td>{{user.fullName}}</td>
 
                                         <td>

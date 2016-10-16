@@ -35,7 +35,7 @@ public class Address {
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     private LocalTime workingHoursEnd;
 
-    private Boolean isActive;
+    private Boolean active;
 
     @OneToOne(fetch = FetchType.EAGER)
     private City city;

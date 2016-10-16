@@ -16,7 +16,7 @@
             {
                 state: 'event',
                 config: {
-                    url: '/',
+                    url: '/event',
                     templateUrl: 'app/event/event.html',
                     controller: 'EventController',
                     controllerAs: 'vm',
@@ -33,7 +33,11 @@
                     templateUrl: 'app/event/add-event.html',
                     controller: 'AddEventController',
                     controllerAs: 'vm',
-                    title: 'addEvent'
+                    title: 'addEvent',
+                    params :
+                    {
+                        event: null
+                    }
                 }
             }];
     }

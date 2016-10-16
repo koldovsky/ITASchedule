@@ -8,5 +8,5 @@ public interface RoomDefault {
 
     String getNumber();
 
-    Boolean getIsActive();
+    Boolean getActive();
 }

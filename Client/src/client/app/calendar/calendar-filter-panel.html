@@ -1,0 +1,21 @@
+<md-chips class="md-chips-input mdchip-small-font-size" ng-model="$ctrl.selectedElements" md-autocomplete-snap
+          md-transform-chip="$ctrl.transformChip($chip)"
+          md-require-match="true">
+    <md-autocomplete
+            md-selected-item="$ctrl.selectedItem"
+            md-select-on-match = true
+            md-search-text="$ctrl.searchTextElement"
+            md-items="element in $ctrl.querySearchElement($ctrl.searchTextElement)"
+            md-item-text="element.name"
+            md-removable="true"
+            md-min-length="0"
+            placeholder="Search for a element">
+        <span md-highlight-text="$ctrl.searchTextElement">{{element.name}}</span>
+    </md-autocomplete>
+
+    <md-chip-template>
+        <div class="pannel-text">
+            {{$chip.name}}
+        </div>
+    </md-chip-template>
+</md-chips>

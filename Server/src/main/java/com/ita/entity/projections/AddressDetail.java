@@ -17,7 +17,7 @@ public interface AddressDetail {
 
     LocalTime getWorkingHoursEnd();
 
-    Boolean getIsActive();
+    Boolean getActive();
 
     @Value("#{target.city.name}")
     String getCity();

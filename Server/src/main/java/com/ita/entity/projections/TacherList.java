@@ -13,7 +13,7 @@ public interface TacherList {
 
         String getFullName();
 
-        Boolean getIsActive();
+        Boolean getActive();
 
         String getContactInfo();
 

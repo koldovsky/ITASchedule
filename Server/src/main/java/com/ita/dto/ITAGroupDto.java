@@ -2,10 +2,7 @@ package com.ita.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.StdArraySerializers;
-import com.ita.constants.ErrorConstants;
 import com.ita.entity.ITAGroup;
-import com.ita.entity.User;
 import com.ita.repository.UserRepository;
 import com.ita.utils.serializers.LocalDateDeserializer;
 import com.ita.utils.serializers.LocalDateSerializer;
@@ -13,9 +10,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class ITAGroupDto {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
-    private Boolean isActive;
+    private Boolean active;
 
     private String creatorFullName;
 
@@ -55,14 +53,14 @@ public class ITAGroupDto {
     }
 
     public ITAGroupDto(Long id, String title, int studentsCount, LocalDate startDate,
-                       LocalDate endDate, Boolean isActive,
+                       LocalDate endDate, Boolean active,
                     String creatorFullName, List<String> usersFullNames) {
         this.id=id;
         this.title=title;
         this.studentsCount=studentsCount;
         this.startDate=startDate;
         this.endDate=endDate;
-        this.isActive =isActive;
+        this.active =active;
         this.creatorFullName = creatorFullName;
         this.usersFullNames = usersFullNames;
     }
@@ -74,7 +72,7 @@ public class ITAGroupDto {
         group.setStudentsCount(studentsCount);
         group.setStartDate(startDate);
         group.setEndDate(endDate);
-        group.setActive(isActive);
+        group.setActive(active);
         group.setCreator(userRepository.findByFullName(creatorFullName));
         group.setUsers(userRepository.findByFullNameIn(usersFullNames));
         return group;
