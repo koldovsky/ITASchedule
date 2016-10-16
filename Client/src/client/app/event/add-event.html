@@ -51,7 +51,6 @@
                                             </md-select>
                                         </md-input-container>
                                         <md-datepicker ng-model="vm.date" md-placeholder="Date"></md-datepicker>
-
                                     </div>
                                     <div class="col-xs-1">
                                         <br>
@@ -207,7 +206,7 @@
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
                             <md-button class="md-raised md-primary md-hue-1"  ng-show="vm.eventToEdit" ng-disabled="CreateGroupForm.$invalid" ng-click="vm.updateGroup()" id="updateButton">Edit</md-button>
-                            <md-button class="md-raised md-primary md-hue-1"
+                            <md-button class="md-raised md-primary md-hue-1" ng-hide="vm.eventToEdit"
                                        ng-click="vm.sendEventOnServer()"
                             >Create
                             </md-button>
@@ -221,4 +220,3 @@
         </div>
     </section>
 </section>
-<button ng-click="vm.ale()">asdasdad</button>

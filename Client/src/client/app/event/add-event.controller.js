@@ -173,8 +173,5 @@
             }
         };
 
-        vm.ale= function () {
-            console.log(vm.city);
-        }
     }
 })();
