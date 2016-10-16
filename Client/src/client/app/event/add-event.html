@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="col-xs-1">
                                         <br>
-                                        <md-button ng-disabled="true" class="md-primary">Start Time </md-button>
+                                        <md-button ng-disabled="true" class="md-primary">Start Time</md-button>
                                     </div>
                                     <div class="col-xs-1">
                                         <div uib-timepicker ng-model="vm.startTime" hour-step="vm.timePickerHourStep"
@@ -96,8 +96,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{ teacher.fullName }}</h3>
-                                                                        <h4>{{teacher.email}}</h4>
+                                                                        <h3>{{ teacher }}</h3>
                                                                     </div>
                                                                     <span flex></span>
                                                                     <md-button class="md-fab md-mini"
@@ -127,8 +126,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{teacher.fullName }}</h3>
-                                                                        <h4>{{teacher.email}}</h4>
+                                                                        <h3>{{teacher }}</h3>
                                                                     </div>
                                                                     <span flex></span>
                                                                     <md-button class="md-fab md-mini"
@@ -161,8 +159,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{ group.title }}</h3>
-                                                                        <h4>{{group.studentsCount}} students</h4>
+                                                                        <h3>{{ group}}</h3>
                                                                     </div>
                                                                     <span flex></span>
                                                                     <md-button class="md-fab md-mini"
@@ -192,8 +189,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{ group.title }}</h3>
-                                                                        <h4>{{group.studentsCount}} students</h4>
+                                                                        <h3>{{ group }}</h3>
                                                                     </div>
                                                                     <span flex></span>
                                                                     <md-button class="md-fab md-mini"
@@ -215,7 +211,8 @@
                         </div>
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
-                            <md-button class="md-raised md-primary md-hue-1"
+                            <md-button class="md-raised md-primary md-hue-1"  ng-show="vm.eventToEdit" ng-disabled="CreateGroupForm.$invalid" ng-click="vm.updateGroup()" id="updateButton">Edit</md-button>
+                            <md-button class="md-raised md-primary md-hue-1"  ng-hide="vm.eventToEdit"
                                        ng-click="vm.sendEventOnServer()"
                             >Create
                             </md-button>
@@ -229,3 +226,4 @@
         </div>
     </section>
 </section>
+<button ng-click="vm.ale()">asdasdad</button>

@@ -71,7 +71,6 @@ INSERT INTO event_users (event, user) VALUES (1, 2);
 INSERT INTO event_users (event, user) VALUES (2, 1);
 INSERT INTO event_users (event, user) VALUES (2, 2);
 INSERT INTO event_users (event, user) VALUES (2, 3);
-INSERT INTO event_users (event, user) VALUES (2, 3);
 INSERT INTO event_users (event, user) VALUES (4, 2);
 INSERT INTO event_users (event, user) VALUES (5, 3);
 

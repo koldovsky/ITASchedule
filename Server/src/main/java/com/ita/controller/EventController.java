@@ -3,10 +3,8 @@ package com.ita.controller;
 import com.google.gson.Gson;
 import com.ita.dto.EventDto;
 import com.ita.entity.Event;
-import com.ita.repository.AddressJpaRepository;
-import com.ita.repository.EventRepository;
-import com.ita.repository.EventTypeRepository;
-import com.ita.repository.RoomRepository;
+import com.ita.entity.ITAGroup;
+import com.ita.repository.*;
 import com.ita.utils.validators.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +25,11 @@ public class EventController {
 
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    UserRepository userRepository;
 
+    @Autowired
+    ITAGroupRepository itaGroupRepository;
     @Autowired
     private AddressJpaRepository addressJpaRepository;
 
@@ -41,7 +43,7 @@ public class EventController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createEvent(@Valid @RequestBody EventDto eventDto,BindingResult bindingResult) {
-        Event event = eventDto.buildEvent(eventTypeRepository,roomRepository,addressJpaRepository,eventRepository);
+        Event event = eventDto.buildEvent(userRepository,eventTypeRepository,roomRepository,addressJpaRepository,itaGroupRepository);
         eventValidator.validate(event,bindingResult);
         if(bindingResult.hasErrors()){
             String jsonValidationMessage = new Gson().toJson(bindingResult.getAllErrors());
