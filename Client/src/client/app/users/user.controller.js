@@ -16,6 +16,8 @@
         vm.editUser=editUser;
         vm.calendar=calendar;
         vm.userSearch="";
+        vm.itemsByPage=10;
+        vm.pages=[5,10,15,20]
 
         fetchAllUsers();
 
@@ -25,9 +27,9 @@
                 logger.info('Activated Users View');
             });
         }
-        function getUsers() {
-            return userservice.getUsers(vm.roleName).then(function(data) {
-                vm.users = data._embedded.users;
+        function getUsers(role) {
+            return userservice.getUsersByRole(vm.roleName).then(function(data) {
+                vm.users = data;
                 return vm.users;
             });
         }

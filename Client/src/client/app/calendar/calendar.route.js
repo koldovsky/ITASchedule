@@ -36,24 +36,6 @@
                         content: '<i class="fa fa-lock"></i> Calendar'
                     },
                     views: {
-/*                        'filter-room': {
-                            templateUrl: 'app/calendar/filter-room.html',
-                            controller: 'FilterRoomController',
-                            controllerAs: 'vm',
-                            title: 'Filter-Room',
-                        },
-                        'filter-teacher': {
-                            templateUrl: 'app/calendar/filter-teacher.html',
-                            controller: 'FilterTeacherController',
-                            controllerAs: 'vm',
-                            title: 'Filter-Teacher',
-                        },
-                          'filter-group': {
-                            templateUrl: 'app/calendar/filter-group.html',
-                            controller: 'FilterGroupController',
-                            controllerAs: 'vm',
-                            title: 'Filter-Group',
-                        },*/
 
                         'calendar': {
 //                            url: '/calendar',

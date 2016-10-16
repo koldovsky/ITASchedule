@@ -18,16 +18,12 @@
         });
 
 
-
         function getEvents() {
             return eventService.getEvents().then(function(data) {
                 vm.events = data._embedded.events;
                 return vm.events;
             });
         }
-
-
-
 
         activate();
 

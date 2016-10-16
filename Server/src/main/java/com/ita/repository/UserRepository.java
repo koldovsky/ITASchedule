@@ -23,8 +23,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @RestResource(path = "findbyroles", rel = "findbyroles")
     public List<User> findByRoles(@Param("roles") List<Role> roles);
-/*    @Query("SELECT user FROM User user JOIN FETCH user_roles ur ON user.id = role. where user.role= (:role) ")
-    @RestResource(path = "findByRole", rel = "findByRole")
-    public List<User> findByRoles (Role role);*/
 
 }

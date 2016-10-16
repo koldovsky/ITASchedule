@@ -15,23 +15,14 @@
                             <calendar-filter-panel list="vm.teacherList" result="vm.teacherSelected"></calendar-filter-panel>
                             <div class="filter-title">Groups new:</div>
                             <calendar-filter-panel list="vm.groupList" result="vm.groupSelected"></calendar-filter-panel>
-
-<!--
-                            <div class="filter-title">Rooms:</div>
-                            <div ui-view="filter-room"></div>
-
-                            <div class="filter-title">Teachers:</div>
-                            <div ui-view="filter-teacher"></div>
-
-                            <div class="filter-title">Groups:</div>
-                            <div ui-view="filter-group"></div>-->
-
                         </div>
                         <div flex="80">
-                            <div>{{vm.roomSelected}}</div>
-                            <div>{{vm.teacherSelected}}</div>
-                            <div>{{vm.groupSelected}}</div>
                             <div ui-view="calendar"></div>
+                            <span class="row"> Filters:
+                                <span ng-repeat="room in vm.roomSelected"> {{room.name}} </span>
+                                <span ng-repeat="teacher in vm.teacherSelected"> {{teacher.name}} </span>
+                                <span ng-repeat="group in vm.groupSelected"> {{group.name}} </span>
+                            </div>
                         </div>
                     </div>
                     <div class="widget-foot">
