@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    angular.module('app.groups', [])
+    angular.module('app.groups')
 
 
         .controller('CreateGroupFormInstanceController', function(logger, $window, $http, $filter, $state, $stateParams, uibDateParser, ITAGroupsService){
@@ -45,12 +45,6 @@
             }).then(function(response){
                 var teachers = response.data._embedded.users;
                 for(var i=0; i<teachers.length; i++){
-                    /*var contains = false;
-                    for(var teacher in vm.addedTeachersList){
-                        if(teacher == teachers[i].fullName)
-                            contains = true;
-                    }*/
-                    //if(!contains)
                     if(vm.addedTeachersList.indexOf(teachers[i].fullName)<0)
                         vm.allTeachers.push(teachers[i].fullName);
                 }

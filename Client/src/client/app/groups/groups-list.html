@@ -3,15 +3,18 @@
         float: right;
         margin-bottom: 5px;
     }
-
-    #header{
-        color: black;
-        background-color: white;
-        font-weight: bold;
-        font-size: larger;
+    #groupsTable{
+        font-size: medium;
+    }
+    #groupActiveFalseIcon{
+        color: red;
+    }
+    #groupActiveTrueIcon{
+        color: green;
     }
 </style>
-<section class="mainbar" ng-controller="groupsListController">
+
+<section class="mainbar">
     <section class="matter">
         <div class="container">
             <div class="row">
@@ -29,8 +32,9 @@
                                     <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchGroupTitle">
                                 </div>
                             </form>
+
                             <div class="text-center">
-                                <table st-table="vm.groupsList" class="table table-bordered table-hover" style="font-size: medium">
+                                <table id="groupsTable" st-table="vm.groupsList" class="table table-bordered table-hover">
                                      <thead>
                                          <tr class="success">
                                              <th>#</th>
@@ -89,8 +93,11 @@
                                             <td>{{groupItem.studentsCount}}</td>
                                             <td>{{groupItem.startDate}}</td>
                                             <td>{{groupItem.endDate}}</td>
+                                            <td class="text-center">
+                                                <i id="groupActiveTrueIcon" ng-show="groupItem.active" class="glyphicon glyphicon-ok-circle"></i>
+                                                <i id="groupActiveFalseIcon" ng-show="!groupItem.active" class="glyphicon glyphicon-ban-circle"></i>
+                                            </td>
                                             <td>{{groupItem.creatorFullName}}</td>
-                                            <td>{{groupItem.active}}</td>
                                             <td>
                                                 <p ng-repeat="student in groupItem.users">
                                                     {{student.fullName}}
@@ -116,29 +123,37 @@
                                 </table>
                             </div>
                             <div class="text-center">
+                                </br>
+
+                                <label>Groups per page:</label>
+                                <select ng-init="vm.pageSizeOptions[0]" ng-model="vm.pageSize" ng-change="vm.getGroupsForPage(0,vm.pageSize);">
+                                    <option ng-repeat="value in vm.pageSizeOptions">{{value}}</option>
+                                </select>
+                                </br>
                                 <ul class="pagination">
-                                    <li id="firstPage" ng-class="{disabled: vm.page.number === 0}">
-                                        <a ng-show="vm.page.number !== 0" ng-click="vm.getGroupsForPage(0)">First</a>
-                                        <!--<span ng-show="vm.page.number === 0">First</span>-->
+                                    <li id="firstPage" ng-class="{disabled: vm.pageInfo.number === 0}">
+                                        <a ng-show="vm.pageInfo.number !== 0" ng-click="vm.getGroupsForPage(0,vm.pageSize)">First</a>
+                                        <!--<span ng-show="vm.pageInfo.number === 0">First</span>-->
                                     </li>
-                                    <li id="previousPage" ng-class="{disabled: vm.page.number === 0}">
-                                        <a ng-show="vm.page.number !== 0" ng-click="vm.getGroupsForPage(vm.page.number-1)">Prev</a>
-                                        <!--<span ng-show="vm.page.number === 0">Prev</span>-->
+                                    <li id="previousPage" ng-class="{disabled: vm.pageInfo.number === 0}">
+                                        <a ng-show="vm.pageInfo.number !== 0" ng-click="vm.getGroupsForPage(vm.pageInfo.number-1,vm.pageSize)">Prev</a>
+                                        <!--<span ng-show="vm.pageInfo.number === 0">Prev</span>-->
                                     </li>
-                                    <li ng-repeat="n in vm.getPagesArray(vm.page.number)" ng-class="{active: n === vm.page.number}">
-                                        <a ng-click="vm.getGroupsForPage(n)">{{n+1}}</a>
-                                        <!--<span ng-show="vm.page.number === n"></span>-->
+                                    <li ng-repeat="n in vm.refreshPaginationPanel(vm.pageInfo.number)" ng-class="{active: n === vm.pageInfo.number}">
+                                        <a ng-click="vm.getGroupsForPage(n,vm.pageSize)">{{n+1}}</a>
+                                        <!--<span ng-show="vm.pageInfo.number === n"></span>-->
                                     </li>
-                                    <li id="nextPage" ng-class="{disabled: vm.page.number === vm.page.totalPages - 1}">
-                                        <a ng-show="vm.page.number !== vm.page.totalPages - 1" ng-click="vm.getGroupsForPage(vm.page.number+1)">Next</a>
-                                        <!--<span ng-show="vm.page.number === vm.page.totalPages - 1">Next</span>-->
+                                    <li id="nextPage" ng-class="{disabled: vm.pageInfo.number === vm.pageInfo.totalPages - 1}">
+                                        <a ng-show="vm.pageInfo.number !== vm.pageInfo.totalPages - 1" ng-click="vm.getGroupsForPage(vm.pageInfo.number+1,vm.pageSize)">Next</a>
+                                        <!--<span ng-show="vm.pageInfo.number === vm.pageInfo.totalPages - 1">Next</span>-->
                                     </li>
-                                    <li id="lastPage" ng-class="{disabled: vm.page.number === vm.page.totalPages - 1}">
-                                        <a ng-show="vm.page.number !== vm.page.totalPages - 1" ng-click="vm.getGroupsForPage(vm.page.totalPages - 1)">Last</a>
-                                        <!--<span ng-show="vm.page.number === vm.page.totalPages - 1" >Last</span>-->
+                                    <li id="lastPage" ng-class="{disabled: vm.pageInfo.number === vm.pageInfo.totalPages - 1}">
+                                        <a ng-show="vm.pageInfo.number !== vm.pageInfo.totalPages - 1" ng-click="vm.getGroupsForPage(vm.pageInfo.totalPages - 1,vm.pageSize)">Last</a>
+                                        <!--<span ng-show="vm.pageInfo.number === vm.pageInfo.totalPages - 1" >Last</span>-->
                                     </li>
                                 </ul>
                             </div>
+
 
                         </div>
 
