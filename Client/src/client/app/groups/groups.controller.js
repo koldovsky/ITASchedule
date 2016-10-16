@@ -19,7 +19,8 @@
 
             vm.sortByField = "title";
             vm.sortReverse = false;
-            vm.searchGroupTitle = ''
+            vm.searchGroupTitle = '';
+            vm.groupsIdToArrayIndexMap = {};
 
 
             vm.getPagesArray = function(index){
@@ -52,8 +53,10 @@
 
 
             function getGroupsForPage(index){
-                ITAGroupsService.getITAGroupsPage(index, function(groupsList,pageInfo){
+                ITAGroupsService.getITAGroupsPage(index, function(groupsList, groupsIdToArrayIndexMap, pageInfo){
                     vm.groupsList = groupsList;
+                    vm.groupsIdToArrayIndexMap = groupsIdToArrayIndexMap;
+                    //$window.alert(JSON.stringify(vm.groupsList));
                     vm.page = pageInfo;
                 })
             }
@@ -64,8 +67,8 @@
                     });
             }
 
-            vm.showConfirmDeleteDialog = function(index) {
-                // Appending dialog to document.body to cover sidenav in docs app
+            vm.showConfirmDeleteDialog = function(id) {
+                var index = vm.groupsIdToArrayIndexMap[id];
                 var confirm = $mdDialog.confirm()
                     .title("Deleting group " + vm.groupsList[index].title)
                     .textContent('Would you like to delete group ' +vm.groupsList[index].title+'?')
@@ -74,7 +77,6 @@
                 $mdDialog.show(confirm).then(function() {
                     vm.deleteGroup(index);
                 }, function() {
-                    //logger.error("afbtrn");
                     return false;
                 });
             };
@@ -82,10 +84,9 @@
             vm.createGroup = function(){
                 $state.go('createGroup',{"groupObject": null});
             }
-            vm.editGroup = function(index){
-                if(index>=0 && index<(vm.groupsList.length)){
-                    $state.go('createGroup',{"groupObject": vm.groupsList[index]});
-                }
+            vm.editGroup = function(id){
+                var index = vm.groupsIdToArrayIndexMap[id];
+                $state.go('createGroup',{"groupObject": vm.groupsList[index]});
             }
             vm.showCalendar = function($index){
                 $state.go('calendar');
@@ -217,7 +218,7 @@
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
                     logger.info("-----------"+passedGroupObject.id);
-                    newGroup["creatorFullName"] = passedGroupObject.creator.fullName
+                    newGroup["creatorFullName"] = passedGroupObject.creatorFullName;
                 }
                 return newGroup;
             }

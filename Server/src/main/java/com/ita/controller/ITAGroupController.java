@@ -3,13 +3,16 @@ package com.ita.controller;
 
 import com.google.gson.Gson;
 import com.ita.entity.ITAGroup;
+import com.ita.entity.projections.GroupDetail;
 import com.ita.repository.ITAGroupRepository;
 import com.ita.repository.UserRepository;
 import com.ita.utils.assemblers.ITAGroupResourceAssembler;
 import com.ita.utils.validators.ITAGroupValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.MediaType;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import com.ita.dto.ITAGroupDto;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ITAGroupController{
@@ -36,15 +41,28 @@ public class ITAGroupController{
     @Autowired
     private ITAGroupResourceAssembler itaGroupResourceAssembler;
 
+    @Autowired
+    private ProjectionFactory projectionFactory;
 
-    @RequestMapping(
+
+    /*@RequestMapping(
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PagedResources<ITAGroup> groups(Pageable pageable, PagedResourcesAssembler assembler){
-        System.out.println(pageable.toString());
-        Page<ITAGroup> groups = itaGroupRepository.findAll(pageable);
-        PagedResources<ITAGroup> pp = assembler.toResource(groups,itaGroupResourceAssembler);
-        //System.out.println(new Gson().toJson(pp));
-        return pp;
+    public PagedResources<GroupDetail> groups(Pageable pageable, PagedResourcesAssembler assembler){
+        Page<GroupDetail> groups = itaGroupRepository.findAll(pageable)
+                .map(g -> projectionFactory.createProjection(GroupDetail.class,g));
+
+        //List<GroupDetail> p = groups.getContent().stream().map(g -> projectionFactory.createProjection(GroupDetail.class,g)).collect(Collectors.toList());
+        for(GroupDetail gd : groups){
+            System.out.println(gd.getTitle()+" --------- "+gd.getUsers());
+        }
+        return assembler.toResource(groups,itaGroupResourceAssembler);
+    }*/
+    @RequestMapping(value="groupsPage",
+            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<?> groups(Pageable pageable, PagedResourcesAssembler assembler){
+        return itaGroupRepository.findAll(pageable)
+                .map(g -> projectionFactory.createProjection(GroupDetail.class,g));
+
     }
 
 

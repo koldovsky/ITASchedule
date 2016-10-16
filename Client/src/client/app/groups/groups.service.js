@@ -13,21 +13,24 @@
             getITAGroupsPage: function(page, callback){
                 $http({
                     method: "GET",
-                    url: 'http://localhost:8080/groups?page='+page+'&size=3'
+                    url: 'http://localhost:8080/groupsPage?page='+page+'&size=3'
                 }).then(function (response) {
 
                     //================= Parsing groups ==================
+
                     var groupsList = [];
-                    var groupsArray = response.data._embedded.iTAGroups;
+                    var groupsIdToArrayIndexMap = {};
+                    var groupsArray = response.data.content;
                     for(var i=0; i<groupsArray.length; i++){
                         groupsList.push(groupsArray[i]);
+                        groupsIdToArrayIndexMap[groupsArray[i].id] = i;
                     }
 
                     //================= Parsing page ====================
-                    var page = response.data.page;
+                    var page = response.data;
 
 
-                    callback(groupsList,page);
+                    callback(groupsList, groupsIdToArrayIndexMap, page);
 
                 }, function (response) {
                     logger.error("CANT RECEIVE PAGES");

@@ -26,6 +26,9 @@ public class ITAGroupValidator implements Validator {
 
         ITAGroup group = (ITAGroup)obj;
 
+        if(group.getStartDate().isBefore(LocalDate.now().minusDays(1))){
+            errors.rejectValue("startDate", ErrorConstants.STARTDATE_IS_BEFORE_CURRENTDATE);
+        }
         if(group.getEndDate().isBefore(group.getStartDate())){
             errors.rejectValue("endDate", ErrorConstants.ENDDATE_IS_BEFORE_STARTDATE);
         }
@@ -33,7 +36,6 @@ public class ITAGroupValidator implements Validator {
             errors.rejectValue("creatorFullName", ErrorConstants.NO_CREATOR_SPECIFIED);
         }
         if(group.getUsers().isEmpty()){
-            System.out.println("-----"+group.getUsers().size());
             errors.rejectValue("usersFullNames", ErrorConstants.NO_USERS_SPECIFIED);
         }
 
