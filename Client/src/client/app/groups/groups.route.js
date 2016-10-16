@@ -24,7 +24,8 @@
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-group"></i> Groups'
-                    }
+                    },
+                    authenticate: false
                 }
             },
             {
@@ -36,7 +37,8 @@
                     controllerAs: 'vm',
                     title: 'groupsCreate',
                     params: {"groupObject": null}
-                }
+                },
+                authenticate: false
             }];
     }
 })();

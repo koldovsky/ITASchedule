@@ -129,7 +129,7 @@
             event.title = vm.event.title;
             event.teacherList = vm.addedTeachers;
             event.creator = vm.addedTeachers[0];
-            event.groupList = vm.addedGroups;
+            event.itaGroups = vm.addedGroups;
             event.type = vm.event.type.type;
             event.roomNumber = vm.room.number;
             event.addressCodeName = vm.address.codeName;

@@ -30,23 +30,22 @@
             {   state: 'calendarshell.filterpannel',
                 config: {
                     url: '/calendar',
-                    title: 'CalendarShell',
+                    title: 'Calendar',
                     settings: {
-                        nav: 15,
+                        nav: 8,
                         content: '<i class="fa fa-lock"></i> Calendar'
                     },
                     views: {
-
                         'calendar': {
-//                            url: '/calendar',
                             templateUrl: 'app/calendar/calendar.html',
                             controller: 'CalendarController',
                             controllerAs: 'vm',
                             title: 'Calendar',
                             settings: {
-                                nav: 17,
+                                nav: 8,
                                 content: '<i class="fa fa-lock"></i> filtredcalendar4'
                             }
+                            authenticate: false
                         }
                     }
                 }

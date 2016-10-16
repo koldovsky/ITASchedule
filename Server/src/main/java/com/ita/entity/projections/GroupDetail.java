@@ -32,9 +32,12 @@ public interface GroupDetail{
     @JsonDeserialize(using = LocalDateDeserializer.class)
     LocalDate getEndDate();
 
+
+    @Value("#{target.creator.fullName}")
+    String getCreatorFullName();
+
     boolean getActive();
 
-    User getCreator();
 
     List<UserFullName> getUsers();
 
