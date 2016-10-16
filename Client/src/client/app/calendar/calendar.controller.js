@@ -20,7 +20,7 @@
         /* modal window */
         $scope.showTabDialog = function (ev) {
             $mdDialog.show({
-                templateUrl: 'app/event/add-event.html',
+                templateUrl: 'app/event/create-edit-event.html',
                 controller: 'AddEventController',
                 controllerAs: 'vm',
                 parent: angular.element(document.body),

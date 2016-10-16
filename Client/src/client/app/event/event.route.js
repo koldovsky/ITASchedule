@@ -31,7 +31,7 @@
                 state: 'addEvent',
                 config: {
                     url: '/add-event',
-                    templateUrl: 'app/event/add-event.html',
+                    templateUrl: 'app/event/create-edit-event.html',
                     controller: 'AddEventController',
                     controllerAs: 'vm',
                     title: 'addEvent',
@@ -41,8 +41,8 @@
             {
                 state: 'editEvent',
                 config: {
-                    url: '/edit-group',
-                    templateUrl: 'app/event/add-event.html',
+                    url: '/edit-event',
+                    templateUrl: 'app/event/create-edit-event.html',
                     controller: 'AddEventController',
                     controllerAs: 'vm',
                     title: 'editEvent',
