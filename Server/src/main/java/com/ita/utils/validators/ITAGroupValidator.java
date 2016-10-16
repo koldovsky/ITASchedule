@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+
 /**
  * Created by marian on 07.10.16.
  */
