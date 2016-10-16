@@ -19,7 +19,6 @@ import java.util.List;
  * Created by sdub on 13.10.2016.
  */
 @RestController
-@RequestMapping(value="/users")
 public class UsersController {
     @Autowired
     UserRepository userRepository;
@@ -42,14 +41,5 @@ public class UsersController {
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<User>> getUsers(){
-        List<Role> r = new ArrayList<>();
-        r.add(Role.ADMINISTRATOR);
-        List<User> users = userRepository.findByRoles(r);
-        if(users.isEmpty()){
-            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-    }
+
 }
