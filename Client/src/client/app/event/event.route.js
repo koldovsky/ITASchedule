@@ -16,7 +16,7 @@
             {
                 state: 'event',
                 config: {
-                    url: '/event',
+                    url: '/',
                     templateUrl: 'app/event/event.html',
                     controller: 'EventController',
                     controllerAs: 'vm',
@@ -24,7 +24,8 @@
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-wheelchair-alt "></i>Events'
-                    }
+                    },
+                    authenticate: false
                 }
             },{
                 state: 'addEvent',
@@ -34,10 +35,7 @@
                     controller: 'AddEventController',
                     controllerAs: 'vm',
                     title: 'addEvent',
-                    params :
-                    {
-                        event: null
-                    }
+                    authenticate: false
                 }
             }];
     }

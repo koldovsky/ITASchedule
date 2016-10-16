@@ -5,12 +5,16 @@
     .module('app.layout')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$state', 'routerHelper'];
+  SidebarController.$inject = ['$state', 'routerHelper', '$mdDialog', '$scope', 'loginservice', '$rootScope'];
   /* @ngInject */
-  function SidebarController($state, routerHelper) {
+  function SidebarController($state, routerHelper, $mdDialog, $scope, loginservice, $rootScope) {
     var vm = this;
     var states = routerHelper.getStates();
     vm.isCurrent = isCurrent;
+    vm.authenticatedUser = authenticatedUser;
+    vm.showLogin = loginservice.login;
+    vm.logout = loginservice.logout;
+
 
     activate();
 
@@ -31,5 +35,10 @@
       var menuName = route.title;
       return $state.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
     }
+
+    function authenticatedUser() {
+      return $rootScope.currentUser;
+    }
+
   }
 })();
