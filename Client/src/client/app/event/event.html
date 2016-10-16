@@ -9,6 +9,7 @@
             <tr class="success">
                 <th>#</th>
                 <th>Title</th>
+                <td>id</td>
                 <th>Start Time</th>
                 <th>End Time</th>
                 <th>Type</th>
@@ -24,6 +25,7 @@
             <tr ng-repeat="event in vm.events">
                 <th scope="row">{{$index+1}}</th>
                 <td>{{event.title}}</td>
+                <td>{{event.id}}</td>
                 <td>{{event.startTime}}</td>
                 <td>{{event.endTime}}</td>
                 <td>{{event.eventType}}</td>
@@ -37,7 +39,10 @@
                     </div>
                 </td>
                 <td class="text-center">
-                    <button class="btn  btn-success" ng-click="vm.editEvent (event)"><span class="glyphicon glyphicon-edit"></span></button>
+
+                    <button  class="btn btn-info" ng-click="vm.editEvent(event)" type="button">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
                 </td>
                 <td class="text-center">
                     <button class="btn   btn-danger"><span class="glyphicon glyphicon-remove"></span></button>

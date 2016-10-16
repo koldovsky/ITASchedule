@@ -3,6 +3,7 @@ package com.ita.entity.projections;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ita.entity.Event;
+import com.ita.entity.EventType;
 import com.ita.entity.ITAGroup;
 import com.ita.entity.User;
 import com.ita.utils.serializers.LocalDateTimeDeserializer;
@@ -16,13 +17,15 @@ import java.util.List;
 @Projection(name = "detailed", types = {Event.class})
 public interface EventDetail {
 
+    Long getId();
+
     String getTitle();
 
     @Value("#{target.room.number}")
     String getRoomNumber();
 
-    @Value("#{target.type.type}")
-    String getEventType();
+    @Value("#{target.type}")
+    EventType getEventType();
 
     @Value("#{target.type.color}")
     String getEventColor();

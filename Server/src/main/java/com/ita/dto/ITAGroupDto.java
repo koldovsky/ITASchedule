@@ -2,6 +2,7 @@ package com.ita.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ita.constants.ErrorConstants;
 import com.ita.entity.ITAGroup;
 import com.ita.repository.UserRepository;
 import com.ita.utils.serializers.LocalDateDeserializer;
@@ -23,12 +24,12 @@ import java.util.List;
 public class ITAGroupDto {
 
     private Long id;
-    @NotBlank(message = "Title is missing")
+    @NotBlank(message = ErrorConstants.ITAGROUP_VALIDATION_TITLE_MISSING)
     private String title;
 
     @NotNull
-    @Min(message = "Minimal numer of students is 1", value = 1)
-    @Max(message = "Maximal numer of students is 100", value = 100)
+    @Min(message = ErrorConstants.ITAGROUP_VALIDATION_STUDENTS_COUNT_WRONG, value = 1)
+    @Max(message = ErrorConstants.ITAGROUP_VALIDATION_STUDENTS_COUNT_WRONG, value = 100)
     private int studentsCount;
 
     @NotNull
