@@ -6,25 +6,69 @@
 
     angular.module('app.groups', [])
 
-        .controller('groupsListController',function($scope, logger, $http, $window, $state, ITAGroupsService, $mdDialog){
+        .controller('groupsListController',function($scope, logger, $http, $window,
+                                                    $state, ITAGroupsService, $mdDialog, $location){
             var vm = this;
             vm.groupsList = [];
+            vm.getGroupsForPage = getGroupsForPage;
+            getGroupsForPage(0);
 
-            ITAGroupsService.getITAGroups(function(response){
-                if(Object.prototype.toString.call(response) === '[object Array]'){
-                    vm.groupsList = response;
+            var search = $location.search();
+            vm.page = search.page||0;
+            vm.size = search.size||3;
+
+            vm.sortByField = "title";
+            vm.sortReverse = false;
+            vm.searchGroupTitle = '';
+            vm.groupsIdToArrayIndexMap = {};
+
+
+            vm.getPagesArray = function(index){
+                var MAX_PAGES_COUNT = 3;
+                var side = MAX_PAGES_COUNT%2;
+                var minPage = 0;
+                var maxPage = MAX_PAGES_COUNT;
+                var input = [];
+                var totalPages = vm.page.totalPages;
+                if(index<=MAX_PAGES_COUNT-side-1){
+                    if(totalPages<MAX_PAGES_COUNT){
+                        maxPage = totalPages;
+                    }else{
+                        maxPage = MAX_PAGES_COUNT;
+                    }
+                }else{
+                    if(index>(totalPages-side-1)){
+                        maxPage = totalPages;
+                        minPage = index-(MAX_PAGES_COUNT-(totalPages-index));
+                    }else{
+                        minPage = index - side;
+                        maxPage = index + side+1;
+                    }
                 }
-            });
+                for(var i=minPage; i<maxPage; i++) {
+                    input.push(i);
+                }
+                return input;
+            }
+
+
+            function getGroupsForPage(index){
+                ITAGroupsService.getITAGroupsPage(index, function(groupsList, groupsIdToArrayIndexMap, pageInfo){
+                    vm.groupsList = groupsList;
+                    vm.groupsIdToArrayIndexMap = groupsIdToArrayIndexMap;
+                    //$window.alert(JSON.stringify(vm.groupsList));
+                    vm.page = pageInfo;
+                })
+            }
+
             vm.deleteGroup = function (index){
                     ITAGroupsService.deleteGroup(vm.groupsList[index].id, index, function(index){
                         vm.groupsList.splice(index,1);
                     });
-
-
             }
 
-            vm.showConfirmDeleteDialog = function(index) {
-                // Appending dialog to document.body to cover sidenav in docs app
+            vm.showConfirmDeleteDialog = function(id) {
+                var index = vm.groupsIdToArrayIndexMap[id];
                 var confirm = $mdDialog.confirm()
                     .title("Deleting group " + vm.groupsList[index].title)
                     .textContent('Would you like to delete group ' +vm.groupsList[index].title+'?')
@@ -33,7 +77,6 @@
                 $mdDialog.show(confirm).then(function() {
                     vm.deleteGroup(index);
                 }, function() {
-                    //logger.error("afbtrn");
                     return false;
                 });
             };
@@ -41,10 +84,9 @@
             vm.createGroup = function(){
                 $state.go('createGroup',{"groupObject": null});
             }
-            vm.editGroup = function(index){
-                if(index>=0 && index<(vm.groupsList.length)){
-                    $state.go('createGroup',{"groupObject": vm.groupsList[index]});
-                }
+            vm.editGroup = function(id){
+                var index = vm.groupsIdToArrayIndexMap[id];
+                $state.go('createGroup',{"groupObject": vm.groupsList[index]});
             }
             vm.showCalendar = function($index){
                 $state.go('calendar');
@@ -67,7 +109,7 @@
                 vm.studentsCount = vm.passedGroupObject.studentsCount;
                 vm.startDate = uibDateParser.parse(vm.passedGroupObject.startDate, this.format);
                 vm.endDate = uibDateParser.parse(vm.passedGroupObject.endDate, this.format);
-                vm.active =  vm.passedGroupObject.isActive;
+                vm.active =  vm.passedGroupObject.active;
                 for(var i=0; i<vm.passedGroupObject.users.length; i++){
                     vm.addedTeachersList.push(vm.passedGroupObject.users[i].fullName);
                 }
@@ -169,14 +211,14 @@
                     "studentsCount": vm.studentsCount,
                     "startDate": $filter('date')(vm.startDate, 'yyyy-MM-dd'),
                     "endDate": $filter('date')(vm.endDate, 'yyyy-MM-dd'),
-                    "isActive": vm.active,
+                    "active": vm.active,
                     "creatorFullName": "Hiroku Marian",
                     "usersFullNames": vm.addedTeachersList
                 }
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
                     logger.info("-----------"+passedGroupObject.id);
-                    newGroup["creatorFullName"] = passedGroupObject.creator.fullName
+                    newGroup["creatorFullName"] = passedGroupObject.creatorFullName;
                 }
                 return newGroup;
             }

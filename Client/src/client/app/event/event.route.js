@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -24,9 +24,10 @@
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-wheelchair-alt "></i>Events'
-                    }
+                    },authenticate: false
                 }
-            },{
+            },
+            {
                 state: 'addEvent',
                 config: {
                     url: '/add-event',
@@ -34,10 +35,19 @@
                     controller: 'AddEventController',
                     controllerAs: 'vm',
                     title: 'addEvent',
-                    params :
-                    {
-                        event: null
-                    }
+                    authenticate: false
+                }
+            },
+            {
+                state: 'editEvent',
+                config: {
+                    url: '/edit-group',
+                    templateUrl: 'app/event/add-event.html',
+                    controller: 'AddEventController',
+                    controllerAs: 'vm',
+                    title: 'editEvent',
+                    params: {"eventToEdit": null},
+                    authenticate: false
                 }
             }];
     }

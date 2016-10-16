@@ -40,7 +40,6 @@
                         <div class="widget-content user">
                             <div>
                                 <form name="CreateGroupForm" class="dialogForm">
-
                                     <md-input-container class="md-block" flex-gt-sm>
                                         <label>Group Name</label>
                                         <input name="groupNameInput" ng-model="vm.groupTitle" required md-maxlength="30">
@@ -79,7 +78,7 @@
                                                             </span>
                                                         </p>
                                                         <span ng-show="CreateGroupForm.startDatePicker.$invalid && CreateGroupForm.startDatePicker.$dirty" class="error_message">Not valid!</span>
-                                                        <span ng-show="vm.startDate<vm.currentDate" class="error_message">Start date is earlier then the currrent date!</span>
+                                                        <span ng-show="vm.startDate<(vm.currentDate-1)" class="error_message">Start date is earlier then the currrent date!</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -116,6 +115,7 @@
                                                                     <div layout="column">
                                                                         <h3>{{ teacher }}</h3>
                                                                         <h4>"This teacher already has four groups."</h4>
+
                                                                     </div>
                                                                     <md-button class="md-fab md-mini" ng-click="vm.addTeacherToTheList($index)"  aria-label="Eat cake" style="background-color: greenyellow; ">
                                                                         <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
@@ -131,6 +131,8 @@
                                             <div flex-gt-sm="50" flex>
                                                 <md-content layout="row" style="background-color: green;">
                                                     <label class="md-body-1" style="margin: 10px 10px; color: white;">Teachers, added to the group</label>
+                                                    </br>
+                                                    <label class="md-body-1" style="margin: 10px 10px; color: white; font-size: small;">(Group must have at least one teacher assigned)</label>
                                                 </md-content>
                                                 <md-content  md-scroll-shrink style="height:200px">
                                                     <md-list flex>
@@ -143,7 +145,6 @@
                                                                         <h4>"This teacher is added to this groups."</h4>
                                                                     </div>
                                                                     <md-button class="md-fab md-mini" ng-click="vm.removeTeacherFromTheList($index)" aria-label="Eat cake" style="background-color: pink; ">
-                                                                        <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
                                                                         <p>X</p>
                                                                     </md-button>
                                                                 </div>

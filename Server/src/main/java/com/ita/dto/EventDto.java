@@ -1,10 +1,7 @@
 package com.ita.dto;
 
 import com.ita.entity.*;
-import com.ita.repository.AddressJpaRepository;
-import com.ita.repository.EventRepository;
-import com.ita.repository.EventTypeRepository;
-import com.ita.repository.RoomRepository;
+import com.ita.repository.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +14,15 @@ import java.util.List;
 @Setter
 public class EventDto {
 
-
+    private Long id;
     @NotNull
     private String title;
     @NotNull
-    private List<User> teacherList;
+    private List<String> usersFullNames;
     @NotNull
-    private User creator;
+    private String creatorFullName;
 
-    private List<ITAGroup> itaGroups;
+    private List<String> groupTitles;
     @NotNull
     private String type;
     @NotNull
@@ -38,18 +35,18 @@ public class EventDto {
     private String endTime;
 
 
-
-    public Event buildEvent(EventTypeRepository eventTypeRepository,RoomRepository roomRepository,AddressJpaRepository addressJpaRepository,EventRepository eventRepository) {
-        Event newEvent = new Event();
-        newEvent.setTitle(title);
-        newEvent.setUsers(teacherList);
-        newEvent.setCreator(creator);
-        newEvent.setITAGroups(itaGroups);
-        newEvent.setType(eventTypeRepository.findByType(type));
-        newEvent.setRoom(roomRepository.findByAddressAndNumber(addressJpaRepository.findByCodeName(addressCodeName),roomNumber));
-        newEvent.setStartTime(LocalDateTime.parse(startTime));
-        newEvent.setEndTime(LocalDateTime.parse(endTime));
-        return newEvent;
+    public Event buildEvent(UserRepository userRepository, EventTypeRepository eventTypeRepository, RoomRepository roomRepository, AddressJpaRepository addressJpaRepository, ITAGroupRepository itaGroupRepository) {
+        Event event = new Event();
+        event.setId(id);
+        event.setTitle(title);
+        event.setUsers(userRepository.findByFullNameIn(usersFullNames));
+        event.setCreator(userRepository.findByFullName(creatorFullName));
+        event.setITAGroups(itaGroupRepository.findByTitleIn(groupTitles));
+        event.setType(eventTypeRepository.findByType(type));
+        event.setRoom(roomRepository.findByAddressAndNumber(addressJpaRepository.findByCodeName(addressCodeName), roomNumber));
+        event.setStartTime(LocalDateTime.parse(startTime));
+        event.setEndTime(LocalDateTime.parse(endTime));
+        return event;
     }
 
 

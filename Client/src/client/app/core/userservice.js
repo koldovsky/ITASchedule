@@ -13,22 +13,45 @@
                 getUsers: getUsers,
                 createUser: createUser,
                 deleteUser: deleteUser,
-                updateUser: updateUser
+                updateUser: updateUser,
+                getActiveTeachers: getActiveTeachers
             };
             return service;
 
-            function getUsers(role) {
+            function getUsers() {
                 // $http.get('http://localhost:8080/users/search/findbyroles?roles='+role.toUpperCase())
 
                 return  $http.get('http://localhost:8080/users?projection=userslist')
                     .then(success)
                     .catch(fail);
                 function success(response) {
-                    return response.data;
+                    var users=response.data
+                    return users;
                 }
                 function fail(e) {
                     return exception.catcher('XHR Failed for getUsers')(e);
                 }
+            }
+            function getActiveTeachers() {
+                // $http.get('http://localhost:8080/users/search/findbyroles?roles='+role.toUpperCase())
+                return  $http.get('http://localhost:8080/users?projection=shortinfo')
+                    .then(success)
+                    .catch(fail);
+                function success(response) {
+                    var users=response.data._embedded.users;
+                    return users.filter(function (user) {
+                        return user.active&&user.roles.some(isTeacher);
+                            });
+
+                    }
+                function fail(e) {
+                    return exception.catcher('XHR Failed for getUsers')(e);
+                }
+            }
+
+            function isTeacher(role) {
+                var answ = (role == "TEACHER");
+                return answ;
             }
 
             function deleteUser(id) {
