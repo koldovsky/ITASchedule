@@ -92,7 +92,11 @@
             }).success(function () {
                 logger.info("Event Created");
             }).error(function (response) {
-                logger.error("Unable to create new event, error:" + response.error + ", status:" + response.status + ", message:" + response.message);
+                var errorMessgage = "";
+                response.forEach(function (item) {
+                    errorMessgage = errorMessgage + item.codes;
+                });
+                logger.error("Unable to create new event, error:" + errorMessgage);
             })
         }
     }
