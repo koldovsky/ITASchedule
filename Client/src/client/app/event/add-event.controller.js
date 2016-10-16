@@ -44,7 +44,7 @@
         }
 
         function getGroups() {
-            ITAGroupsService.getITAGroups(function (response) {
+            ITAGroupsService.getGroups(function (response) {
                 if (Object.prototype.toString.call(response) === '[object Array]') {
                     var groups = response;
                     groups.forEach(function (group) {
@@ -98,7 +98,6 @@
             vm.city = vm.eventToEdit.cityName;
             vm.codeName=vm.eventToEdit.addressCodeName;
             vm.roomNumber = vm.eventToEdit.roomNumber;
-            console.log(vm.roomNumber);
         }
 
         vm.addTeacher = function (teacher) {
@@ -106,7 +105,6 @@
                 vm.showAlert('You added already ' + teacher + " to the event");
             } else {
                 vm.addedTeachers.push(teacher);
-                console.log(teacher);
             }
         };
         vm.addGroup = function (group) {
