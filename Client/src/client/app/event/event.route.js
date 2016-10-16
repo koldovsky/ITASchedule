@@ -24,7 +24,8 @@
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-wheelchair-alt "></i>Events'
-                    }
+                    },
+                    authenticate: false
                 }
             },{
                 state: 'addEvent',
@@ -33,7 +34,8 @@
                     templateUrl: 'app/event/add-event.html',
                     controller: 'AddEventController',
                     controllerAs: 'vm',
-                    title: 'addEvent'
+                    title: 'addEvent',
+                    authenticate: false
                 }
             }];
     }

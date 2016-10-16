@@ -24,7 +24,8 @@
                     settings: {
                         nav: 8,
                         content: '<i class="fa fa-calendar"></i> Calendar'
-                    }
+                    },
+                    authenticate: false
                 }
             }
         ];

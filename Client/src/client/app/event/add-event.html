@@ -10,190 +10,204 @@
                         <div class="container">
                             <div ng-controller="AddEventController"
                                  layout-align="center center">
-                                <div class="col-xs-2">
-                                    <md-input-container style="min-width: 210px">
-                                        <label>Event Title</label>
-                                        <input required="true" ng-model="vm.event.title">
-                                    </md-input-container>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <md-input-container>
+                                            <label>Event Title</label>
+                                            <input required="true" ng-model="vm.event.title">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <md-input-container>
+                                            <label>Type</label>
+                                            <md-select required="true" ng-model="vm.event.type">
+                                                <md-option ng-value=true ng-selected=true>select type</md-option>
+                                                <div ng-repeat="type in vm.eventTypes">
+                                                    <md-option ng-value="type">{{type.type}}</md-option>
+                                                </div>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container>
+                                            <label>City</label>
+                                            <md-select required="true" ng-model="vm.city">
+                                                <md-option>select City</md-option>
+                                                <div ng-repeat="city in vm.cities">
+                                                    <md-option ng-value="city">{{city.name}}</md-option>
+                                                </div>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container ng-show="vm.city">
+                                            <label>Code Name</label>
+                                            <md-select required="true" ng-model="vm.address">
+                                                <md-option ng-value=true ng-selected=true>Code name
+                                                </md-option>
+                                                <div ng-repeat="address in vm.addresses | filter:vm.city.name">
+                                                    <md-option ng-value="address">{{address.codeName}}</md-option>
+                                                </div>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container ng-show="vm.address.address">
+                                            <label>Code Name</label>
+                                            <md-select required="true" ng-model="vm.room">
+                                                <md-option ng-value=true ng-selected=true>Room</md-option>
+                                                <div ng-repeat="room in vm.rooms |filter:vm.address.codeName">
+                                                    <md-option ng-value="room">{{room.number}}</md-option>
+                                                </div>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-datepicker ng-model="vm.date" md-placeholder="Date"></md-datepicker>
 
-                                </div>
-                                <div class="col-xs-1">
-                                    <md-input-container>
-                                        <label>Type</label>
-                                        <md-select required="true" ng-model="vm.event.type">
-                                            <md-option ng-value=true ng-selected=true>select type</md-option>
-                                            <div ng-repeat="type in vm.eventTypes">
-                                                <md-option ng-value="type">{{type.type}}</md-option>
-                                            </div>
-                                        </md-select>
-                                    </md-input-container>
-                                </div>
-                                <div class="col-xs-6">
-                                    <md-input-container>
-                                        <label>City</label>
-                                        <md-select required="true" ng-model="vm.city" style="min-width: 200px;">
-                                            <md-option>select City</md-option>
-                                            <div ng-repeat="city in vm.cities">
-                                                <md-option ng-value="city">{{city.name}}</md-option>
-                                            </div>
-                                        </md-select>
-                                    </md-input-container>
-                                    <md-input-container ng-show="vm.city">
-                                        <label>Code Name</label>
-                                        <md-select required="true" ng-model="vm.address" style="min-width: 200px;">
-                                            <md-option ng-value=true ng-selected=true>select office code name
-                                            </md-option>
-                                            <div ng-repeat="address in vm.addresses | filter:vm.city.name">
-                                                <md-option ng-value="address">{{address.codeName}}</md-option>
-                                            </div>
-                                        </md-select>
-                                    </md-input-container>
-                                    <md-input-container ng-show="vm.address.address">
-                                        <label>Code Name</label>
-                                        <md-select required="true" ng-model="vm.room">
-                                            <md-option ng-value=true ng-selected=true>select room</md-option>
-                                            <div ng-repeat="room in vm.rooms |filter:vm.address.codeName">
-                                                <md-option ng-value="room">{{room.number}}</md-option>
-                                            </div>
-                                        </md-select>
-                                    </md-input-container>
-                                    <md-datepicker ng-model="vm.date" md-placeholder="Enter date"></md-datepicker>
-                                </div>
-                                <div class="col-xs-2">
-                                    <div uib-timepicker ng-model="vm.startTime" hour-step="vm.timePickerHourStep"
-                                         minute-step="vm.timePickerMinuteStep" show-meridian="false"></div>
-                                </div>
-                                <div uib-timepicker ng-model="vm.endTime" hour-step="vm.timePickerHourStep"
-                                     minute-step="vm.timePickerMinuteStep" show-meridian="false"></div>
-
-
-                                <div class="col-xs-6">
-                                    <div ng-cloak layout-gt-sm="row" layout="column">
-                                        <div flex-gt-sm="50" flex>
-                                            <md-content layout="row" style="background-color: #5bc0de;">
-                                                <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
-                                                    teachers</label>
-                                            </md-content>
-                                            <md-content md-scroll-shrink
-                                                        style="height:400px;background-color: whitesmoke">
-                                                <md-list flex>
-                                                    <md-list-item class="md-2-line"
-                                                                  ng-repeat="teacher in vm.teachers"
-                                                                  ng-click="null">
-                                                        <div class="md-list-item-text" layout="column">
-                                                            <div layout="row">
-                                                                <div layout="column">
-                                                                    <h3>{{ teacher.fullName }}</h3>
-                                                                    <h4>{{teacher.email}}, {{teacher.contactInfo}}</h4>
-                                                                </div>
-                                                                <span flex></span>
-                                                                <md-button class="md-fab md-mini"
-                                                                           ng-click="vm.addTeacher(teacher)"
-                                                                           aria-label="Eat cake"
-                                                                           style=" background-color: #58b65b; ">
-                                                                    <span class="fa fa-user-plus"></span>
-                                                                </md-button>
-                                                            </div>
-                                                        </div>
-                                                    </md-list-item>
-                                                </md-list>
-                                            </md-content>
-                                        </div>
-                                        <md-divider></md-divider>
-                                        <div flex-gt-sm="50" flex>
-                                            <md-content layout="row" style="background-color: #5bc0de;">
-                                                <label class="md-body-1" style="margin: 10px 10px; color: white;">Teachers,
-                                                    added to the group</label>
-                                            </md-content>
-                                            <md-content md-scroll-shrink
-                                                        style="height:400px;background-color: whitesmoke">
-                                                <md-list flex>
-                                                    <md-list-item class="md-2-line"
-                                                                  ng-repeat="teacher in vm.addedTeachers"
-                                                                  ng-click="null">
-                                                          <div class="md-list-item-text" layout="column">
-                                                            <div layout="row">
-                                                                <div layout="column">
-                                                                    <h3>{{teacher.fullName }}</h3>
-                                                                    <h4>{{teacher.email}}</h4>
-                                                                </div>
-                                                                <span flex></span>
-                                                                <md-button class="md-fab md-mini"
-                                                                           ng-click="vm.removeAddedTeacher(teacher)"
-                                                                           aria-label="Eat cake"
-                                                                           style=" background-color: #e75353; ">
-                                                             <span class="fa fa-user-times"></span>
-                                                                </md-button>
-                                                            </div>
-                                                        </div>
-                                                    </md-list-item>
-                                                </md-list>
-                                            </md-content>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <br>
+                                        <md-button ng-disabled="true" class="md-primary">Start Time </md-button>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div uib-timepicker ng-model="vm.startTime" hour-step="vm.timePickerHourStep"
+                                             minute-step="vm.timePickerMinuteStep" show-meridian="false">
                                         </div>
                                     </div>
+                                    <div class="col-xs-1">
+                                        <br>
+                                        <md-button ng-disabled="true" class="md-primary">End Time</md-button>
+                                    </div>
+                                    <div class="col-xs-1">
+
+                                        <div uib-timepicker ng-model="vm.endTime" hour-step="vm.timePickerHourStep"
+                                             minute-step="vm.timePickerMinuteStep" show-meridian="false"></div>
+
+                                    </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div ng-cloak layout-gt-sm="row" layout="column">
-                                        <div flex-gt-sm="50" flex>
-                                            <md-content layout="row" style="background-color: #faa632;">
-                                                <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
-                                                    Groups</label>
-                                            </md-content>
-                                            <md-content md-scroll-shrink
-                                                        style="height:400px;background-color: whitesmoke">
-                                                <md-list flex>
-                                                    <md-list-item class="md-2-line"
-                                                                  ng-repeat="group in vm.groups"
-                                                                  ng-click="null">
-                                                        <div class="md-list-item-text" layout="column">
-                                                            <div layout="row">
-                                                                <div layout="column">
-                                                                    <h3>{{ group.title }}</h3>
-                                                                    <h4>{{group.studentsCount}} students</h4>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div ng-cloak layout-gt-sm="row" layout="column">
+                                            <div flex-gt-sm="50" flex>
+                                                <md-content layout="row" style="background-color: #5bc0de;">
+                                                    <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
+                                                        teachers</label>
+                                                </md-content>
+                                                <md-content md-scroll-shrink
+                                                            style="height:400px;background-color: whitesmoke">
+                                                    <md-list flex>
+                                                        <md-list-item class="md-2-line"
+                                                                      ng-repeat="teacher in vm.teachers"
+                                                                      ng-click="null">
+                                                            <div class="md-list-item-text" layout="column">
+                                                                <div layout="row">
+                                                                    <div layout="column">
+                                                                        <h3>{{ teacher.fullName }}</h3>
+                                                                        <h4>{{teacher.email}}</h4>
+                                                                    </div>
+                                                                    <span flex></span>
+                                                                    <md-button class="md-fab md-mini"
+                                                                               ng-click="vm.addTeacher(teacher)"
+                                                                               aria-label="Eat cake"
+                                                                               style=" background-color: #58b65b; ">
+                                                                        <span class="fa fa-user-plus"></span>
+                                                                    </md-button>
                                                                 </div>
-                                                                <span flex></span>
-                                                                <md-button class="md-fab md-mini"
-                                                                           ng-click="vm.addGroup(group)"
-                                                                           aria-label="Eat cake"
-                                                                           style=" background-color: #58b65b; ">
-                                                                  <span class="fa fa-wheelchair"></span>
-                                                                </md-button>
                                                             </div>
-                                                        </div>
-                                                    </md-list-item>
-                                                </md-list>
-                                            </md-content>
+                                                        </md-list-item>
+                                                    </md-list>
+                                                </md-content>
+                                            </div>
+                                            <md-divider></md-divider>
+                                            <div flex-gt-sm="50" flex>
+                                                <md-content layout="row" style="background-color: #5bc0de;">
+                                                    <label class="md-body-1" style="margin: 10px 10px; color: white;">Teachers,
+                                                        added to the group</label>
+                                                </md-content>
+                                                <md-content md-scroll-shrink
+                                                            style="height:400px;background-color: whitesmoke">
+                                                    <md-list flex>
+                                                        <md-list-item class="md-2-line"
+                                                                      ng-repeat="teacher in vm.addedTeachers"
+                                                                      ng-click="null">
+                                                            <div class="md-list-item-text" layout="column">
+                                                                <div layout="row">
+                                                                    <div layout="column">
+                                                                        <h3>{{teacher.fullName }}</h3>
+                                                                        <h4>{{teacher.email}}</h4>
+                                                                    </div>
+                                                                    <span flex></span>
+                                                                    <md-button class="md-fab md-mini"
+                                                                               ng-click="vm.removeAddedTeacher(teacher)"
+                                                                               aria-label="Eat cake"
+                                                                               style=" background-color: #e75353; ">
+                                                                        <span class="fa fa-user-times"></span>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </md-list-item>
+                                                    </md-list>
+                                                </md-content>
+                                            </div>
                                         </div>
-                                        <md-divider></md-divider>
-                                        <div flex-gt-sm="50" flex>
-                                            <md-content layout="row" style="background-color: #faa632;">
-                                                <label class="md-body-1" style="margin: 10px 10px; color: white;">Added
-                                                    Group/Groups</label>
-                                            </md-content>
-                                            <md-content md-scroll-shrink
-                                                        style="height:400px; background-color: whitesmoke">
-                                                <md-list flex>
-                                                    <md-list-item class="md-2-line"
-                                                                  ng-repeat="group in vm.addedGroups"
-                                                                  ng-click="null">
-                                                        <div class="md-list-item-text" layout="column">
-                                                            <div layout="row">
-                                                                <div layout="column">
-                                                                    <h3>{{ group.title }}</h3>
-                                                                    <h4>{{group.studentsCount}} students</h4>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div ng-cloak layout-gt-sm="row" layout="column">
+                                            <div flex-gt-sm="50" flex>
+                                                <md-content layout="row" style="background-color: #faa632;">
+                                                    <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
+                                                        Groups</label>
+                                                </md-content>
+                                                <md-content md-scroll-shrink
+                                                            style="height:400px;background-color: whitesmoke">
+                                                    <md-list flex>
+                                                        <md-list-item class="md-2-line"
+                                                                      ng-repeat="group in vm.groups"
+                                                                      ng-click="null">
+                                                            <div class="md-list-item-text" layout="column">
+                                                                <div layout="row">
+                                                                    <div layout="column">
+                                                                        <h3>{{ group.title }}</h3>
+                                                                        <h4>{{group.studentsCount}} students</h4>
+                                                                    </div>
+                                                                    <span flex></span>
+                                                                    <md-button class="md-fab md-mini"
+                                                                               ng-click="vm.addGroup(group)"
+                                                                               aria-label="Eat cake"
+                                                                               style=" background-color: #58b65b; ">
+                                                                        <span class="fa fa-wheelchair"></span>
+                                                                    </md-button>
                                                                 </div>
-                                                                <span flex></span>
-                                                                <md-button class="md-fab md-mini"
-                                                                           ng-click="vm.removeAddedGroup(group)"
-                                                                           aria-label="Eat cake"
-                                                                           style=" background-color: #e75353; ">
-                                                                    <span class="fa fa-wheelchair-alt"></span>
-                                                                </md-button>
                                                             </div>
-                                                        </div>
-                                                    </md-list-item>
-                                                </md-list>
-                                            </md-content>
+                                                        </md-list-item>
+                                                    </md-list>
+                                                </md-content>
+                                            </div>
+                                            <md-divider></md-divider>
+                                            <div flex-gt-sm="50" flex>
+                                                <md-content layout="row" style="background-color: #faa632;">
+                                                    <label class="md-body-1" style="margin: 10px 10px; color: white;">Added
+                                                        Group/Groups</label>
+                                                </md-content>
+                                                <md-content md-scroll-shrink
+                                                            style="height:400px; background-color: whitesmoke">
+                                                    <md-list flex>
+                                                        <md-list-item class="md-2-line"
+                                                                      ng-repeat="group in vm.addedGroups"
+                                                                      ng-click="null">
+                                                            <div class="md-list-item-text" layout="column">
+                                                                <div layout="row">
+                                                                    <div layout="column">
+                                                                        <h3>{{ group.title }}</h3>
+                                                                        <h4>{{group.studentsCount}} students</h4>
+                                                                    </div>
+                                                                    <span flex></span>
+                                                                    <md-button class="md-fab md-mini"
+                                                                               ng-click="vm.removeAddedGroup(group)"
+                                                                               aria-label="Eat cake"
+                                                                               style=" background-color: #e75353; ">
+                                                                        <span class="fa fa-wheelchair-alt"></span>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </md-list-item>
+                                                    </md-list>
+                                                </md-content>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,8 +216,8 @@
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
                             <md-button class="md-raised md-primary md-hue-1"
-                                      ng-click="vm.senEventOnServer()"
-                                      >Create
+                                       ng-click="vm.sendEventOnServer()"
+                            >Create
                             </md-button>
                             <md-button class="md-raised md-warn" id="cancelButton">
                                 Cancel

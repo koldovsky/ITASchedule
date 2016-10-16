@@ -21,7 +21,7 @@ public class Room {
 
     private String number;
 
-    private Boolean isActive;
+    private Boolean active;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Address address;

@@ -2,7 +2,6 @@
     'use strict';
 
     angular.module('app', [
-        'app.login',
         'app.core',
         'app.widgets',
         'app.event',
@@ -10,7 +9,7 @@
         'app.dashboard',
         'app.layout',
         'app.calendar',
-        'app.administrator.teachers',
+        'app.administrator.users',
         'ui.calendar',
         'ui.bootstrap'
     ]);

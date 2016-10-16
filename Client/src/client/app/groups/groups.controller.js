@@ -109,7 +109,7 @@
                 vm.studentsCount = vm.passedGroupObject.studentsCount;
                 vm.startDate = uibDateParser.parse(vm.passedGroupObject.startDate, this.format);
                 vm.endDate = uibDateParser.parse(vm.passedGroupObject.endDate, this.format);
-                vm.active =  vm.passedGroupObject.isActive;
+                vm.active =  vm.passedGroupObject.active;
                 for(var i=0; i<vm.passedGroupObject.users.length; i++){
                     vm.addedTeachersList.push(vm.passedGroupObject.users[i].fullName);
                 }
@@ -211,7 +211,7 @@
                     "studentsCount": vm.studentsCount,
                     "startDate": $filter('date')(vm.startDate, 'yyyy-MM-dd'),
                     "endDate": $filter('date')(vm.endDate, 'yyyy-MM-dd'),
-                    "isActive": vm.active,
+                    "active": vm.active,
                     "creatorFullName": "Hiroku Marian",
                     "usersFullNames": vm.addedTeachersList
                 }

@@ -10,12 +10,17 @@
 
         vm.event={};
         vm.events=[];
+        vm.state=$state;
+        vm.editEvent=editEvent;
         getEvents();
         function getEvents() {
             return eventService.getEvents().then(function(data) {
                 vm.events = data._embedded.events;
                 return vm.events;
             });
+        }
+        function editEvent(event) {
+            vm.state.go('addEvent',{'event': event});
         }
 
     }

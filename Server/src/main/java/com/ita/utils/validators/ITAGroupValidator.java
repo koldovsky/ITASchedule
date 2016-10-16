@@ -4,10 +4,7 @@ import com.ita.constants.ErrorConstants;
 import com.ita.entity.ITAGroup;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
-import java.time.LocalDate;
 
 /**
  * Created by marian on 07.10.16.
@@ -38,9 +35,5 @@ public class ITAGroupValidator implements Validator {
         if(group.getUsers().isEmpty()){
             errors.rejectValue("usersFullNames", ErrorConstants.NO_USERS_SPECIFIED);
         }
-
-
-
-
     }
 }

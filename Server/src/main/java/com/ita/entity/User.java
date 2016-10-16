@@ -7,13 +7,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @ToString
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = {"email","fullName"})
+
 public class User {
 
     @Id
@@ -29,7 +31,8 @@ public class User {
 
     private String contactInfo;
 
-    private boolean isActive;
+    @NotNull
+    private boolean active;
 
     @ManyToMany(mappedBy = "users")
     private List<ITAGroup> groups;

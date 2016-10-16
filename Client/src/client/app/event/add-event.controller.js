@@ -11,8 +11,8 @@
             'ui.bootstrap.timepicker'])
         .controller('AddEventController', AddEventController);
 
-    AddEventController.$inject = ['$q', 'eventService', '$filter', 'logger', '$scope', '$state', '$mdDialog', 'teacherservice', 'ITAGroupsService'];
-    function AddEventController($q, eventService, $filter, logger, $scope, $state, $mdDialog, teacherservice, ITAGroupsService) {
+    AddEventController.$inject = ['$q', 'eventService', '$filter', 'logger', '$scope', '$state', '$mdDialog', 'userservice', 'ITAGroupsService'];
+    function AddEventController($q, eventService, $filter, logger, $scope, $state, $mdDialog, userservice, ITAGroupsService) {
         var vm = this;
         vm.timePickerHourStep = 1;
         vm.timePickerMinuteStep = 30;
@@ -33,7 +33,7 @@
             });
         })();
         function getTeachers() {
-            return teacherservice.getTeachers().then(function (data) {
+            return userservice.getUsers().then(function (data) {
                 vm.teachers = data._embedded.users;
                 return vm.teachers;
             });
@@ -112,8 +112,8 @@
         };
         vm.isEventValid = function (event) {
             if (event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
-                if (event.teacherList[0] === undefined || event.groupList[0] === undefined) {
-                    vm.showAlert('At least on teacher and group needs to be selected');
+                if (event.teacherList[0] === undefined) {
+                    vm.showAlert('At least one teacher needs to be selected');
                     return false;
                 } return true ;
             } else {
@@ -124,29 +124,25 @@
         vm.createStartEndDate = function (date, time) {
             return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
         };
-        vm.createStartEndDate = function (date, time) {
-            return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
-        };
         vm.builtEvent = function () {
             var event = {};
             event.title = vm.event.title;
             event.teacherList = vm.addedTeachers;
             event.creator = vm.addedTeachers[0];
-            event.groupList = vm.addedGroups;
+            event.itaGroups = vm.addedGroups;
             event.type = vm.event.type.type;
             event.roomNumber = vm.room.number;
             event.addressCodeName = vm.address.codeName;
             event.startTime = vm.createStartEndDate(vm.date,vm.startTime);
             event.endTime = vm.createStartEndDate(vm.date,vm.endTime);
             return event;
-         };
-        vm.senEventOnServer = function () {
-            if(vm.isEventValid(vm.builtEvent())){
+        };
+        vm.sendEventOnServer = function () {
+            if (vm.isEventValid(vm.builtEvent())) {
                 eventService.createEvent(vm.builtEvent())
             } else {
                 logger.error('Event is not created!');
             }
         };
-
     }
 })();
