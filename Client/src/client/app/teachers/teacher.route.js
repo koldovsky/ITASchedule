@@ -27,7 +27,8 @@
                     },
                     params:{
                         roleName:"Teacher"
-                    }
+                    },
+                    authenticate: true
                 }
             },
             {
@@ -42,7 +43,8 @@
                     {
                         teacher: null,
                         roleName:"Teacher"
-                    }
+                    },
+                    authenticate: true
                 }
             },
             {
@@ -59,7 +61,8 @@
                     },
                     params:{
                         roleName:"Administrator"
-                    }
+                    },
+                    authenticate: false
                 }
             },
             {
@@ -74,7 +77,8 @@
                     {
                         teacher: null,
                         roleName: "Administrator"
-                    }
+                    },
+                    authenticate: false
                 }
             }
 

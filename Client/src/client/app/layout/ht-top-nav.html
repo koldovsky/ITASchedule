@@ -5,7 +5,9 @@
         <md-nav-item md-nav-sref="{{r.name}}" ><a ng-bind-html="r.settings.content"></a></md-nav-item>
       </div>
 <span flex></span>
-        <md-button class="md-raised md-primary">LOGOUT</md-button>
+        <md-button class="md-raised md-primary" ng-hide="vm.authenticatedUser()" ng-click="vm.showLogin($event)">LOGIN</md-button>
+        <md-button class="md-no-focus" ng-hide="!vm.authenticatedUser()">{{vm.authenticatedUser()}}</md-button>
+        <md-button class="md-raised md-primary" ng-hide="!vm.authenticatedUser()" ng-click="vm.logout()">LOGOUT</md-button>
     </md-nav-bar>
   </md-content>
 </div>
