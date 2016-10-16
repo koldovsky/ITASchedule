@@ -12,6 +12,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class ITAGroup {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
+    @NotNull
     private boolean active;
 
     @ManyToOne
