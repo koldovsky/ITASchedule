@@ -8,6 +8,7 @@
     function usersController($q, userservice, logger, $scope, $state) {
         var vm = this;
         vm.roleName=$state.params.roleName;
+        vm.isTeacher=(vm.roleName=='Teacher')
         vm.user={};
         vm.users=[];
         vm.displayedUsers=[];
@@ -56,8 +57,10 @@
     }
 
         function calendar (user ) {
-            vm.state.go('calendar');
+            var userForCalendar={};
+            userForCalendar.name=user.fullName;
+            userForCalendar.id=user.id;
+            vm.state.go('calendarshell.filterpannel',{'teachers': [userForCalendar]});
         }
-
     }
 })();

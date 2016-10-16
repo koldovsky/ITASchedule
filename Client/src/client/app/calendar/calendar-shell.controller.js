@@ -5,9 +5,9 @@
         .module('app.calendar')
         .controller('CalendarShellController', CalendarShellController);
 
-    CalendarShellController.$inject = ['$q','userservice','groupservice','roomservice'];
+    CalendarShellController.$inject = ['$q','userservice','groupservice','roomservice', '$state', '$stateParams'];
     /* @ngInject */
-    function CalendarShellController($q, userservice, groupservice, roomservice) {
+    function CalendarShellController($q, userservice, groupservice, roomservice, $state, $stateParams) {
         var vm = this;
         // vm.myList=fetchAllTeachers();
         vm.myList = [];
@@ -15,7 +15,7 @@
         vm.roomList = [];
         vm.groupList = [];
         vm.teacherList = [];
-        vm.teacherSelected = [];
+        vm.teacherSelected = $state.params.teachers;
         vm.roomSelected = [];
         vm.groupSelected = [];
         vm.getRooms = getRooms;

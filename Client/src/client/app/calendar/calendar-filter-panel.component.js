@@ -9,10 +9,8 @@
                 selectedElements: '=result'
             },
             controller: filterPanelController,
-            // template: 'uuuuuuuuuuuuuuuuuuuuu',
             templateUrl: '/app/calendar/calendar-filter-panel.html'
-            // templateUrl: 'aaa.html',
-        })
+        });
 
 
     function filterPanelController() {
@@ -20,7 +18,7 @@
         vm.elements=[];
         vm.transformChip = transformChip;
         vm.selectedItem = null;
-        vm.selectedElements = [];
+        // vm.selectedElements = [];
         vm.searchTextElement = null;
         vm.querySearchElement = querySearchElement;
         vm.readonly = false;
@@ -43,8 +41,7 @@
          * Search for elements.
          */
         function querySearchElement (query) {
-            var results = query ? vm.elementList.filter(createFilterForElement(query)) : vm.elementList;
-            return results;
+            return query ? vm.elementList.filter(createFilterForElement(query)) : vm.elementList;;
         }
 
         /**
@@ -52,18 +49,12 @@
          */
         function createFilterForElement(query) {
             var lowercaseQuery = angular.lowercase(query);
-            return function filterFn(elementList) {
+            return function (elementList) {
                 return (elementList.name.indexOf(lowercaseQuery) >= 0);
 
             };
         }
 
-        function elementListWithLovercase(elementList){
-            return elementList.map(function (element) {
-                element._lowername = element.title.toLowerCase();
-                return element;
-            });
-        }
     }
 
 })()

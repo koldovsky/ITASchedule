@@ -43,7 +43,9 @@
                 function success(response) {
                     var users=response.data._embedded.users;
                     return users.filter(function (user) {
-                        return user.roles.some(isTeacher);
+                        return user.roles.some(function(r){
+                            return r===role.toUpperCase();
+                        });
                     });
                 }
                 function fail(e) {

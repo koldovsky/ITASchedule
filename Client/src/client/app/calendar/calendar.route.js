@@ -20,7 +20,7 @@
                     templateUrl: 'app/calendar/calendar-shell.html',
                     controller: 'CalendarShellController',
                     controllerAs: 'vm',
-                    title: 'CalendarShell',
+                    title: 'CalendarShell'
 /*                    settings: {
                         nav: 8,
                         content: '<i class="fa fa-lock"></i> CalendarShell'
@@ -35,6 +35,11 @@
                         nav: 8,
                         content: '<i class="fa fa-lock"></i> Calendar'
                     },
+                    params:{
+                        teachers:[],
+                        rooms:[],
+                        groups:[]
+                    },
                     views: {
                         'calendar': {
                             templateUrl: 'app/calendar/calendar.html',
@@ -43,8 +48,9 @@
                             title: 'Calendar',
                             settings: {
                                 nav: 8,
-                                content: '<i class="fa fa-lock"></i> filtredcalendar4'
-                            }
+                                content: '<i class="fa fa-lock"></i> filtredcalendar'
+                            },
+
                             authenticate: false
                         }
                     }
