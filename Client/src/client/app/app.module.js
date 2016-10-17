@@ -6,6 +6,7 @@
         'app.widgets',
         'app.event',
         'app.groups',
+        'app.roomNew',
         'app.dashboard',
         'app.layout',
         'app.calendar',

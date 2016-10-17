@@ -1,0 +1,105 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div ht-widget-header
+                         title="{{vm.roomNew.number==null ? 'Creating Room' : 'Edit Room'}}">
+                    </div>
+                    <div class="widget-content user">
+                        <div>
+                            <form name="CreateRoomNewForm" class="dialogForm">
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Room's Name</label>
+                                    <input name="roomNewNameInput" ng-model="vm.roomNew.number" required
+                                           md-maxlength="30">
+                                    <div ng-messages="CreateRoomNewForm.roomNameInput.$error">
+                                        <div ng-message="required">This is required.</div>
+                                        <div ng-message="md-maxlength">
+                                            The name must be less than 30 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <!--========================-city-========================-->
+
+                                <md-input-container ng-hide="vm.roomNew.id != null">
+                                    <label>City</label>
+                                    <md-select ng-model="vm.roomNew.city" style="min-width: 200px;">
+                                        <!--<md-option><em>None</em></md-option>-->
+                                        <md-option ng-repeat="item in vm.roomNewList | unique:'city'"
+                                                   ng-value="item.city">
+                                            {{item.city}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <br/>
+
+
+                                <!--==================add address list===========================-->
+
+                                <md-input-container ng-hide="vm.roomNew.id != null">
+                                    <label>Address</label>
+                                    <md-select ng-model="vm.roomNew.address.address" ng-show="vm.roomNew.city != null"
+                                               style="min-width: 200px;">
+                                        <md-option ng-repeat="item in vm.roomNewList | unique:'address'"
+                                                   ng-value="item.address.address">
+                                            {{item.address.address}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <br/>
+
+                                <!--====================statusChoose======================-->
+                                <md-input-container>
+                                    <label>Room's status</label>
+                                    <md-select ng-model="vm.roomNew.active" style="min-width: 200px;">
+                                        <md-option ng-value=true>Active</md-option>
+                                        <md-option ng-value=false>Inactive</md-option>
+                                    </md-select>
+
+                                </md-input-container>
+                                <br/>
+
+
+                                <!--====================capacity========================-->
+
+
+                                <md-input-container class="md-block">
+                                    <label>Capacity of the room</label>
+                                    <input name="capacityInput" ng-model="vm.capacity"
+                                           required ng-pattern="/^[0-9]{1,2}$/" md-maxlength="2">
+
+                                </md-input-container>
+
+
+                                <!--====================buttons==============================-->
+
+
+                                </br>
+                                <section layout="row" layout-align="center center" layout-wrap>
+                                    <md-button class="md-raised md-primary md-hue-1"
+                                               ng-click="vm.submit()"
+                                               id="createButton">
+                                        Submit
+                                    </md-button>
+
+                                    <md-button class="md-raised md-warn" ng-click="vm.cancelCreation()"
+                                               id="cancelButton">
+                                        Cancel
+                                    </md-button>
+                                </section>
+                            </form>
+                        </div>
+
+
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

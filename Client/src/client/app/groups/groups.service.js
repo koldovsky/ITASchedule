@@ -6,39 +6,36 @@
 
     angular.module('app.groups')
         .factory('ITAGroupsService',function($http, $window, logger){
-        //http://stackoverflow.com/questions/18421830/how-to-wait-till-the-response-comes-from-the-http-request-in-angularjs
 
-        return{
+            var service = {
+                getGroupsPage:getGroupsPage,
+                getGroups: getGroups,
+                deleteGroup: deleteGroup,
+                createGroup: createGroup,
+                updateGroup: updateGroup
+            };
+            return service;
 
-            getITAGroupsPage: function(page, callback){
+
+            function getGroupsPage(pageNumber, pageSize, callback){
                 $http({
                     method: "GET",
-                    url: 'http://localhost:8080/groupsPage?page='+page+'&size=3'
+                    url: 'http://localhost:8080/groupsPage?page='+pageNumber+'&size='+pageSize
                 }).then(function (response) {
-
-                    //================= Parsing groups ==================
-
-                    var groupsList = [];
                     var groupsIdToArrayIndexMap = {};
-                    var groupsArray = response.data.content;
-                    for(var i=0; i<groupsArray.length; i++){
-                        groupsList.push(groupsArray[i]);
-                        groupsIdToArrayIndexMap[groupsArray[i].id] = i;
+                    var groupsList = response.data.content;
+                    for(var i=0; i<groupsList.length; i++){
+                        groupsIdToArrayIndexMap[groupsList[i].id] = i;
                     }
-
-                    //================= Parsing page ====================
                     var page = response.data;
-
-
                     callback(groupsList, groupsIdToArrayIndexMap, page);
-
                 }, function (response) {
-                    logger.error("CANT RECEIVE PAGES");
+                    logger.error("Unable to load groups"+buildDefaultErrorMessage(response));
                 });
-            },
+            }
 
 
-            getITAGroups: function(callback){
+            function getGroups(callback){
                 $http({
                     method: 'GET',
                     url: 'http://localhost:8080/groups?projection=groupItem',
@@ -50,66 +47,67 @@
                     }
                     callback(groupsList);
                 }, function(response){
-                    logger.error("Unable to load list of groups, error:"+response.error+", status:"+response.status+", message:"+response.message);
+                    logger.error("Unable to load groups."+buildDefaultErrorMessage(response));
                     callback(response);
                 });
-            },
+            }
 
-            deleteGroup: function(id, index, callback){
+            function deleteGroup(id, index, callback){
                  $http({
                     url: 'http://localhost:8080/groups/'+id,
                     method: 'DELETE'
                 }).then(function(response){
                      logger.info("The group has been successfully deleted!");
-                    callback(index);
+                     callback(index);
                 }, function(response){
-                     logger.error("Unable to delete the group, error:"+response.error+", status:"+response.status+", message:"+response.message);
+                     logger.error("Unable to delete the group."+buildDefaultErrorMessage(response));
                 });
-            },
+            }
 
-            createGroup: function(newGroup, callback){
+            function createGroup(group, callback){
                 $http({
                     url: 'http://localhost:8080/writeGroup',
                     method: 'POST',
-                    data: JSON.stringify(newGroup),
+                    data: JSON.stringify(group),
                     headers: {'Content-Type':'application/json'}
                 }).then(function(response){
-                    logger.info("User has been successfully created!");
+                    logger.info("The group has been successfully created!");
                     callback(true);
                 }, function(response){
-                    var errors = response.data;
-                    var errorMessage = 'Unable to create new group:\n';
-                    for(var i=0; i<errors.length; i++ ){
-                        errorMessage += (i+1)+') '+errors[i].rejectedValue +': '+ errors[i].codes[3]+'\n';
-                    }
-                    logger.error(errorMessage);
-                    callback(false);
-                })
-            },
-
-            updateGroup: function(updateGroup, callback){
-                $http({
-                    url: 'http://localhost:8080/writeGroup',
-                    method: 'PUT',
-                    data: JSON.stringify(updateGroup),
-                    headers: {'Content-Type':'application/json'}
-
-                }).then(function(response){
-                    logger.info("Group has been successfully updated!");
-                    callback(true);
-                }, function(response){
-                    var errors = response.data;
-                    var errorMessage = 'Unable to create new group:\n';
-                    for(var i=0; i<errors.length; i++ ){
-                        errorMessage += (i+1)+') '+errors[i].rejectedValue +': '+ errors[i].codes[3]+'\n';
-                    }
+                    var errorMessage = 'Unable to create group:\n'+buildValidationErrorMessage(response.data);
                     logger.error(errorMessage);
                     callback(false);
                 })
             }
 
+            function buildDefaultErrorMessage(errorResponse){
+                return "\nError: "+response.error+", \nstatus: "+response.status+", \nmessage: "+response.message;
+            }
 
-        }
+            function buildValidationErrorMessage(errors){
+                var errorMessage = "";
+                for(error in errors){
+                    errorMessage += "\n"+error.rejectedValue +': '+ error.codes[3];
+                }
+                return errorMessage;
+            }
+
+
+            function updateGroup(updateGroup, callback){
+                $http({
+                    url: 'http://localhost:8080/writeGroup',
+                    method: 'PUT',
+                    data: JSON.stringify(updateGroup),
+                    headers: {'Content-Type':'application/json'}
+                }).then(function(response){
+                    logger.info("The group has been successfully updated!");
+                    callback(true);
+                }, function(response){
+                    var errorMessage = 'Unable to update group:\n'+buildValidationErrorMessage(response.data);
+                    logger.error(errorMessage);
+                    callback(false);
+                })
+            }
 
     });
 

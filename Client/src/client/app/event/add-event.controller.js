@@ -44,7 +44,7 @@
         }
 
         function getGroups() {
-            ITAGroupsService.getITAGroups(function (response) {
+            ITAGroupsService.getGroups(function (response) {
                 if (Object.prototype.toString.call(response) === '[object Array]') {
                     var groups = response;
                     groups.forEach(function (group) {
@@ -85,17 +85,19 @@
 
         if (!(vm.eventToEdit == null)) {
             vm.event.title = vm.eventToEdit.title;
-            vm.event.type = vm.eventToEdit.eventType;
-            vm.date = new Date(vm.eventToEdit.startTime);
-            vm.startTime = new Date(vm.eventToEdit.startTime);
-            vm.endTime = new Date(vm.eventToEdit.endTime);
             vm.eventToEdit.itagroups.forEach(function (itaGroup) {
                 vm.addedGroups.push(itaGroup.title)
             });
             vm.eventToEdit.users.forEach(function (user) {
-               vm.addedTeachers.push(user.fullName);
+                vm.addedTeachers.push(user.fullName);
             });
-            console.log(vm.event);
+            vm.event.type = vm.eventToEdit.eventType;
+            vm.date = new Date(vm.eventToEdit.startTime);
+            vm.startTime = new Date(vm.eventToEdit.startTime);
+            vm.endTime = new Date(vm.eventToEdit.endTime);
+            vm.city = vm.eventToEdit.cityName;
+            vm.codeName=vm.eventToEdit.addressCodeName;
+            vm.roomNumber = vm.eventToEdit.roomNumber;
         }
 
         vm.addTeacher = function (teacher) {
@@ -103,7 +105,6 @@
                 vm.showAlert('You added already ' + teacher + " to the event");
             } else {
                 vm.addedTeachers.push(teacher);
-                console.log(teacher);
             }
         };
         vm.addGroup = function (group) {
@@ -142,7 +143,7 @@
                 }
                 return true;
             } else {
-                vm.showAlert('One of the fields is not entered');
+               vm.showAlert('One of the fields is not entered');
                 return false;
             }
         };
@@ -156,8 +157,8 @@
             event.creatorFullName = vm.addedTeachers[0];
             event.groupTitles = vm.addedGroups;
             event.type = vm.event.type.type;
-            event.roomNumber = vm.room.number;
-            event.addressCodeName = vm.address.codeName;
+            event.roomNumber = vm.roomNumber;
+            event.addressCodeName = vm.addressCodeName;
             event.startTime = vm.createStartEndDate(vm.date, vm.startTime);
             event.endTime = vm.createStartEndDate(vm.date, vm.endTime);
             return event;
@@ -170,6 +171,5 @@
             }
         };
 
-vm.kek ="kek";
     }
 })();

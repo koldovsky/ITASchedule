@@ -30,6 +30,12 @@ public interface EventDetail {
     @Value("#{target.type.color}")
     String getEventColor();
 
+    @Value("#{target.room.address.city.name}")
+     String getCityName();
+
+    @Value("#{target.room.address.codeName}")
+    String getAddressCodeName();
+
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     LocalDateTime getStartTime();
