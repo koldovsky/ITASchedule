@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @com.sun.istack.internal.NotNull
+    @NotNull
     private String fullName;
 
     @NotNull

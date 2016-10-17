@@ -50,7 +50,7 @@
         function createFilterForElement(query) {
             var lowercaseQuery = angular.lowercase(query);
             return function (elementList) {
-                return (elementList.name.indexOf(lowercaseQuery) >= 0);
+                return (elementList.name.toLowerCase().indexOf(lowercaseQuery) >= 0);
 
             };
         }
