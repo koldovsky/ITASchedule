@@ -165,10 +165,15 @@
         };
         vm.sendEventOnServer = function () {
             if (vm.isEventValid(vm.builtEvent())) {
-                eventService.createEvent(vm.builtEvent())
+                eventService.createEvent(vm.builtEvent());
+                $mdDialog.hide();
             } else {
                 logger.error('Event is not created!');
             }
+        };
+
+        vm.hideModal = function () {
+            $mdDialog.hide();
         };
 
     }
