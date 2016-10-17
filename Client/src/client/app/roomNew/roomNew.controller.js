@@ -61,7 +61,7 @@
             vm.someObject={
                 "id" : newRoomNew.id,
                 "number" : newRoomNew.number,
-                "isActive" : newRoomNew.isActive
+                "active" : newRoomNew.active
             }
                 return roomNewService.updateRoomNew(vm.someObject)
             // }

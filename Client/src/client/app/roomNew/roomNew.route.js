@@ -22,8 +22,8 @@
                     controllerAs: 'vm',
                     title: 'roomNewList',
                     settings: {
-                        nav: 9,
-                        content: '<i class="fa fa-map-marker"></i> RoomNew'
+                        nav: 7,
+                        content: '<i class="fa fa-map-marker"></i> Rooms'
                     }
                 }
             },

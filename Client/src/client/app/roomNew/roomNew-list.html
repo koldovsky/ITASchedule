@@ -34,7 +34,7 @@
                                             <td>{{roomNew.address.address}} | {{roomNew.address.codeName}}</td>
                                             <td>{{roomNew.address.workingHoursStart}}</td>
                                             <td>{{roomNew.address.workingHoursEnd}}</td>
-                                            <td>{{roomNew.isActive}}</td>
+                                            <td ng-bind="roomNew.active ? 'Active' : 'Inactive'"></td>
                                             <td>
                                                 <button type="button" class="btn btn-info" ng-click="vm.editRoomNew(roomNew)">
                                                     <i class="glyphicon glyphicon-pencil"></i>
