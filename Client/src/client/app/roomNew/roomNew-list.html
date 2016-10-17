@@ -7,10 +7,15 @@
                     </div>
                     <div class="widget-content user">
                         <div>
-
-                            <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary" style=" float: right; margin-bottom: 5px;">
-                                Create Room
-                            </a>
+                            <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary" style=" float: right; margin-bottom: 5px;">Create Room</a>
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchRoom">
+                                </div>
+                            </form>
                             <div class="text-center">
                                 <table st-table="vm.roomNewList" class="table table-bordered table-hover" style="font-size: medium">
                                      <thead>
@@ -27,7 +32,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="roomNew in vm.roomNewList">
+                                        <tr ng-repeat="roomNew in vm.roomNewList | filter:vm.searchRoom">
                                             <th scope="row">{{$index+1}}</th>
                                             <td>{{roomNew.number}}</td>
                                             <td>{{roomNew.city}}</td>

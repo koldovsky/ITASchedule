@@ -16,6 +16,7 @@
         vm.submit=submit;
         vm.create=create;
         vm.editRoomNew=editRoomNew;
+        vm.searchRoom ='';
 
 
         getRoomNew();
