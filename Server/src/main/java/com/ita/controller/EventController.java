@@ -40,7 +40,7 @@ public class EventController {
     private EventValidator eventValidator;
 
     @RequestMapping(value = "/createEvent",
-            method = RequestMethod.POST,
+            method = {RequestMethod.POST,RequestMethod.PUT},
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createEvent(@Valid @RequestBody EventDto eventDto,BindingResult bindingResult) {
         Event event = eventDto.buildEvent(userRepository,eventTypeRepository,roomRepository,addressJpaRepository,itaGroupRepository);
@@ -51,6 +51,19 @@ public class EventController {
         }
         eventRepository.save(event);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @RequestMapping(value = "/deleteEvent",
+            method = RequestMethod.DELETE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity deleteEvent(@Valid @RequestBody EventDto eventDto,BindingResult bindingResult) {
+        Event event = eventDto.buildEvent(userRepository,eventTypeRepository,roomRepository,addressJpaRepository,itaGroupRepository);
+        eventValidator.validate(event,bindingResult);
+        if(bindingResult.hasErrors()){
+            String jsonValidationMessage = new Gson().toJson(bindingResult.getAllErrors());
+            return ResponseEntity.badRequest().body(jsonValidationMessage);
+        }
+        eventRepository.delete(event);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

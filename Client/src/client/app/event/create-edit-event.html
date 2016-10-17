@@ -21,7 +21,8 @@
                                         <md-input-container>
                                             <label>Type</label>
                                             <md-select required="true" ng-model="vm.event.type">
-                                                <md-option ng-value="type" ng-repeat="type in vm.eventTypes" ng-selected="{{ type.type === vm.event.type.type ? 'true' : 'false' }}">
+                                                <md-option ng-value="type" ng-repeat="type in vm.eventTypes"
+                                                           ng-selected="{{ type.type === vm.event.type.type ? 'true' : 'false' }}">
                                                     {{type.type}}
                                                 </md-option>
                                             </md-select>
@@ -29,7 +30,8 @@
                                         <md-input-container>
                                             <label>City</label>
                                             <md-select required="true" ng-model="vm.city">
-                                                <md-option ng-value="city" ng-repeat="city in vm.cities" ng-selected="{{ city.name === vm.city ? 'true' : 'false' }}">
+                                                <md-option ng-value="city" ng-repeat="city in vm.cities"
+                                                           ng-selected="{{ city.name === vm.city ? 'true' : 'false' }}">
                                                     {{city.name}}
                                                 </md-option>
                                             </md-select>
@@ -37,15 +39,20 @@
                                         <md-input-container ng-show="vm.city">
                                             <label>Code Name</label>
                                             <md-select required="true" ng-model="vm.addressCodeName" ng-show="vm.city">
-                                                <md-option ng-value="address.codeName" ng-repeat="address in vm.addresses|filter:vm.city.name" ng-selected="{{ address.codeName === vm.codeName ? 'true' : 'false' }}">
+                                                <md-option ng-value="address.codeName"
+                                                           ng-repeat="address in vm.addresses|filter:vm.city.name"
+                                                           ng-selected="{{ address.codeName === vm.codeName ? 'true' : 'false' }}">
                                                     {{address.codeName}}
                                                 </md-option>
                                             </md-select>
                                         </md-input-container>
-                                        <md-input-container >
+                                        <md-input-container>
                                             <label>room number</label>
-                                            <md-select required="true" ng-model="vm.roomNumber" ng-show="vm.addressCodeName">
-                                                <md-option ng-value="room.number" ng-repeat="room in vm.rooms|filter:vm.addressCodeName" ng-selected="{{ room.number === vm.roomNumber ? 'true' : 'false' }}">
+                                            <md-select required="true" ng-model="vm.roomNumber"
+                                                       ng-show="vm.addressCodeName">
+                                                <md-option ng-value="room.number"
+                                                           ng-repeat="room in vm.rooms|filter:vm.addressCodeName"
+                                                           ng-selected="{{ room.number === vm.roomNumber ? 'true' : 'false' }}">
                                                     {{room.number}}
                                                 </md-option>
                                             </md-select>
@@ -205,12 +212,14 @@
                         </div>
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
-                            <md-button class="md-raised md-primary md-hue-1"  ng-show="vm.eventToEdit" ng-disabled="CreateGroupForm.$invalid" ng-click="vm.updateGroup()" id="updateButton">Edit</md-button>
+                            <md-button class="md-raised md-primary md-hue-1" ng-show="vm.eventToEdit"
+                                       ng-click="vm.sendEditedEventOnServer()">Edit
+                            </md-button>
                             <md-button class="md-raised md-primary md-hue-1" ng-hide="vm.eventToEdit"
                                        ng-click="vm.sendEventOnServer()"
                             >Create
                             </md-button>
-                            <md-button class="md-raised md-warn" id="cancelButton" ng-click= "vm.hideModal()">
+                            <md-button class="md-raised md-warn" id="cancelButton" ng-click="vm.hideModal()">
                                 Cancel
                             </md-button>
                         </section>

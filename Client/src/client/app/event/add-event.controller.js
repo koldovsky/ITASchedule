@@ -152,6 +152,9 @@
         };
         vm.builtEvent = function () {
             var event = {};
+            if(!(vm.eventToEdit==null)){
+                event.id = vm.eventToEdit.id;
+            }
             event.title = vm.event.title;
             event.usersFullNames = vm.addedTeachers;
             event.creatorFullName = vm.addedTeachers[0];
@@ -171,7 +174,14 @@
                 logger.error('Event is not created!');
             }
         };
-
+        vm.sendEditedEventOnServer = function () {
+            if (vm.isEventValid(vm.builtEvent())) {
+                eventService.editEvent(vm.builtEvent());
+                $mdDialog.hide();
+            } else {
+                logger.error('Event is not created!');
+            }
+        };
         vm.hideModal = function () {
             $mdDialog.hide();
         };
