@@ -124,7 +124,6 @@
                 }
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
-                    logger.info("-----------"+passedGroupObject.id);
                     newGroup["creatorFullName"] = passedGroupObject.creatorFullName;
                 }
                 return newGroup;

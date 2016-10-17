@@ -19,7 +19,7 @@
 
             function getGroupsPage(pageNumber, pageSize, callback){
                 $http({
-                    method: "GET",
+                    method: 'GET',
                     url: 'http://localhost:8080/groupsPage?page='+pageNumber+'&size='+pageSize
                 }).then(function (response) {
                     var groupsIdToArrayIndexMap = {};
@@ -30,7 +30,7 @@
                     var page = response.data;
                     callback(groupsList, groupsIdToArrayIndexMap, page);
                 }, function (response) {
-                    logger.error("Unable to load groups"+buildDefaultErrorMessage(response));
+                    logger.error('Unable to load groups'+buildDefaultErrorMessage(response));
                 });
             }
 
@@ -47,7 +47,7 @@
                     }
                     callback(groupsList);
                 }, function(response){
-                    logger.error("Unable to load groups."+buildDefaultErrorMessage(response));
+                    logger.error('Unable to load groups.'+buildDefaultErrorMessage(response));
                     callback(response);
                 });
             }
@@ -57,10 +57,10 @@
                     url: 'http://localhost:8080/groups/'+id,
                     method: 'DELETE'
                 }).then(function(response){
-                     logger.info("The group has been successfully deleted!");
+                     logger.info('The group has been successfully deleted!');
                      callback(index);
                 }, function(response){
-                     logger.error("Unable to delete the group."+buildDefaultErrorMessage(response));
+                     logger.error('Unable to delete the group.'+buildDefaultErrorMessage(response));
                 });
             }
 
@@ -71,7 +71,7 @@
                     data: JSON.stringify(group),
                     headers: {'Content-Type':'application/json'}
                 }).then(function(response){
-                    logger.info("The group has been successfully created!");
+                    logger.info('The group has been successfully created!');
                     callback(true);
                 }, function(response){
                     var errorMessage = 'Unable to create group:\n'+buildValidationErrorMessage(response.data);
@@ -81,13 +81,13 @@
             }
 
             function buildDefaultErrorMessage(errorResponse){
-                return "\nError: "+response.error+", \nstatus: "+response.status+", \nmessage: "+response.message;
+                return '\nError: '+response.error+', \nstatus: '+response.status+', \nmessage: '+response.message;
             }
 
             function buildValidationErrorMessage(errors){
-                var errorMessage = "";
-                for(error in errors){
-                    errorMessage += "\n"+error.rejectedValue +': '+ error.codes[3];
+                var errorMessage = '';
+                for(var i=0; i<errors.length; i++){
+                    errorMessage += '\n'+errors[i].field +': '+ errors[i].codes[3];
                 }
                 return errorMessage;
             }
@@ -100,7 +100,7 @@
                     data: JSON.stringify(updateGroup),
                     headers: {'Content-Type':'application/json'}
                 }).then(function(response){
-                    logger.info("The group has been successfully updated!");
+                    logger.info('The group has been successfully updated!');
                     callback(true);
                 }, function(response){
                     var errorMessage = 'Unable to update group:\n'+buildValidationErrorMessage(response.data);

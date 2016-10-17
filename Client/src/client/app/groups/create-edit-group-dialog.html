@@ -83,7 +83,7 @@
                                                             </span>
                                                         </p>
                                                         <span ng-show="CreateGroupForm.startDatePicker.$invalid && CreateGroupForm.startDatePicker.$dirty" class="error_message">Not valid!</span>
-                                                        <span ng-show="vm.startDate<(vm.currentDate-1)" class="error_message">Start date is earlier then the currrent date!</span>
+                                                        <span ng-show="vm.startDate<(vm.currentDate-1)" class="error_message">Start date should be later then the currrent date!</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
