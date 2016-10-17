@@ -6,13 +6,24 @@
                     <div ht-widget-header title="{{vm.roleName}}">
                     </div>
                     <div class="widget-content user">
+                        <a ui-sref={{"add"+vm.roleName}} class="btn btn-primary rightButton">Add new {{vm.roleName}}</a>
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchUser">
+                            </div>
+                        </form>
                         <div>
                             <table st-table="displayedUsers" st-safe-src="vm.users" class="table table-striped table-hover">
                                 <thead>
+<!--
                                 <tr>
                                     <th colspan="5"><input st-search="" class="form-control" placeholder="Search" type="text"/></th>
                                     <th colspan="1" align="right"><a ui-sref={{"add"+vm.roleName}} class="btn btn-primary">Add new {{vm.roleName}}</a></th>
                                 </tr>
+-->
                                     <tr>
                                         <th st-sort="fullName">Full name</th>
                                         <th st-sort='email'>email</th>
@@ -23,7 +34,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="user in displayedUsers ">
+                                <tr ng-repeat="user in displayedUsers | filter:vm.searchUser">
                                     <td>{{user.fullName}}</td>
 
                                     <td>

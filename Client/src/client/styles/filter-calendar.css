@@ -1,3 +1,8 @@
+.rightButton {
+    float: right;
+    margin-bottom: 5px;
+    margin:10px;
+}
 md-icon {
     min-height: 10px;
     min-width: 10px;
