@@ -7,4 +7,5 @@ import com.ita.entity.User;
 @Projection(name="userFullName", types = {User.class})
 public interface UserFullName{
     String getFullName();
+    Long getId();
 }

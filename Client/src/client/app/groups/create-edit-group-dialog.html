@@ -118,7 +118,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{ teacher }}</h3>
+                                                                        <h3>{{ teacher.fullName }}</h3>
                                                                         <h4>"This teacher already has four groups."</h4>
 
                                                                     </div>
@@ -135,7 +135,7 @@
                                             <md-divider ></md-divider>
                                             <div flex-gt-sm="50" flex>
                                                 <md-content id="addedTeachersListHeader" layout="row">
-                                                    <label class="teacher-list-header-title md-body-1"">Teachers, added to the group</label>
+                                                    <label class="teacher-list-header-title md-body-1">Teachers, added to the group</label>
                                                     </br>
                                                     <label id="addedTeachersListSubHeader" class="md-body-1">(Group must have at least one teacher assigned)</label>
                                                 </md-content>
@@ -145,7 +145,7 @@
                                                             <div class="md-list-item-text" layout="column">
                                                                 <div layout="row">
                                                                     <div layout="column">
-                                                                        <h3>{{ teacher }}</h3>
+                                                                        <h3>{{ teacher.fullName }}</h3>
                                                                         <h4>"This teacher is added to this groups."</h4>
                                                                     </div>
                                                                     <md-button id="removeTeacherButton" class="md-fab md-mini" ng-click="vm.removeTeacherFromTheList($index)" aria-label="Eat cake">

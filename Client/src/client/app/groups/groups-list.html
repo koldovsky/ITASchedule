@@ -97,10 +97,10 @@
                                                 <i id="groupActiveTrueIcon" ng-show="groupItem.active" class="glyphicon glyphicon-ok-circle"></i>
                                                 <i id="groupActiveFalseIcon" ng-show="!groupItem.active" class="glyphicon glyphicon-ban-circle"></i>
                                             </td>
-                                            <td>{{groupItem.creatorFullName}}</td>
+                                            <td>{{groupItem.creator.fullName}}</td>
                                             <td>
-                                                <p ng-repeat="student in groupItem.users">
-                                                    {{student.fullName}}
+                                                <p ng-repeat="teacher in groupItem.users">
+                                                    {{teacher.fullName}}
                                                 </p>
                                             </td>
                                             <td>

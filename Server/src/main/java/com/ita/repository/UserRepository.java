@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findByFullName(String fullName);
     public List<User> findByFullNameIn(List<String> fullNames);
 
+    public List<User> findByIdIn(List<Long> ids);
+
     @RestResource(path = "activeusers", rel = "names")
     public List<User> findByActiveTrue();
 

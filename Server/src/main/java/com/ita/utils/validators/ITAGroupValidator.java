@@ -31,11 +31,5 @@ public class ITAGroupValidator implements Validator {
         if(group.getEndDate().isBefore(group.getStartDate())){
             errors.rejectValue("endDate", ErrorConstants.ITAGROUP_VALIDATION_ENDDATE_IS_BEFORE_STARTDATE);
         }
-        if(group.getCreator() == null){
-            errors.rejectValue("creatorFullName", ErrorConstants.ITAGROUP_VALIDATION_NO_CREATOR_SPECIFIED);
-        }
-        if(group.getUsers().isEmpty()){
-            errors.rejectValue("usersFullNames", ErrorConstants.ITAGROUP_VALIDATION_NO_USERS_SPECIFIED);
-        }
     }
 }
