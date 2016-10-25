@@ -74,9 +74,7 @@
                     logger.info('The group has been successfully created!');
                     callback(true);
                 }, function(response){
-                    var errorMessage = 'Unable to create group:\n'+buildValidationErrorMessage(response.data);
-                    logger.error(errorMessage);
-                    callback(false);
+                    callback(false,buildValidationErrorMessage(response.data));
                 })
             }
 
@@ -85,9 +83,9 @@
             }
 
             function buildValidationErrorMessage(errors){
-                var errorMessage = '';
+                var errorMessage = "";
                 for(var i=0; i<errors.length; i++){
-                    errorMessage += '\n'+errors[i].field +': '+ errors[i].codes[3];
+                    errorMessage += '\n'+errors[i].defaultMessage;
                 }
                 return errorMessage;
             }
@@ -103,9 +101,7 @@
                     logger.info('The group has been successfully updated!');
                     callback(true);
                 }, function(response){
-                    var errorMessage = 'Unable to update group:\n'+buildValidationErrorMessage(response.data);
-                    logger.error(errorMessage);
-                    callback(false);
+                    callback(false,buildValidationErrorMessage(response.data));
                 })
             }
 

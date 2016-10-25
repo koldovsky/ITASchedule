@@ -26,10 +26,10 @@ public class ITAGroupValidator implements Validator {
         ITAGroup group = (ITAGroup)obj;
 
         if(group.getStartDate().isBefore(LocalDate.now().minusDays(1))){
-            errors.rejectValue("startDate", ErrorConstants.ITAGROUP_VALIDATION_STARTDATE_IS_BEFORE_CURRENTDATE);
+            errors.reject("startDate", ErrorConstants.ITAGROUP_VALIDATION_STARTDATE_IS_BEFORE_CURRENTDATE);
         }
         if(group.getEndDate().isBefore(group.getStartDate())){
-            errors.rejectValue("endDate", ErrorConstants.ITAGROUP_VALIDATION_ENDDATE_IS_BEFORE_STARTDATE);
+            errors.reject("endDate", ErrorConstants.ITAGROUP_VALIDATION_ENDDATE_IS_BEFORE_STARTDATE);
         }
     }
 }

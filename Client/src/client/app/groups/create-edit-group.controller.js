@@ -7,7 +7,10 @@
     angular.module('app.groups')
 
 
-        .controller('CreateGroupFormInstanceController', function(logger, $window, $http, $filter, $state, $stateParams, uibDateParser, ITAGroupsService){
+        .controller('CreateGroupFormInstanceController', function(logger, $window, $http,
+                                                                  $filter, $state, $stateParams,
+                                                                  uibDateParser, ITAGroupsService,
+                                                                  $mdDialog){
             //======================== General initialization ====================
             var vm = this;
             this.format = "yyyy-MM-dd";
@@ -118,12 +121,26 @@
                 var updateGroup = vm.instantiateNewObject(vm.passedGroupObject);
                 ITAGroupsService.updateGroup(updateGroup, successfullCreateOrUpdateCallback);
             }
-            var successfullCreateOrUpdateCallback = function(isSuccessfull){
+            var successfullCreateOrUpdateCallback = function(isSuccessfull,errorMessage){
                 if(isSuccessfull) {
                     $state.go('listGroups');
+                }else{
+                    showAlert("Group error",errorMessage);
                 }
-
             }
+
+            function showAlert(title,message) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title(title)
+                        .textContent(message)
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('OK')
+                );
+            };
+
             vm.instantiateNewObject = function(passedGroupObject){
                 var newGroup = {
                     "title": vm.groupTitle,
@@ -141,7 +158,6 @@
                 newGroup["userIds"] = teacherIds;
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
-                    newGroup["creatorFullName"] = passedGroupObject.creatorFullName;
                 }
                 return newGroup;
             }
