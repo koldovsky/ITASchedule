@@ -1,6 +1,0 @@
-FROM java:8
-MAINTAINER "Marian Seliuchenko <m.seliuchenko@gmail.com>"
-
-ADD itaschedule-0.0.1-SNAPSHOT.jar
-RUN bash -c 'touch /itaschedule-0.0.1-SNAPSHOT.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/itaschedule-0.0.1-SNAPSHOT.jar"]
