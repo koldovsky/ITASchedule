@@ -31,4 +31,12 @@ The below guides are targeted for Idea environment.
   - set target directory to {project}/Client/,
   - set goals to: serve-dev
 
+Run Server instance in Docker container (Tested on Ubuntu 14.04)
+Prerequisite: Docker runs on the same physical host as MySQL server.
+  - Install Docker: https://docs.docker.com/engine/installation/
+  - Go to {project}/Server/ directory (where pom.xml is located).
+  - Build Docker image: mvn clean package docker:build
+  - Run the created image in container: docker run --rm --net=host itaschedule
+  - Now the project can be accessed at localhost:8080
+
 
