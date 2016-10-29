@@ -46,7 +46,6 @@
         /* config object */
         $scope.uiConfig = {
             calendar:{
-                height: 450,
                 selectable:true,
                 header:{
                     left: 'month agendaWeek agendaDay',
