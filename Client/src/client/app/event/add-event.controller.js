@@ -138,8 +138,8 @@
             }
         };
         vm.isEventValid = function (event) {
-            if (vm.addedTeachers && vm.event.type.type && event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
-                if (!vm.addedTeachers[0].email) {
+            if (vm.event.type && event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
+                if (vm.addedTeachers[0]===undefined ) {
                     vm.showAlert('At least one teacher needs to be selected');
                     return false;
                 }
@@ -148,14 +148,6 @@
                 vm.showAlert('One of the fields is not entered');
                 return false;
             }
-
-        };
-        vm.isFormFilled = function () {
-            if (vm.title && vm.addedTeachers && vm.roomNumber && vm.event.type.type && vm.date && vm.startTime && vm.endTime) {
-                return true;
-            }
-            vm.showAlert("One of the fields is not entered");
-            return false;
         };
         vm.createStartEndDate = function (date, time) {
             return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
@@ -170,9 +162,12 @@
             vm.addedTeachers.forEach(function (teacher) {
                 event.userEmails.push(teacher.email);
             });
-            event.creatorEmail = vm.addedTeachers[0].email;
+            //add here creator after full validation is created
+            event.creatorEmail = 'konon@gmail.com';
             event.groupTitles = vm.addedGroups;
-            event.type = vm.event.type.type;
+            if (vm.event.type) {
+                event.type = vm.event.type.type;
+            } else vm.showAlert('select event type ');
             event.roomNumber = vm.roomNumber;
             event.addressCodeName = vm.addressCodeName;
             event.startTime = vm.createStartEndDate(vm.date, vm.startTime);
@@ -180,7 +175,7 @@
             return event;
         };
         vm.sendEventOnServer = function () {
-            if (vm.isFormFilled && vm.isEventValid(vm.builtEvent())) {
+            if (vm.isEventValid(vm.builtEvent())) {
                 eventService.createEvent(vm.builtEvent());
                 $mdDialog.hide();
             } else {
