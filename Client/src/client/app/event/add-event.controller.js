@@ -37,7 +37,8 @@
             return userservice.getUsers().then(function (data) {
                 var teachers = data._embedded.users;
                 teachers.forEach(function (teacher) {
-                    vm.teachers.push(teacher.fullName);
+                    var teacher = {fullName: teacher.fullName, email: teacher.email};
+                    vm.teachers.push(teacher);
                 });
                 return vm.teachers;
             });
@@ -89,20 +90,21 @@
                 vm.addedGroups.push(itaGroup.title)
             });
             vm.eventToEdit.users.forEach(function (user) {
-                vm.addedTeachers.push(user.fullName);
+                var teacher = {fullName: user.fullName, email: user.email};
+                vm.addedTeachers.push(teacher);
             });
             vm.event.type = vm.eventToEdit.eventType;
             vm.date = new Date(vm.eventToEdit.startTime);
             vm.startTime = new Date(vm.eventToEdit.startTime);
             vm.endTime = new Date(vm.eventToEdit.endTime);
             vm.city = vm.eventToEdit.cityName;
-            vm.codeName=vm.eventToEdit.addressCodeName;
+            vm.codeName = vm.eventToEdit.addressCodeName;
             vm.roomNumber = vm.eventToEdit.roomNumber;
         }
 
         vm.addTeacher = function (teacher) {
             if (vm.addedTeachers.includes(teacher)) {
-                vm.showAlert('You added already ' + teacher + " to the event");
+                vm.showAlert('You added already ' + teacher.fullName + " to the event");
             } else {
                 vm.addedTeachers.push(teacher);
             }
@@ -136,28 +138,39 @@
             }
         };
         vm.isEventValid = function (event) {
-            if (event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
-                if (event.usersFullNames[0] === undefined) {
+            if (vm.addedTeachers && vm.event.type.type && event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
+                if (!vm.addedTeachers[0].email) {
                     vm.showAlert('At least one teacher needs to be selected');
                     return false;
                 }
                 return true;
             } else {
-               vm.showAlert('One of the fields is not entered');
+                vm.showAlert('One of the fields is not entered');
                 return false;
             }
+
+        };
+        vm.isFormFilled = function () {
+            if (vm.title && vm.addedTeachers && vm.roomNumber && vm.event.type.type && vm.date && vm.startTime && vm.endTime) {
+                return true;
+            }
+            vm.showAlert("One of the fields is not entered");
+            return false;
         };
         vm.createStartEndDate = function (date, time) {
             return $filter('date')(date, 'yyyy-MM-dd') + 'T' + ($filter('date')(time, 'HH:mm'));
         };
         vm.builtEvent = function () {
             var event = {};
-            if(!(vm.eventToEdit==null)){
+            if (!(vm.eventToEdit == null)) {
                 event.id = vm.eventToEdit.id;
             }
             event.title = vm.event.title;
-            event.usersFullNames = vm.addedTeachers;
-            event.creatorFullName = vm.addedTeachers[0];
+            event.userEmails = [];
+            vm.addedTeachers.forEach(function (teacher) {
+                event.userEmails.push(teacher.email);
+            });
+            event.creatorEmail = vm.addedTeachers[0].email;
             event.groupTitles = vm.addedGroups;
             event.type = vm.event.type.type;
             event.roomNumber = vm.roomNumber;
@@ -167,7 +180,7 @@
             return event;
         };
         vm.sendEventOnServer = function () {
-            if (vm.isEventValid(vm.builtEvent())) {
+            if (vm.isFormFilled && vm.isEventValid(vm.builtEvent())) {
                 eventService.createEvent(vm.builtEvent());
                 $mdDialog.hide();
             } else {

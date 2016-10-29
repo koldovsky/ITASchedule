@@ -37,9 +37,9 @@ public class EventService {
                 .setEndTime(LocalDateTime.parse(eventDto.getEndTime()))
                 .setRoom(roomRepository.findByAddressAndNumber(addressJpaRepository.findByCodeName(eventDto.getAddressCodeName()), eventDto.getRoomNumber()))
                 .setType(eventTypeRepository.findByType(eventDto.getType()))
-                .setCreator(userRepository.findByFullName(eventDto.getCreatorFullName()))
+                .setCreator(userRepository.findByEmail(eventDto.getCreatorEmail()))
                 .setITAGroups(itaGroupRepository.findByTitleIn(eventDto.getGroupTitles()))
-                .setUsers(userRepository.findByFullNameIn(eventDto.getUsersFullNames()))
+                .setUsers(userRepository.findByEmailIn(eventDto.getUserEmails()))
                 .build();
         return event;
     }

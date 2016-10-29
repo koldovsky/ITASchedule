@@ -18,9 +18,9 @@ public class EventDto {
     @NotNull
     private String title;
     @NotNull
-    private List<String> usersFullNames;
+    private List<String> userEmails;
     @NotNull
-    private String creatorFullName;
+    private String creatorEmail;
 
     private List<String> groupTitles;
     @NotNull
