@@ -5,6 +5,7 @@ import com.ita.dto.EventDto;
 import com.ita.entity.Event;
 import com.ita.entity.ITAGroup;
 import com.ita.repository.*;
+import com.ita.service.EventService;
 import com.ita.utils.validators.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,20 +22,16 @@ import javax.validation.Valid;
 @RestController
 public class EventController {
     @Autowired
-    private EventTypeRepository eventTypeRepository;
-
-    @Autowired
-    private RoomRepository roomRepository;
-    @Autowired
     UserRepository userRepository;
 
     @Autowired
     ITAGroupRepository itaGroupRepository;
-    @Autowired
-    private AddressJpaRepository addressJpaRepository;
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private EventService eventService;
 
     @Autowired
     private EventValidator eventValidator;
@@ -43,7 +40,7 @@ public class EventController {
             method = {RequestMethod.POST,RequestMethod.PUT},
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createEvent(@Valid @RequestBody EventDto eventDto,BindingResult bindingResult) {
-        Event event = eventDto.buildEvent(userRepository,eventTypeRepository,roomRepository,addressJpaRepository,itaGroupRepository);
+        Event event = eventService.buildEvent(eventDto);
         eventValidator.validate(event,bindingResult);
         if(bindingResult.hasErrors()){
             String jsonValidationMessage = new Gson().toJson(bindingResult.getAllErrors());
@@ -52,19 +49,7 @@ public class EventController {
         eventRepository.save(event);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @RequestMapping(value = "/deleteEvent",
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteEvent(@Valid @RequestBody EventDto eventDto,BindingResult bindingResult) {
-        Event event = eventDto.buildEvent(userRepository,eventTypeRepository,roomRepository,addressJpaRepository,itaGroupRepository);
-        eventValidator.validate(event,bindingResult);
-        if(bindingResult.hasErrors()){
-            String jsonValidationMessage = new Gson().toJson(bindingResult.getAllErrors());
-            return ResponseEntity.badRequest().body(jsonValidationMessage);
-        }
-        eventRepository.delete(event);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+
 
 
 }
