@@ -47,7 +47,11 @@
               var token = result.data.access_token;
               var decoded = jwt_decode(token);
               assignCurrentUser(decoded.user_name, decoded.authorities);
-              $state.go($rootScope.currentState);
+              if($rootScope.currentState !== 'calendarshell.filterpannel') {
+                $state.go($rootScope.currentState);
+              }else {
+                $state.reload();
+              }
               return $mdDialog.hide();
 
             })

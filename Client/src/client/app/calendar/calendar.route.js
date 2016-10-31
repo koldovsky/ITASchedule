@@ -21,8 +21,7 @@
                     controller: 'CalendarShellController',
                     controllerAs: 'vm',
                     title: 'CalendarShell',
-                    authenticate: false,
-                    authorities: []
+                    authenticate: false
 /*                    settings: {
                         nav: 8,
                         content: '<i class="fa fa-lock"></i> CalendarShell'
@@ -56,8 +55,7 @@
                             authenticate: false
                         }
                     },
-                    authenticate: false,
-                    authorities: []
+                    authenticate: false
                 }
             }
         ];

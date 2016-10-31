@@ -1,7 +1,7 @@
 <div ng-controller="SidebarController as vm" ng-cloak>
   <md-content class="md-padding">
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-      <div ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
+      <div ng-class="vm.isCurrent(r)" ng-repeat="r in vm.allowedRoutes()">
         <md-nav-item md-nav-sref="{{r.name}}" ><a ng-bind-html="r.settings.content"></a></md-nav-item>
       </div>
 <span flex></span>
