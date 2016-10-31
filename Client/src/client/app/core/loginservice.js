@@ -44,7 +44,9 @@
           OAuth
             .getAccessToken({username: vm.user.username, password: vm.user.password})
             .then(function (result) {
-              assignCurrentUser(vm.user.username);
+              var token = result.data.access_token;
+              var decoded = jwt_decode(token);
+              assignCurrentUser(decoded.user_name, decoded.authorities);
               $state.go($rootScope.currentState);
               return $mdDialog.hide();
 
@@ -69,8 +71,13 @@
       return OAuth.isAuthenticated();
     }
 
-    function assignCurrentUser (user) {
-      $cookies.put('scheduleUser', user);
+    function assignCurrentUser (user_name, authorities) {
+      $cookies.put('scheduleUser', user_name);
+      $cookies.put('authorities', authorities);
+      var user = {
+        userName : user_name,
+        authorities : authorities
+      };
       $rootScope.currentUser = user;
       return user;
     }
@@ -85,8 +92,9 @@
       $mdDialog.show(confirm).then(function() {
         $cookies.remove('scheduleUser');
         $cookies.remove('token');
+        $cookies.remove('authorities');
         $rootScope.currentUser = undefined;
-        $state.go('calendar');
+        $state.go('calendarshell.filterpannel');
       }, function() {
         return;
       });

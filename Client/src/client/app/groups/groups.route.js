@@ -25,7 +25,10 @@
                         nav: 2,
                         content: '<i class="fa fa-group"></i> Groups'
                     },
-                    authenticate: false
+                    authenticate: true,
+                    authorities: [
+                      'ROLE_ADMIN', 'ROLE_USER'
+                    ]
                 }
             },
             {
@@ -38,7 +41,10 @@
                     title: 'groupsCreate',
                     params: {"groupObject": null}
                 },
-                authenticate: false
+                authenticate: true,
+                authorities: [
+                    'ROLE_ADMIN', 'ROLE_USER'
+                ]
             }];
     }
 })();

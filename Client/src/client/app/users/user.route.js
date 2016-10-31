@@ -28,7 +28,10 @@
                     params:{
                         roleName:"Teacher"
                     },
-                    authenticate: true
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                 }
             },
             {
@@ -44,7 +47,10 @@
                         user: null,
                         roleName:"Teacher"
                     },
-                    authenticate: true
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                 }
             },
             {
@@ -62,7 +68,10 @@
                     params:{
                         roleName:"Administrator"
                     },
-                    authenticate: false
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                 }
             },
             {
@@ -78,7 +87,10 @@
                         user: null,
                         roleName: "Administrator"
                     },
-                    authenticate: false
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                 }
             }
 

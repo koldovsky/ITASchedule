@@ -37,7 +37,8 @@
     }
 
     function authenticatedUser() {
-      return $rootScope.currentUser;
+      var userName = $rootScope.currentUser ? $rootScope.currentUser.userName : undefined;
+      return userName;
     }
 
   }

@@ -36,7 +36,8 @@
     "angular-aria": "^1.5.8",
     "angular-password": "^1.0.3",
     "mdPickers": "^0.7.5",
-    "angular-oauth2": "^4.0.0"
+    "angular-oauth2": "^4.0.0",
+    "jwt-decode": "^2.1.0"
   },
   "resolutions": {
     "angular": "1.5.8",

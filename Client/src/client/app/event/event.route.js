@@ -24,7 +24,10 @@
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-wheelchair-alt "></i>Events'
-                    },authenticate: false
+                    },authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN', 'ROLE_USER'
+                    ]
                 }
             },
             {
@@ -35,7 +38,10 @@
                     controller: 'AddEventController',
                     controllerAs: 'vm',
                     title: 'addEvent',
-                    authenticate: false
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN', 'ROLE_USER'
+                    ]
                 }
             },
             {
@@ -47,7 +53,10 @@
                     controllerAs: 'vm',
                     title: 'editEvent',
                     params: {"eventToEdit": null},
-                    authenticate: false
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN', 'ROLE_USER'
+                    ]
                 }
             }];
     }
