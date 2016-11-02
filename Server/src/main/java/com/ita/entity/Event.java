@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@ToString
+@ToString(exclude = "creator")
 @EqualsAndHashCode(of = "id")
 public class Event {
     @Id
@@ -40,7 +40,7 @@ public class Event {
     @OneToOne(cascade = CascadeType.ALL)
     private EventType type;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     private User creator;
 
     @ManyToMany

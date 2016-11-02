@@ -32,8 +32,11 @@
 
                                 <md-input-container>
                                     <label>User's status</label>
+                                    <md-checkbox ng-model="vm.user.active" aria-label="Active" ng-checked="">
+                                        Active
+                                    </md-checkbox>
                                     <md-select ng-model="vm.user.active" style="min-width: 200px;">
-                                        <md-option ng-value=true ng-selected=true>Active</md-option>
+                                        <md-option ng-value=true >Active</md-option>
                                         <md-option ng-value=false>Inactive</md-option>
                                     </md-select>
 

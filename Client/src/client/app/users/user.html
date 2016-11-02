@@ -2,78 +2,89 @@
     <section class="matter">
         <div class="container">
             <div class="row">
-                <div class="widget wviolet">
-                    <div ht-widget-header title="{{vm.roleName}}">
+                <md-toolbar class="md-hue-2">
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>{{vm.roleName}}s</span>
+                        </h2>
+                        <span flex></span>
+                        <a ui-sref={{"add"+vm.roleName}} class="btn btn-primary">Add new {{vm.roleName}}</a>
                     </div>
-                    <div class="widget-content user">
-                        <a ui-sref={{"add"+vm.roleName}} class="btn btn-primary rightButton">Add new {{vm.roleName}}</a>
-                        <form>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-search"></i>
+                </md-toolbar>
+                <div>
+                    <table st-pipe="vm.callServer" st-table="vm.users" class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                <label>Active only</label>
+                                <md-checkbox ng-click="vm.onlyActiveButton()">
+                                </md-checkbox>
+                            </th>
+                            <th>
+                                <label>per page:</label>
+                                <md-input-container>
+                                    <!--<label>per page:</label>-->
+                                    <md-select ng-model="vm.pageSize">
+                                        <md-optgroup label="size">
+                                            <md-option ng-repeat="value in vm.pageSizeOptions" ng-value=value>{{value}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </th>
+                            <th colspan="4">
+                                <input st-search="" class="form-control" placeholder="Search" type="text"/>
+                            </th>
+                            <!--
+                                                                <th colspan="1" class="tdcenter"><a ui-sref={{"add"+vm.roleName}} class="btn btn-primary">Add new {{vm.roleName}}</a></th>
+                            -->
+                        </tr>
+                        <tr>
+                            <th st-sort="fullName" class="table-head">Full name</th>
+                            <th st-sort='email' class="table-head">Email</th>
+                            <th st-sort='active' class="table-head tdcenter">Status</th>
+                            <th st-sort='contactInfo' class="table-head">Contact info</th>
+                            <th class="table-head tdcenter">Edit</th>
+                            <th class="table-head tdcenter" ng-show="vm.isTeacher">Schedule</th>
+                        </tr>
+                        </thead>
+                        <tbody  ng-show="!mc.isLoading">
+                        <tr ng-repeat="user in vm.users">
+                            <td>{{user.fullName}}</td>
+
+                            <td>
+                                <a ng-href="mailto:{{user.email}}">{{user.email}}</a>
+                            </td>
+
+                            <td class="tdcenter">
+                                <i ng-show="user.active" class="glyphicon glyphicon-ok green"></i>
+                                <i ng-show="!user.active" class="glyphicon glyphicon-remove red"></i>
+                            </td>
+
+                            <td>{{user.contactInfo}}</td>
+
+                            <td class="tdcenter">
+                                <button type="button" ng-click="vm.editUser (user)" class="btn btn-sm btn-info">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+
+                            </td>
+                            <td class="tdcenter" ng-show="vm.isTeacher">
+                                <button ng-click="vm.calendar(user)" class="btn btn-sm btn-success" type="button">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="row">
+                                    <div st-pagination="" st-items-by-page="vm.pageSize" st-displayed-pages="7"></div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchUser">
-                            </div>
-                        </form>
-                        <div>
-                            <table st-table="displayedUsers" st-safe-src="vm.users" class="table table-striped table-hover">
-                                <thead>
-<!--
-                                <tr>
-                                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search" type="text"/></th>
-                                    <th colspan="1" align="right"><a ui-sref={{"add"+vm.roleName}} class="btn btn-primary">Add new {{vm.roleName}}</a></th>
-                                </tr>
--->
-                                    <tr>
-                                        <th st-sort="fullName">Full name</th>
-                                        <th st-sort='email'>email</th>
-                                        <th st-sort='active'>status</th>
-                                        <th>contact info</th>
-                                        <th align="center">Edit</th>
-                                        <th align="center" ng-show="vm.isTeacher">Schedule</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="user in displayedUsers | filter:vm.searchUser">
-                                    <td>{{user.fullName}}</td>
-
-                                    <td>
-                                        <a ng-href="mailto:{{user.email}}">{{user.email}}</a>
-                                    </td>
-
-                                    <td ng-bind="user.active ? 'Active' : 'Inactive'"></td>
-
-                                    <td>{{user.contactInfo}}</td>
-
-                                    <td align="center">
-                                        <button type="button" ng-click="vm.editUser (user)" class="btn btn-sm btn-info">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </button>
-
-                                    </td>
-                                    <td align="center" ng-show="vm.isTeacher">
-                                        <button ng-click="vm.calendar(user)" class="btn btn-sm btn-success" type="button">
-                                            <i class="glyphicon glyphicon-calendar"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="6" class="text-center">
-                                            <div class="row">
-                                                <div st-pagination="" st-items-by-page="vm.itemsByPage" st-displayed-pages="7"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                    <div class="widget-foot">
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

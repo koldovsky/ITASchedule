@@ -1,43 +1,37 @@
 (function() {
-'use strict';
+    'use strict';
     angular
         .module('app.administrator.users')
         .controller('usersController', usersController);
 
-    usersController.$inject = ['$q', 'userservice', 'logger','$scope', '$state' ];
-    function usersController($q, userservice, logger, $scope, $state) {
+    usersController.$inject = ['userservice','$state','$location'];
+    function usersController(userservice, $state, $location){
         var vm = this;
         vm.roleName=$state.params.roleName;
-        vm.isTeacher=(vm.roleName=='Teacher')
+        vm.isTeacher=(vm.roleName=='Teacher');
         vm.user={};
         vm.users=[];
-        vm.displayedUsers=[];
         vm.state=$state;
         vm.isUser=isUser;
         vm.editUser=editUser;
-        vm.calendar=calendar;
+        vm.showCalendar=showCalendar;
         vm.userSearch="";
-        vm.itemsByPage=10;
-        vm.pages=[5,10,15,20]
+        vm.callServer = callServer;
+        vm.isLoading = true;
 
-        fetchAllUsers();
-
-        function fetchAllUsers(){
-            var promises = [getUsers(vm.roleName)];
-            return $q.all(promises).then(function() {
-                logger.info('Activated Users View');
-            });
-        }
-        function getUsers(role) {
-            return userservice.getUsersByRole(vm.roleName).then(function(data) {
-                vm.users = data;
-                return vm.users;
-            });
-        }
+        var search = $location.search();
+        vm.pageInfo = search.page||0;
+        vm.pageSizeOptions = [3,5,10,20,100];
+        vm.pageSize = 5;
+        vm.currentPage=0;
+        vm.sortedField = "fullName";
+        vm.sortDirection="Asc";
+        vm.onlyActive=false;
+        vm.onlyActiveButton=onlyActiveButton;
 
         function isUser(currentUser) {
             var role;
-            var roles=currentUser.roles
+            var roles=currentUser.roles;
             var len = roles.length;
             var i;
             for (i=0; i<len; i++) {
@@ -54,13 +48,46 @@
 
         function editUser (user ) {
             vm.state.go('add'+vm.roleName,{'user': user});
-    }
+        }
 
-        function calendar (user ) {
+        function showCalendar (user ) {
             var userForCalendar={};
             userForCalendar.name=user.fullName;
             userForCalendar.id=user.id;
             vm.state.go('calendarshell.filterpannel',{'teachers': [userForCalendar]});
         }
+        function onlyActiveButton() {
+            vm.onlyActive=!vm.onlyActive;
+            callServer();
+        }
+
+        function callServer(tableState){
+            var searchStr="";
+            if (tableState) {
+                vm.isLoading = true;
+                var pagination = tableState.pagination;
+                vm.pageSize = pagination.number || 3;
+                vm.currentPage = ~~(pagination.start / vm.pageSize) || 0;
+                if (tableState.sort.predicate) {
+                    vm.sortedField = tableState.sort.predicate;
+                }
+                if (tableState.sort.reverse) {
+                    vm.sortDirection = "Desc"
+                } else vm.sortDirection = "Asc";
+                if ((tableState.search.predicateObject !== undefined)&&(tableState.search.predicateObject.$ !== undefined))  {
+                    searchStr = tableState.search.predicateObject.$;
+                }
+            }
+            userservice.getUsersForPage(vm.currentPage, vm.pageSize, vm.roleName,vm.sortDirection,vm.sortedField, vm.onlyActive, searchStr, function(users, pageInfo){
+                vm.users = users;
+                console.info('users='+users);
+                vm.pageInfo = pageInfo;
+                if (tableState){
+                    tableState.pagination.numberOfPages = pageInfo.totalPages;
+                }
+                vm.isLoading = false;
+            })
+        }
     }
 })();
+

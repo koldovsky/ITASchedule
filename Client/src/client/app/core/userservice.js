@@ -15,7 +15,9 @@
                 deleteUser: deleteUser,
                 updateUser: updateUser,
                 getActiveTeachers: getActiveTeachers,
-                getUsersByRole: getUsersByRole
+                getUsersByRole: getUsersByRole,
+                getUsersForPage:getUsersForPage,
+                getUsersBySeachParam:getUsersBySeachParam
             };
             return service;
 
@@ -129,5 +131,48 @@
                 return exception.catcher('User not found!')(e);
             }
         }
-    }
-})();
+        function getUsersForPage(pageNumber, pageSize, role, sortSirection, sortedField, active , search, callback){
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8080/search-users-pages/' +
+                        '?page='+pageNumber+'&size='+pageSize+'&role='+role.toUpperCase() +
+                        '&sortDirectionStr='+sortSirection+'&sortedField='+sortedField +
+                        '&active='+active+'&search='+search
+            }).then(function (response) {
+                var usersList = response.data.content;
+                var pageInfo = response.data;
+                callback(usersList, pageInfo);
+            }, function (response) {
+                logger.error('Unable to load users')
+                /*+buildDefaultErrorMessage(response));*/
+            });
+        }
+
+        function getUsersBySeachParam(searchParam, callback){
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8080/search-users/?search='+searchParam
+            }).then(function (response) {
+                var usersList = response.data;
+                callback(usersList);
+            }, function (response) {
+                logger.error('Unable to load users')
+                /*+buildDefaultErrorMessage(response));*/
+            });
+        }
+
+
+
+  /*      function buildDefaultErrorMessage(errorResponse){
+            return '\nError: '+response.error+', \nstatus: '+response.status+', \nmessage: '+response.message;
+        }
+
+        function buildValidationErrorMessage(errors){
+            var errorMessage = '';
+            for(var i=0; i<errors.length; i++){
+                errorMessage += '\n'+errors[i].field +': '+ errors[i].codes[3];
+            }
+            return errorMessage;
+        }
+    }*/
+}})();

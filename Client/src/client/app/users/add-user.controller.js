@@ -7,7 +7,8 @@
     addUsersController.$inject = ['$q', 'userservice', 'logger','$stateParams','$state'];
     function addUsersController($q, userservice, logger, $stateParams, $state) {
         var vm = this;
-        vm.user={};
+        vm.user={a:1};
+        vm.user.active = true;
         vm.user=$stateParams.user;
         vm.roleName=$stateParams.roleName;
         vm.submit=submit;
@@ -22,6 +23,7 @@
             return $q.all(promises).then(function() {
                 reset();
                 logger.info('New user added!');
+                $state.go('teachers');
             }, function(){
                  logger.info('Can not update a user!');
             }

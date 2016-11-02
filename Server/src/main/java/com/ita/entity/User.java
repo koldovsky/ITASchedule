@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@ToString
 @EqualsAndHashCode(of = {"email","fullName"})
 
 public class User {
@@ -38,9 +36,11 @@ public class User {
     @NotNull
     private boolean active;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "users")
     private List<ITAGroup> groups;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "users")
     private List<Event> events;
 
@@ -52,6 +52,19 @@ public class User {
     private List<Role> roles;
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", active='" + active + '\'' +
+                ", roles='" + roles + '\'' +
+                ", contactInfo='" + contactInfo + '\'' +
+
+                '}';
     }
 
 }
