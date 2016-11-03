@@ -7,7 +7,6 @@ import com.ita.utils.serializers.LocalDateTimeSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,7 +16,6 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@ToString(exclude = "creator")
 @EqualsAndHashCode(of = "id")
 public class Event {
     @Id
@@ -40,7 +38,7 @@ public class Event {
     @OneToOne(cascade = CascadeType.ALL)
     private EventType type;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne
     private User creator;
 
     @ManyToMany
