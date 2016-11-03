@@ -37,7 +37,8 @@
             return userservice.getUsers().then(function (data) {
                 var teachers = data._embedded.users;
                 teachers.forEach(function (teacher) {
-                    vm.teachers.push(teacher.fullName);
+                    var teacher = {fullName: teacher.fullName, email: teacher.email};
+                    vm.teachers.push(teacher);
                 });
                 return vm.teachers;
             });
@@ -89,20 +90,21 @@
                 vm.addedGroups.push(itaGroup.title)
             });
             vm.eventToEdit.users.forEach(function (user) {
-                vm.addedTeachers.push(user.fullName);
+                var teacher = {fullName: user.fullName, email: user.email};
+                vm.addedTeachers.push(teacher);
             });
             vm.event.type = vm.eventToEdit.eventType;
             vm.date = new Date(vm.eventToEdit.startTime);
             vm.startTime = new Date(vm.eventToEdit.startTime);
             vm.endTime = new Date(vm.eventToEdit.endTime);
             vm.city = vm.eventToEdit.cityName;
-            vm.codeName=vm.eventToEdit.addressCodeName;
+            vm.codeName = vm.eventToEdit.addressCodeName;
             vm.roomNumber = vm.eventToEdit.roomNumber;
         }
 
         vm.addTeacher = function (teacher) {
             if (vm.addedTeachers.includes(teacher)) {
-                vm.showAlert('You added already ' + teacher + " to the event");
+                vm.showAlert('You added already ' + teacher.fullName + " to the event");
             } else {
                 vm.addedTeachers.push(teacher);
             }
@@ -136,14 +138,14 @@
             }
         };
         vm.isEventValid = function (event) {
-            if (event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
-                if (event.usersFullNames[0] === undefined) {
+            if (vm.event.type && event.title && event.type && event.roomNumber && event.addressCodeName && event.startTime && event.endTime && vm.date && vm.startTime && vm.endTime && event.startTime && event.endTime) {
+                if (vm.addedTeachers[0]===undefined ) {
                     vm.showAlert('At least one teacher needs to be selected');
                     return false;
                 }
                 return true;
             } else {
-               vm.showAlert('One of the fields is not entered');
+                vm.showAlert('One of the fields is not entered');
                 return false;
             }
         };
@@ -152,11 +154,20 @@
         };
         vm.builtEvent = function () {
             var event = {};
+            if (!(vm.eventToEdit == null)) {
+                event.id = vm.eventToEdit.id;
+            }
             event.title = vm.event.title;
-            event.usersFullNames = vm.addedTeachers;
-            event.creatorFullName = vm.addedTeachers[0];
+            event.userEmails = [];
+            vm.addedTeachers.forEach(function (teacher) {
+                event.userEmails.push(teacher.email);
+            });
+            //add here creator after full validation is created
+            event.creatorEmail = 'konon@gmail.com';
             event.groupTitles = vm.addedGroups;
-            event.type = vm.event.type.type;
+            if (vm.event.type) {
+                event.type = vm.event.type.type;
+            } else vm.showAlert('select event type ');
             event.roomNumber = vm.roomNumber;
             event.addressCodeName = vm.addressCodeName;
             event.startTime = vm.createStartEndDate(vm.date, vm.startTime);
@@ -171,7 +182,14 @@
                 logger.error('Event is not created!');
             }
         };
-
+        vm.sendEditedEventOnServer = function () {
+            if (vm.isEventValid(vm.builtEvent())) {
+                eventService.editEvent(vm.builtEvent());
+                $mdDialog.hide();
+            } else {
+                logger.error('Event is not created!');
+            }
+        };
         vm.hideModal = function () {
             $mdDialog.hide();
         };

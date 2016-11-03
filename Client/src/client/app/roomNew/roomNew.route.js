@@ -24,7 +24,11 @@
                     settings: {
                         nav: 7,
                         content: '<i class="fa fa-map-marker"></i> Rooms'
-                    }
+                    },
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                 }
             },
             {
@@ -36,6 +40,10 @@
                     controllerAs: 'vm',
                     title: 'roomNewCreate',
                     params: {roomNew: null},
+                    authenticate: true,
+                    authorities: [
+                        'ROLE_ADMIN'
+                    ]
                     /*settings: {
                         nav: null,
                         content: '<i class="fa fa-university"></i> Create RoomNew'

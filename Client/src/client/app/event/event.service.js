@@ -15,9 +15,11 @@
             getEventTypes: getEventTypes,
             getCities: getCities,
             getRooms: getRooms,
-            createEvent:createEvent
+            createEvent:createEvent,
+            editEvent:editEvent
         };
         return service;
+
         function getEvents() {
             return $http.get('http://localhost:8080/events?projection=detailed')
                 .then(success)
@@ -91,6 +93,40 @@
                 headers: {'Content-Type': 'application/json'}
             }).success(function () {
                 logger.info("Event Created");
+            }).error(function (response) {
+                var errorMessgage = "";
+                response.forEach(function (item) {
+                    errorMessgage = errorMessgage + item.codes;
+                });
+                logger.error("Unable to create new event, error:" + errorMessgage);
+            })
+        }
+
+        function editEvent(event) {
+            $http({
+                url: 'http://localhost:8080/createEvent',
+                method: 'PUT',
+                data: JSON.stringify(event),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function () {
+                logger.info("Event Edited");
+            }).error(function (response) {
+                var errorMessgage = "";
+                response.forEach(function (item) {
+                    errorMessgage = errorMessgage + item.codes;
+                });
+                logger.error("Unable to create new event, error:" + errorMessgage);
+            })
+        }
+
+        function deleteEvent(event) {
+            $http({
+                url: 'http://localhost:8080/deleteEvent',
+                method: 'DELETE',
+                data: JSON.stringify(event),
+                headers: {'Content-Type': 'application/json'}
+            }).success(function () {
+                logger.info("Event DELETED");
             }).error(function (response) {
                 var errorMessgage = "";
                 response.forEach(function (item) {

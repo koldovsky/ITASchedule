@@ -54,7 +54,7 @@ public class ITAGroupController{
         ITAGroup group = groupDto.buildITAGroup(userRepository);
         itaGroupValidator.validate(group,bindingResult);
         if(bindingResult.hasErrors()){
-            String jsonValidationMessage = new Gson().toJson(bindingResult.getFieldErrors());
+            String jsonValidationMessage = new Gson().toJson(bindingResult.getAllErrors());
             return ResponseEntity.badRequest().body(jsonValidationMessage);
         }
         itaGroupRepository.save(group);

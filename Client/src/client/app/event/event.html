@@ -28,7 +28,7 @@
                 <td>{{event.id}}</td>
                 <td>{{event.startTime}}</td>
                 <td>{{event.endTime}}</td>
-                <td>{{event.eventType}}</td>
+                <td>{{event.eventType.type}}</td>
                 <td><div ng-repeat="group in event.itagroups"><p>{{group.title}}</p></div></td>
                 <td><div ng-repeat="user in event.users"><p>{{user.fullName}}</p></div></td>
 

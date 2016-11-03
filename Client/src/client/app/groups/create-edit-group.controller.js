@@ -7,7 +7,10 @@
     angular.module('app.groups')
 
 
-        .controller('CreateGroupFormInstanceController', function(logger, $window, $http, $filter, $state, $stateParams, uibDateParser, ITAGroupsService){
+        .controller('CreateGroupFormInstanceController', function(logger, $window, $http,
+                                                                  $filter, $state, $stateParams,
+                                                                  uibDateParser, ITAGroupsService,
+                                                                  $mdDialog){
             //======================== General initialization ====================
             var vm = this;
             this.format = "yyyy-MM-dd";
@@ -24,7 +27,7 @@
                 vm.endDate = uibDateParser.parse(vm.passedGroupObject.endDate, this.format);
                 vm.active =  vm.passedGroupObject.active;
                 for(var i=0; i<vm.passedGroupObject.users.length; i++){
-                    vm.addedTeachersList.push(vm.passedGroupObject.users[i].fullName);
+                    vm.addedTeachersList.push(vm.passedGroupObject.users[i]);
                 }
             }
             //======================== Initialize form in Create mode ================
@@ -41,16 +44,28 @@
             //======================== Initializing lists of teachers ==============================
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/users'
+                url: 'http://localhost:8080/users?projection=shortinfo'
             }).then(function(response){
                 var teachers = response.data._embedded.users;
-                for(var i=0; i<teachers.length; i++){
-                    if(vm.addedTeachersList.indexOf(teachers[i].fullName)<0)
-                        vm.allTeachers.push(teachers[i].fullName);
-                }
+                findTeacherDuplicatesInGroupTeacherList(teachers);
             }, function(response){
                 logger.error("Unable to load list of available teachers from the server.");
             });
+
+            function findTeacherDuplicatesInGroupTeacherList(teachers){
+                for(var i=0; i<teachers.length; i++){
+                    var teacherInTheList = false;
+                    for(var j=0; j<vm.addedTeachersList.length; j++) {
+                        if (vm.addedTeachersList[j].id == teachers[i].id){
+                            teacherInTheList = true;
+                            break;
+                        }
+                    }
+                    if(!teacherInTheList) {
+                        vm.allTeachers.push(teachers[i]);
+                    }
+                }
+            }
             //====================== Students Number Controller ==========================
             vm.MAX_VALUE = 100;
             vm.MIN_VALUE = 1;
@@ -106,12 +121,26 @@
                 var updateGroup = vm.instantiateNewObject(vm.passedGroupObject);
                 ITAGroupsService.updateGroup(updateGroup, successfullCreateOrUpdateCallback);
             }
-            var successfullCreateOrUpdateCallback = function(isSuccessfull){
+            var successfullCreateOrUpdateCallback = function(isSuccessfull,errorMessage){
                 if(isSuccessfull) {
                     $state.go('listGroups');
+                }else{
+                    showAlert("Group error",errorMessage);
                 }
-
             }
+
+            function showAlert(title,message) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title(title)
+                        .textContent(message)
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('OK')
+                );
+            };
+
             vm.instantiateNewObject = function(passedGroupObject){
                 var newGroup = {
                     "title": vm.groupTitle,
@@ -119,12 +148,16 @@
                     "startDate": $filter('date')(vm.startDate, 'yyyy-MM-dd'),
                     "endDate": $filter('date')(vm.endDate, 'yyyy-MM-dd'),
                     "active": vm.active,
-                    "creatorFullName": "Hiroku Marian",
-                    "usersFullNames": vm.addedTeachersList
+                    "creatorId": 1,
+                    "userIds": vm.addedTeachersList
                 }
+                var teacherIds = [];
+                vm.addedTeachersList.forEach(function(teacher){
+                    teacherIds.push(teacher.id);
+                });
+                newGroup["userIds"] = teacherIds;
                 if(passedGroupObject!=null){
                     newGroup["id"] = passedGroupObject.id;
-                    newGroup["creatorFullName"] = passedGroupObject.creatorFullName;
                 }
                 return newGroup;
             }

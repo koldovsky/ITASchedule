@@ -33,8 +33,8 @@ public interface GroupDetail{
     LocalDate getEndDate();
 
 
-    @Value("#{target.creator.fullName}")
-    String getCreatorFullName();
+    //@Value("#{target.creator.fullName}")
+    UserFullName getCreator();
 
     boolean getActive();
 

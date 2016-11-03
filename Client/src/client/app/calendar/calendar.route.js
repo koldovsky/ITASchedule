@@ -20,7 +20,8 @@
                     templateUrl: 'app/calendar/calendar-shell.html',
                     controller: 'CalendarShellController',
                     controllerAs: 'vm',
-                    title: 'CalendarShell'
+                    title: 'CalendarShell',
+                    authenticate: false
 /*                    settings: {
                         nav: 8,
                         content: '<i class="fa fa-lock"></i> CalendarShell'
@@ -53,7 +54,8 @@
 
                             authenticate: false
                         }
-                    }
+                    },
+                    authenticate: false
                 }
             }
         ];

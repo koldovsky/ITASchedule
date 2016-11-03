@@ -18,9 +18,9 @@ public class EventDto {
     @NotNull
     private String title;
     @NotNull
-    private List<String> usersFullNames;
+    private List<String> userEmails;
     @NotNull
-    private String creatorFullName;
+    private String creatorEmail;
 
     private List<String> groupTitles;
     @NotNull
@@ -35,19 +35,7 @@ public class EventDto {
     private String endTime;
 
 
-    public Event buildEvent(UserRepository userRepository, EventTypeRepository eventTypeRepository, RoomRepository roomRepository, AddressJpaRepository addressJpaRepository, ITAGroupRepository itaGroupRepository) {
-        Event event = new Event();
-        event.setId(id);
-        event.setTitle(title);
-        event.setUsers(userRepository.findByFullNameIn(usersFullNames));
-        event.setCreator(userRepository.findByFullName(creatorFullName));
-        event.setITAGroups(itaGroupRepository.findByTitleIn(groupTitles));
-        event.setType(eventTypeRepository.findByType(type));
-        event.setRoom(roomRepository.findByAddressAndNumber(addressJpaRepository.findByCodeName(addressCodeName), roomNumber));
-        event.setStartTime(LocalDateTime.parse(startTime));
-        event.setEndTime(LocalDateTime.parse(endTime));
-        return event;
-    }
+
 
 
 }

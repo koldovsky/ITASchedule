@@ -56,4 +56,65 @@ public class Event {
     public Event() {
     }
 
+    public static Builder newBuilder() {
+        return   new Event().new Builder();
+    }
+
+    public class Builder {
+
+        private Builder() {
+            // private constructor
+        }
+
+        public Builder setId(Long id) {
+            Event.this.id = id;
+
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            Event.this.title = title;
+
+            return this;
+        }
+
+        public Builder setStartTime(LocalDateTime startTime) {
+            Event.this.startTime = startTime;
+            return this;
+        }
+
+        public Builder setEndTime(LocalDateTime endTime) {
+            Event.this.endTime = endTime;
+            return this;
+        }
+
+        public Builder setRoom(Room room) {
+            Event.this.room = room;
+            return this;
+        }
+
+        public Builder setType(EventType type) {
+            Event.this.type = type;
+            return this;
+        }
+
+        public Builder setCreator(User creator) {
+            Event.this.creator = creator;
+            return this;
+        }
+
+        public Builder setITAGroups(List<ITAGroup> ITAGroups) {
+            Event.this.ITAGroups = ITAGroups;
+            return this;
+        }
+
+        public Builder setUsers(List<User> users) {
+            Event.this.users = users;
+            return this;
+        }
+        public Event build() {
+            return Event.this;
+        }
+    }
+
 }

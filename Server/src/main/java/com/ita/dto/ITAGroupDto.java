@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -43,10 +44,12 @@ public class ITAGroupDto {
     private LocalDate endDate;
 
     private Boolean active;
+    @NotNull
+    @Min(value=0)
+    private Long creatorId;
 
-    private String creatorFullName;
-
-    private List<String> usersFullNames;
+    @NotEmpty(message = ErrorConstants.ITAGROUP_VALIDATION_NO_USERS_SPECIFIED)
+    private List<Long> userIds;
 
 
     public ITAGroupDto(){
@@ -55,15 +58,15 @@ public class ITAGroupDto {
 
     public ITAGroupDto(Long id, String title, int studentsCount, LocalDate startDate,
                        LocalDate endDate, Boolean active,
-                    String creatorFullName, List<String> usersFullNames) {
+                       Long creatorId, List<Long> userIds) {
         this.id=id;
         this.title=title;
         this.studentsCount=studentsCount;
         this.startDate=startDate;
         this.endDate=endDate;
         this.active =active;
-        this.creatorFullName = creatorFullName;
-        this.usersFullNames = usersFullNames;
+        this.creatorId = creatorId;
+        this.userIds = userIds;
     }
 
     public ITAGroup buildITAGroup(UserRepository userRepository){
@@ -74,8 +77,8 @@ public class ITAGroupDto {
         group.setStartDate(startDate);
         group.setEndDate(endDate);
         group.setActive(active);
-        group.setCreator(userRepository.findByFullName(creatorFullName));
-        group.setUsers(userRepository.findByFullNameIn(usersFullNames));
+        group.setCreator(userRepository.findOne(creatorId));
+        group.setUsers(userRepository.findByIdIn(userIds));
         return group;
     }
 

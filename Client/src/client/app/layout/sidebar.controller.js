@@ -14,7 +14,7 @@
     vm.authenticatedUser = authenticatedUser;
     vm.showLogin = loginservice.login;
     vm.logout = loginservice.logout;
-
+    vm.allowedRoutes = configureNavRoutes;
 
     activate();
 
@@ -37,8 +37,26 @@
     }
 
     function authenticatedUser() {
-      return $rootScope.currentUser;
+      var userName = $rootScope.currentUser ? $rootScope.currentUser.userName : undefined;
+      return userName;
     }
+
+    function configureNavRoutes() {
+        var allowedRoutes = [];
+        vm.navRoutes.forEach(function(state) {
+        var userAuthorities = $rootScope.currentUser ? $rootScope.currentUser.authorities : [];
+        var stateAuthorities = state.authorities ? state.authorities : [];
+        if(state.authenticate) {
+          if(stateAuthorities.includes(userAuthorities)) {
+            allowedRoutes.push(state);
+          }
+        } else
+        {
+          allowedRoutes.push(state);
+        }
+      });
+      return allowedRoutes;
+   }
 
   }
 })();

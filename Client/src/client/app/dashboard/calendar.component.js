@@ -2,12 +2,18 @@
     'use strict';
 
     angular
-        .module('app.calendar')
-        .controller('CalendarController', CalendarController);
+        .module('app.dashboard')
+        .component('calendarComp', {
+            bindings   : {
+                rooms: '=rooms',
+                teachers: '=teachers',
+                groups: '=groups',
+            },
+            controller: calendarController222,
+            templateUrl: '/app/dashboard/calendar.html'
+        });
 
-    CalendarController.$inject = ['logger','$scope','$compile','uiCalendarConfig', '$q','eventService','$state' , '$mdDialog'];
-    /* @ngInject */
-    function CalendarController(logger,$scope,$compile,uiCalendarConfig, $q, eventService, $state, $mdDialog) {
+    function calendarController222(logger,$scope,$compile,uiCalendarConfig, $q, eventService, $state, $mdDialog) {
         var vm = this;
         vm.title = 'Calendar';
 
@@ -33,7 +39,7 @@
         $scope.events=[];
         getEvents().then(function(result) {
             for (var i in result){
-            $scope.events.push({title: result[i].title, start: result[i].startTime, end:result[i].endTime,  stick: true});}
+                $scope.events.push({title: result[i].title, start: result[i].startTime, end:result[i].endTime,  stick: true});}
         });
 
         function getEvents() {
@@ -70,4 +76,6 @@
         $scope.eventSources = [$scope.events];
 
     }
-})();
+
+
+})()
