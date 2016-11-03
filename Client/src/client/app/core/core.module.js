@@ -7,7 +7,7 @@
       'blocks.exception', 'blocks.logger', 'blocks.router',
       'ui.router', 'ngplus', 'angular-oauth2'
     ])
-    .run(function ($rootScope, $state, OAuth, loginservice, $cookies) {
+    .run(function ($rootScope, $state, OAuth, loginservice, $cookies, $mdDialog) {
       $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState){
 
 
@@ -33,7 +33,13 @@
           } else
           if (!toState.authorities.includes($rootScope.currentUser.authorities)) {
             //User isn't authorized
-            alert('ACCESS DENIED, BITCH');
+            $mdDialog.show(
+              $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .textContent('Access denied!')
+                .title('Warning')
+                .ok('Ok')
+            );
             $state.go($rootScope.previousState);
             event.preventDefault();
           }
