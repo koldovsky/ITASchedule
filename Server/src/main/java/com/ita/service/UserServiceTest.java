@@ -1,4 +1,4 @@
-package com.ita.Service;
+package com.ita.service;
 
 
 import com.ita.entity.Role;

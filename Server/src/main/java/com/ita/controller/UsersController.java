@@ -1,6 +1,6 @@
 package com.ita.controller;
 
-import com.ita.Service.UserService;
+import com.ita.service.UserService;
 import com.ita.entity.Role;
 import com.ita.entity.User;
 import com.ita.repository.UserRepository;
