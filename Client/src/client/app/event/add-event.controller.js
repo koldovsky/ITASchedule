@@ -95,8 +95,8 @@
             });
             vm.event.type = vm.eventToEdit.eventType;
             vm.date = new Date(vm.eventToEdit.startTime);
-            vm.startTime = new Date(vm.eventToEdit.startTime);
-            vm.endTime = new Date(vm.eventToEdit.endTime);
+            vm.startTime = moment(vm.eventToEdit.startTime).toDate();
+            vm.endTime = moment(vm.eventToEdit.endTime).toDate();
             vm.city = vm.eventToEdit.cityName;
             vm.codeName = vm.eventToEdit.addressCodeName;
             vm.roomNumber = vm.eventToEdit.roomNumber;
