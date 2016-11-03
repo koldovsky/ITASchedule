@@ -18,12 +18,12 @@
         config: {
           url: '/',
           templateUrl: 'app/dashboard/dashboard.html',
-          controller: 'DashboardController',
+          controller: 'CalendarShellController2',
           controllerAs: 'vm',
           title: 'dashboard',
           settings: {
             nav: 1,
-            content: '<i class="fa fa-dashboard"></i> Dashboard'
+            content: '<i class="fa fa-dashboard"></i> Calendar'
           }
         }
       }

@@ -1,0 +1,14 @@
+___________
+<div> Filters:
+    <span ng-repeat="room in $ctrl.rooms"> {{room.name}} </span>
+    <span ng-repeat="teacher in $ctrl.teachers"> {{teacher.name}} </span>
+    <span ng-repeat="group in $ctrl.groups"> {{group.name}} </span>
+</div>
+__________
+
+<div class="widget-content user">
+        <md-button class="md-primary md-raised" ng-click="showTabDialog($event)">
+            Create Event
+        </md-button>
+        <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
+    </div>
