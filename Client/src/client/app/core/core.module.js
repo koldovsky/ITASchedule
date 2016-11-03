@@ -47,5 +47,29 @@
         //Authentication isn't needed
 
       });
+
+      $rootScope.$on('oauth:error', function(event, rejection) {
+        // Ignore `invalid_grant` error - should be catched on `LoginController`.
+        if ('invalid_grant' === rejection.data.error) {
+          return;
+        }
+
+        // Refresh token when a `invalid_token` error occurs.
+        if ('invalid_token' === rejection.data.error) {
+          return OAuth.getRefreshToken();
+        }
+
+        // Redirect to calendar with the `error_reason`.
+        return function() {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .textContent(rejection.data.error)
+              .title('Warning')
+              .ok('Ok')
+          );
+          $state.go('calendarshell.filterpannel');
+        }
+      });
     });
 })();
