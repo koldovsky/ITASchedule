@@ -1,5 +1,7 @@
 package com.ita.config;
 
+import com.ita.service.ITAUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,12 +17,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private ITAUserDetailsService userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user@gmail.com").password("password").roles("USER")
-                .and()
-                .withUser("admin@gmail.com").password("admin").roles("ADMIN");
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
