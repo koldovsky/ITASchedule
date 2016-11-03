@@ -26,7 +26,7 @@ public class UserValidator   implements Validator {
         }
 
         if(user.getEmail().isEmpty()) {
-            errors.rejectValue("email", ErrorConstants.EMAIL_IS_NOT_VALID);;
+            errors.rejectValue("email", ErrorConstants.EMAIL_IS_NOT_VALID);
         }
     }
 }

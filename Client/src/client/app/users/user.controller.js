@@ -54,7 +54,7 @@
             var userForCalendar={};
             userForCalendar.name=user.fullName;
             userForCalendar.id=user.id;
-            vm.state.go('calendarshell.filterpannel',{'teachers': [userForCalendar]});
+            vm.state.go('dashboard',{'teachers': [userForCalendar]});
         }
         function onlyActiveButton() {
             vm.onlyActive=!vm.onlyActive;

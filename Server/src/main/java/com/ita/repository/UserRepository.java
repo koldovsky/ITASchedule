@@ -29,7 +29,6 @@ public interface UserRepository extends  JpaRepository<User, Long> {
 
     public List<User> findByIdIn(List<Long> ids);
 
-    @RestResource(path = "activeusers", rel = "names")
     @RestResource(path = "active-users", rel = "active-users")
     public List<User> findByActiveTrue();
 

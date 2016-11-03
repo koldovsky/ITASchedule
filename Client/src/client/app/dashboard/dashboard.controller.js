@@ -15,9 +15,9 @@
     vm.roomList = [];
     vm.groupList = [];
     vm.teacherList = [];
-    vm.teacherSelected = [];
-    vm.roomSelected = [];
-    vm.groupSelected = [];
+    vm.teacherSelected = $state.params.teachers;
+    vm.roomSelected = $state.params.rooms;
+    vm.groupSelected = $state.params.groups;
     vm.getRooms = getRooms;
     vm.getRooms = getTeachers;
     vm.getRooms = getGroups;

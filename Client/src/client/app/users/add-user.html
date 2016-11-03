@@ -30,17 +30,9 @@
                                     </div>
                                 </md-input-container>
 
-                                <md-input-container>
-                                    <label>User's status</label>
-                                    <md-checkbox ng-model="vm.user.active" aria-label="Active" ng-checked="">
-                                        Active
-                                    </md-checkbox>
-                                    <md-select ng-model="vm.user.active" style="min-width: 200px;">
-                                        <md-option ng-value=true >Active</md-option>
-                                        <md-option ng-value=false>Inactive</md-option>
-                                    </md-select>
-
-                                </md-input-container>
+                                <md-checkbox ng-model="vm.user.active" aria-label="Active">
+                                    Active
+                                </md-checkbox>
 
                                 <md-input-container class="md-block" >
                                     <label>Contact info</label>

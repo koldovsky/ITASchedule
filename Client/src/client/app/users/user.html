@@ -16,8 +16,8 @@
                         <thead>
                         <tr>
                             <th>
-                                <label>Active only</label>
                                 <md-checkbox ng-click="vm.onlyActiveButton()">
+                                    Active only
                                 </md-checkbox>
                             </th>
                             <th>
@@ -69,7 +69,7 @@
 
                             </td>
                             <td class="tdcenter" ng-show="vm.isTeacher">
-                                <button ng-click="vm.calendar(user)" class="btn btn-sm btn-success" type="button">
+                                <button ng-click="vm.showCalendar(user)" class="btn btn-sm btn-success" type="button">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </button>
                             </td>
