@@ -13,7 +13,8 @@
     var service = {
       login: loginDialog,
       logout: logout,
-      isAuthenticated : isAuthenticated
+      isAuthenticated : isAuthenticated,
+      getUserFromToken: getUserFromToken
 
     }
     return service;
@@ -45,8 +46,7 @@
             .getAccessToken({username: vm.user.username, password: vm.user.password})
             .then(function (result) {
               var token = result.data.access_token;
-              var decoded = jwt_decode(token);
-              assignCurrentUser(decoded.user_name, decoded.authorities);
+              $rootScope.currentUser = getUserFromToken(token);
               if($rootScope.currentState !== 'calendarshell.filterpannel') {
                 $state.go($rootScope.currentState);
               }else {
@@ -75,17 +75,6 @@
       return OAuth.isAuthenticated();
     }
 
-    function assignCurrentUser (user_name, authorities) {
-      $cookies.put('scheduleUser', user_name);
-      $cookies.put('authorities', authorities);
-      var user = {
-        userName : user_name,
-        authorities : authorities
-      };
-      $rootScope.currentUser = user;
-      return user;
-    }
-
     function logout() {
       var confirm = $mdDialog.confirm()
         .title('Are you sure you want to log out?')
@@ -102,6 +91,14 @@
       }, function() {
         return;
       });
+    }
+
+    function getUserFromToken(token){
+      var decoded = jwt_decode(token);
+      return {
+        userName : decoded.user_name,
+        authorities : decoded.authorities
+      };
     }
 
   }

@@ -1,6 +1,7 @@
 package com.ita.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -23,6 +24,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api").authenticated();
+                .antMatchers(HttpMethod.OPTIONS, "/events").hasAnyRole("TEACHER", "ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/eventtypes").hasAnyRole("TEACHER", "ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/groups").hasAnyRole("TEACHER", "ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/locations").hasRole("ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/cities").hasRole("ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/rooms").hasRole("ADMINISTRATOR")
+                .antMatchers(HttpMethod.OPTIONS, "/users").hasAnyRole("ADMINISTRATOR")
+                .antMatchers(HttpMethod.GET, "/cities").permitAll()
+                .antMatchers(HttpMethod.GET, "/eventtypes").permitAll()
+                .antMatchers(HttpMethod.GET, "/events").permitAll()
+                .antMatchers(HttpMethod.GET, "/rooms").permitAll()
+                .antMatchers(HttpMethod.GET, "/groups").permitAll()
+                .antMatchers(HttpMethod.GET, "/locations").permitAll()
+                .antMatchers(HttpMethod.GET, "/users").permitAll()
+                .antMatchers("/**").authenticated();
     }
 }

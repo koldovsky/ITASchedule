@@ -11,14 +11,10 @@
       $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState){
 
 
-        if(loginservice.isAuthenticated() && $cookies.get('scheduleUser') )
+        if(loginservice.isAuthenticated() )
         {
-          var user = {
-            userName : $cookies.get('scheduleUser'),
-            authorities : $cookies.get('authorities')
-          }
-          $rootScope.currentUser = user;
-          console.log('User: ' + $cookies.get('scheduleUser') + ' is in the system');
+          $rootScope.currentUser = loginservice.getUserFromToken($cookies.get('token'));
+          console.log('User: ' + $rootScope.currentUser.userName + ' is in the system');
         }
 
         $rootScope.previousState = typeof fromState !== "undefined" && fromState !== null && fromState.name !== '' ? fromState.name : 'calendarshell.filterpannel';
@@ -31,7 +27,9 @@
             loginservice.login();
             event.preventDefault();
           } else
-          if (!toState.authorities.includes($rootScope.currentUser.authorities)) {
+          if( toState.authorities.filter(function(authority) {
+              return $rootScope.currentUser.authorities.indexOf(authority) > -1;
+            }).length === 0) {
             //User isn't authorized
             $mdDialog.show(
               $mdDialog.alert()
