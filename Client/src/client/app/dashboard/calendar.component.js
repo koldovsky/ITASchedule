@@ -16,7 +16,6 @@
     function calendarController222(logger,$scope,$compile,uiCalendarConfig, $q, eventService, $state, $mdDialog) {
         var vm = this;
         vm.title = 'Calendar';
-
         activate();
 
         function activate() {

@@ -1,4 +1,4 @@
-package com.ita.repository;
+package com.ita.repositoryTest;
 
 /*
 import org.junit.After;
@@ -69,6 +69,12 @@ public class UserRepositoryTest extends Assert {
         user2.setBirthDate(new java.util.Date(System.currentTimeMillis()));
     }
 
+    @Test
+    public void getUsersFromRepoTest() throws Exception {
+        this.mockMvc.perform(get("/users/")
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk());
+    }
     @Test
     public void saveTest() {
         userRepository.save(user);

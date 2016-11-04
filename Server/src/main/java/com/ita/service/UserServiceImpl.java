@@ -1,14 +1,11 @@
 package com.ita.service;
 
-
 import com.ita.entity.Role;
 import com.ita.entity.User;
 import com.ita.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,47 +23,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> findAll() {
-        List<User> users = userRepository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
     @Override
-    public List<User> findAll(Sort sort) {
-        return userRepository.findAll(sort);
+    public List<User>findUsersByRoleIsActive(List<Role> roles){
+        return userRepository.findByActiveTrueAndRoles (roles);
     }
 
     @Override
-    public Page<User> findAll(int pageNumber, int pageSize) {
-        Pageable p = new PageRequest(pageNumber,pageSize,Sort.Direction.ASC,"fullName");
-        Page page = userRepository.findAll(p);
-        return page;
-    }
-
-    public Page<User>findUsersByRoleIsActive(List<Role> roles, int pageNumber, int pageSize, Sort.Direction sortDirection, String sortField){
-        Pageable p = new PageRequest(pageNumber,pageSize,sortDirection,sortField);
-        Sort sort = new Sort(sortDirection, sortField);
-        Page page = userRepository.findByActiveTrueAndRoles (roles, p);
-
-        return page;
-    }
-
-    public Page<User>findUsersByRole(List<Role> roles, int pageNumber, int pageSize, Sort.Direction sortDirection, String sortField){
-        Pageable p = new PageRequest(pageNumber,pageSize,sortDirection,sortField);
-        Sort sort = new Sort(sortDirection, sortField);
-        Page page = userRepository.findByRoles (roles, p);
-
-        return page;
-    }
-
-
-    @Override
-    public Page<User> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
-    }
-
-    @Override
-    public User saveAndFlush(User user) {
-        return userRepository.saveAndFlush(user);
+    public List<User> findUsersByRole(List<Role> roles) {
+        return userRepository.findByRoles(roles);
     }
 
     @Override
@@ -80,20 +47,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findUserByName(String fullName) {
-        try {
-            User user= userRepository.findByFullName(fullName);
-            return user;
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
-
     public User update(User user) {
         return userRepository.saveAndFlush(user);
     }
 
+    @Override
     public void delete(User user) {
         userRepository.delete(user);
     }
+
+    @Override
+    public User saveAndFlush(User user) {
+        return userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public Page <User> getAllUsersBySearchParameterPage (boolean activeOnly, Role r, String search, Pageable p){
+        if (activeOnly) {
+            return userRepository.getAllUsersBySearchParameterActivePage(r, search,p);
+        } else {
+            return userRepository.getAllUsersBySearchParameterPage(r, search, p);
+        }
+   }
 }

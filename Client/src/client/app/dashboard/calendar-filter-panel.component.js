@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.calendar')
-        .component('calendarFilterPanel2', {
+        .module('app.dashboard')
+        .component('calendarFilterPanel', {
             bindings   : {
                 elementList: '=list',
                 selectedElements: '=result'
@@ -18,7 +18,6 @@
         vm.elements=[];
         vm.transformChip = transformChip;
         vm.selectedItem = null;
-        // vm.selectedElements = [];
         vm.searchTextElement = null;
         vm.querySearchElement = querySearchElement;
         vm.readonly = false;

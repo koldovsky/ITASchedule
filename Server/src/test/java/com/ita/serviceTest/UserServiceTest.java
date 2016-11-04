@@ -1,10 +1,10 @@
-package com.ita.service;
+package com.ita.serviceTest;
 
 
 import com.ita.entity.Role;
 import com.ita.entity.User;
+import com.ita.service.UserService;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +35,7 @@ public class UserServiceTest {
         roles.add(teacher);
         testUser.setRoles(roles);
     }
-
+/*
     public User createUser(String fullName, String email, Boolean active) {
         User tempUser=new User();
         tempUser.setFullName(fullName);
@@ -52,12 +50,12 @@ public class UserServiceTest {
     }
 
 
-/*    @Test
+*//*    @Test
     public void testFindUserByUsername() {
         User user = userService.findUserByName(TESTFULLNAME);
         assertNotNull("User is mandatory",user);
         assertTrue("Unexpected user " + user.getFullName(), user.getFullName().equals(TESTFULLNAME));
-    }*/
+    }*//*
 
     @Test
     public void testUserNotFound() {
@@ -77,13 +75,13 @@ public class UserServiceTest {
 //        assertTrue("role expected " + user.getRoles(), testUser.getRoles().contains(user.getRoles()));
     }
 
-    @Test/*(expected = IllegalArgumentException.class)*/
+    @Test*//*(expected = IllegalArgumentException.class)*//*
     public void testBlankUser() {
         userService.saveAndFlush(createUser("", "test@gmail.com",true));
         User user = userService.findUserByEmail(testUser.getEmail());
         assertFalse("failed creating a user with blank name", testUser.getEmail().equals(user.getEmail()) );
 
-    }
+    }*/
 
 /*    @Test(expected = IllegalArgumentException.class)
     public void testUsernameLength() {
