@@ -8,9 +8,11 @@ INSERT INTO address (active, address, code_name, working_hours_end, working_hour
 INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Heroiv Upa 12', 'Kiyv1', '21:00:00', '11:00:00', 2);
 INSERT INTO address (active, address, code_name, working_hours_end, working_hours_start, city_id) VALUES (true, 'Lubinska 164', 'lviv4', '16:00:00', '08:00:00', 1);
 
-INSERT INTO event_type (color, type) VALUES ('red',   'training');
-INSERT INTO event_type (color, type) VALUES ('green', 'demo');
-INSERT INTO event_type (color, type) VALUES ('blue',  'lesson');
+INSERT INTO event_type (color, type) VALUES ('#d9534f',   'training');
+INSERT INTO event_type (color, type) VALUES ('#5cb85c', 'demo');
+INSERT INTO event_type (color, type) VALUES ('#5bc0de',  'lesson');
+INSERT INTO event_type (color, type) VALUES ('#f0ad4e',  'graduation');
+
 
 INSERT INTO room (active, number, address_id) VALUES (true, '1001', 1);
 INSERT INTO room (active, number, address_id) VALUES (true, '1002', 1);
@@ -45,30 +47,30 @@ insert into itagroup (active, end_date, start_date, students_count, title, creat
 insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228', 3);
 insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488', 4);
 
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-10 15:00:00', '2016-10-10 17:00:00', 'Event 1', 1, 1, 1);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-24 13:00:00', '2016-10-27 17:00:00', 'Event 2', 1, 1, 2);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-27 13:00:00', '2016-10-27 15:00:00', 'Event 3', 1, 1, 3);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-28 15:00:00', '2016-10-28 19:00:00', 'Event 4', 2, 1, 4);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-10 17:00:00', '2016-10-15 19:00:00', 'Event 5', 3, 2, 5);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-30 17:00:00', '2016-10-30 19:00:00', 'Event 6', 3, 2, 3);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-10-30 17:00:00', '2016-10-30 19:00:00', 'Event 7', 3, 2, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-04 15:00:00', '2016-11-04 17:00:00', 'Event 1', 1, 1, 1);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 13:00:00', '2016-11-05 17:00:00', 'Event 2', 1, 1, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 13:00:00', '2016-11-06 15:00:00', 'Event 3', 1, 1, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-07 15:00:00', '2016-11-07 19:00:00', 'Event 4', 2, 1, 4);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 17:00:00', '2016-11-10 19:00:00', 'Event 5', 3, 2, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 17:00:00', '2016-11-05 19:00:00', 'Event 6', 3, 2, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 17:00:00', '2016-11-06 19:00:00', 'Event 7', 3, 2, 2);
 
 
 INSERT INTO user_roles (user, role) VALUES (1, 1);
-INSERT INTO user_roles (user, role) VALUES (2, 2);
-INSERT INTO user_roles (user, role) VALUES (3, 2);
-INSERT INTO user_roles (user, role) VALUES (4, 1);
-INSERT INTO user_roles (user, role) VALUES (5, 1);
-INSERT INTO user_roles (user, role) VALUES (6, 1);
-INSERT INTO user_roles (user, role) VALUES (7, 1);
-INSERT INTO user_roles (user, role) VALUES (8, 1);
-INSERT INTO user_roles (user, role) VALUES (9, 1);
-INSERT INTO user_roles (user, role) VALUES (10, 1);
+INSERT INTO user_roles (user, role) VALUES (2, 0);
+INSERT INTO user_roles (user, role) VALUES (3, 0);
+INSERT INTO user_roles (user, role) VALUES (4, 0);
+INSERT INTO user_roles (user, role) VALUES (5, 0);
+INSERT INTO user_roles (user, role) VALUES (6, 0);
+INSERT INTO user_roles (user, role) VALUES (7, 0);
+INSERT INTO user_roles (user, role) VALUES (8, 0);
+INSERT INTO user_roles (user, role) VALUES (9, 0);
+INSERT INTO user_roles (user, role) VALUES (10, 0);
 INSERT INTO user_roles (user, role) VALUES (11, 1);
-INSERT INTO user_roles (user, role) VALUES (12, 1);
-INSERT INTO user_roles (user, role) VALUES (13, 1);
+INSERT INTO user_roles (user, role) VALUES (12, 0);
+INSERT INTO user_roles (user, role) VALUES (13, 0);
 INSERT INTO user_roles (user, role) VALUES (14, 1);
-INSERT INTO user_roles (user, role) VALUES (15, 1);
+INSERT INTO user_roles (user, role) VALUES (15, 0);
 
 INSERT INTO event_users (event, user) VALUES (1, 1);
 INSERT INTO event_users (event, user) VALUES (1, 2);

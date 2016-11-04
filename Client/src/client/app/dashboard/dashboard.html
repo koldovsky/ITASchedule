@@ -10,11 +10,11 @@
                         <div flex="20">
                             <br>
                             <div class="filter-title">Rooms:</div>
-                            <calendar-filter-panel2 list="vm.roomList" result="vm.roomSelected"></calendar-filter-panel2>
+                            <calendar-filter-panel list="vm.roomList" result="vm.roomSelected"></calendar-filter-panel>
                             <div class="filter-title">Teachers:</div>
-                            <calendar-filter-panel2 list="vm.teacherList" result="vm.teacherSelected"></calendar-filter-panel2>
+                            <calendar-filter-panel list="vm.teacherList" result="vm.teacherSelected"></calendar-filter-panel>
                             <div class="filter-title">Groups:</div>
-                            <calendar-filter-panel2 list="vm.groupList" result="vm.groupSelected"></calendar-filter-panel2>
+                            <calendar-filter-panel list="vm.groupList" result="vm.groupSelected"></calendar-filter-panel>
                         </div>
                         <div flex="80">
                             <calendar-comp rooms="vm.roomSelected" teachers="vm.teacherSelected" groups="vm.groupSelected"></calendar-comp>

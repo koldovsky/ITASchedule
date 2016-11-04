@@ -27,7 +27,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                      'ROLE_ADMIN', 'ROLE_USER'
+                      'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                     ]
                 }
             },
@@ -43,7 +43,7 @@
                 },
                 authenticate: true,
                 authorities: [
-                    'ROLE_ADMIN', 'ROLE_USER'
+                    'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                 ]
             }];
     }

@@ -7,7 +7,7 @@
       'blocks.exception', 'blocks.logger', 'blocks.router',
       'ui.router', 'ngplus', 'angular-oauth2'
     ])
-    .run(function ($rootScope, $state, OAuth, loginservice, $cookies) {
+    .run(function ($rootScope, $state, OAuth, loginservice, $cookies, $mdDialog) {
       $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState){
 
 
@@ -33,13 +33,43 @@
           } else
           if (!toState.authorities.includes($rootScope.currentUser.authorities)) {
             //User isn't authorized
-            alert('ACCESS DENIED, BITCH');
+            $mdDialog.show(
+              $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .textContent('Access denied!')
+                .title('Warning')
+                .ok('Ok')
+            );
             $state.go($rootScope.previousState);
             event.preventDefault();
           }
         }
         //Authentication isn't needed
 
+      });
+
+      $rootScope.$on('oauth:error', function(event, rejection) {
+        // Ignore `invalid_grant` error - should be catched on `LoginController`.
+        if ('invalid_grant' === rejection.data.error) {
+          return;
+        }
+
+        // Refresh token when a `invalid_token` error occurs.
+        if ('invalid_token' === rejection.data.error) {
+          return OAuth.getRefreshToken();
+        }
+
+        // Redirect to calendar with the `error_reason`.
+        return function() {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .textContent(rejection.data.error)
+              .title('Warning')
+              .ok('Ok')
+          );
+          $state.go('calendarshell.filterpannel');
+        }
       });
     });
 })();

@@ -4,34 +4,28 @@ import com.ita.entity.Role;
 import com.ita.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 
 public interface UserService {
 
-    public List<User> findAll() ;
+    List<User> findAll() ;
 
     User findOne(Long id);
 
-    public List<User> findAll(Sort sort) ;
+    User saveAndFlush(User user) ;
 
-    public Page<User> findAll(Pageable pageable) ;
+    User update(User user);
 
-    public User saveAndFlush(User user) ;
+    User findUserByEmail(String email);
 
-    public User update(User user);
-
-    public User findUserByEmail(String email);
+    List<User>findUsersByRoleIsActive(List<Role> roles);
 
     public void delete (User user);
 
-    public User findUserByName(String fullName);
+    List<User>findUsersByRole(List<Role> roles);
 
-    public Page<User> findAll(int pageNumber, int pageCapacity);
+    Page <User> getAllUsersBySearchParameterPage (boolean activeOnly, Role r, String search, Pageable p);
 
-    Page<User>findUsersByRoleIsActive(List<Role> roles, int pageNumber, int pageSize, Sort.Direction sortDirection, String sortField);
-
-    Page<User>findUsersByRole(List<Role> roles, int pageNumber, int pageSize, Sort.Direction sortDirection, String sortField);
 }

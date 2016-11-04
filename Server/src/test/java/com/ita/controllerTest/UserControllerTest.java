@@ -1,4 +1,4 @@
-package com.ita.controller;
+package com.ita.controllerTest;
 
 
 import com.google.gson.Gson;
@@ -78,19 +78,6 @@ public class UserControllerTest {
         user.setRoles(roles);
     }
 
-    @Test
-    public void getUsersFromRepoTest() throws Exception {
-        this.mockMvc.perform(get("/users/")
-                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void getAllUsersTest() throws Exception {
-        this.mockMvc.perform(get("/allusers/")
-                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void getUsersByRoleTest() throws Exception {
@@ -100,7 +87,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getActiveUsersbyRoleTest() throws Exception {
+    public void getActiveUsersByRoleTest() throws Exception {
         this.mockMvc.perform(get("/users/active/roles/TEACHER")
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(status().isOk());
@@ -126,13 +113,13 @@ public class UserControllerTest {
 
 
     @Test
-    public void testSaveTest() {
+    public void userSaveTest() {
         userService.saveAndFlush(user);
         assertEquals(user.getId(), userService.findUserByEmail(user.getEmail()).getId());
     }
 
     @Test
-    public void testSaveRepoTest() throws Exception {
+    public void userSaveRepoTest() throws Exception {
         System.out.println("testSaveRepoTest started");
         String userStr = new Gson().toJson(user);
         System.out.println("userStr created - " + userStr);

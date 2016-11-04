@@ -27,7 +27,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                 }
             },
@@ -42,7 +42,7 @@
                     params: {roomNew: null},
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                     /*settings: {
                         nav: null,
