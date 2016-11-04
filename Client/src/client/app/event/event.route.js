@@ -26,7 +26,7 @@
                         content: '<i class="fa fa-wheelchair-alt "></i>Events'
                     },authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN', 'ROLE_USER'
+                        'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                     ]
                 }
             },
@@ -40,7 +40,7 @@
                     title: 'addEvent',
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN', 'ROLE_USER'
+                        'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                     ]
                 }
             },
@@ -55,7 +55,7 @@
                     params: {"eventToEdit": null},
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN', 'ROLE_USER'
+                        'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                     ]
                 }
             }];

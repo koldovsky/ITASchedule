@@ -30,7 +30,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                 }
             },
@@ -49,7 +49,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                 }
             },
@@ -70,7 +70,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                 }
             },
@@ -89,7 +89,7 @@
                     },
                     authenticate: true,
                     authorities: [
-                        'ROLE_ADMIN'
+                        'ROLE_ADMINISTRATOR'
                     ]
                 }
             }

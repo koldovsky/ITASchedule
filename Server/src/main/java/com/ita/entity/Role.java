@@ -1,7 +1,19 @@
 package com.ita.entity;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
 
-    ANONYMOUS, TEACHER, ADMINISTRATOR;
+public enum Role implements GrantedAuthority{
 
+    TEACHER("TEACHER"),
+    ADMINISTRATOR("ADMINISTRATOR");
+    private final String name;
+
+    Role(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getAuthority() {
+        return "ROLE_" + name;
+    }
 }

@@ -57,8 +57,8 @@ INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VA
 
 
 INSERT INTO user_roles (user, role) VALUES (1, 1);
-INSERT INTO user_roles (user, role) VALUES (2, 2);
-INSERT INTO user_roles (user, role) VALUES (3, 2);
+INSERT INTO user_roles (user, role) VALUES (2, 0);
+INSERT INTO user_roles (user, role) VALUES (3, 0);
 INSERT INTO user_roles (user, role) VALUES (4, 1);
 INSERT INTO user_roles (user, role) VALUES (5, 1);
 INSERT INTO user_roles (user, role) VALUES (6, 1);
