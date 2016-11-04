@@ -24,8 +24,8 @@ public interface UserRepository extends  JpaRepository<User, Long> {
     public List<User> findByFullNameIn(List<String> fullNames);
 
     @RestResource(path = "findByEmail", rel = "findByEmail")
-    public User findByEmail(String fullName);
-    public List<User> findByEmailIn(List<String> fullNames);
+    public User findByEmail(String email);
+    public List<User> findByEmailIn(List<String> emails);
 
     public List<User> findByIdIn(List<Long> ids);
 
