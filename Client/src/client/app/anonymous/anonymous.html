@@ -1,0 +1,111 @@
+<md-toolbar>
+    <div class="md-toolbar-tools ">
+
+
+        <span>ITA Schedule</span>
+        <span flex></span>
+        <md-button class="md-raised pull-right" aria-label="Login">
+            Login
+        </md-button>
+
+    </div>
+</md-toolbar>
+
+
+<div class="my-flex-container block">
+    <div class="filter-block">
+        <div class="anonymous-filter-title text-center">Search</div>
+        <div class="col-xs-12">
+            <md-select ng-model="vm.filter" placeholder="Filter by" class="md-no-underline">
+                <md-option value="group">Group</md-option>
+                <md-option value="teacher">Teacher</md-option>
+                <md-option value="address">Address</md-option>
+            </md-select>
+            <md-input-container flex="100">
+                <label>Groups</label>
+                <md-select ng-model="selectedVegetables"
+                           md-on-close="vm.clearSearchTerm()"
+                           data-md-container-class="selectdemoSelectHeader"
+                           multiple>
+                    <md-select-header class="demo-select-header">
+                        <input ng-model="vm.searchTerm"
+                               type="search"
+                               placeholder="Type title"
+                               class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-optgroup label="groups">
+                        <md-option ng-value="group" ng-repeat="group in vm.groups |
+              filter:vm.searchTerm">{{group.title}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex="100">
+                <label>Teacher</label>
+                <md-select ng-model="selectedVegetables"
+                           md-on-close="vm.clearSearchTerm()"
+                           data-md-container-class="selectdemoSelectHeader"
+                           multiple>
+                    <md-select-header class="demo-select-header">
+                        <input ng-model="vm.searchTerm"
+                               type="search"
+                               placeholder="Type name"
+                               class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-optgroup label="groups">
+                        <md-option ng-value="teacher" ng-repeat="teacher in vm.teachers |
+              filter:vm.searchTerm">{{teacher.fullName}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex="100">
+                <label>CodeName</label>
+                <md-select ng-model="selectedVegetables"
+                           md-on-close="vm.clearSearchTerm()"
+                           data-md-container-class="selectdemoSelectHeader"
+                           multiple>
+                    <md-select-header class="demo-select-header">
+                        <input ng-model="vm.searchTerm"
+                               type="search"
+                               placeholder="Type code"
+                               class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-optgroup label="groups">
+                        <md-option ng-value="address" ng-repeat="address in vm.addressess |
+              filter:vm.searchTerm">{{address.codeName}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-button class="md-raised md-primary" ng-click="vm.clearSearchTerm">Clean Filter</md-button>
+        </div>
+    </div>
+    <div class="calendar-block">
+        <br>
+        <div ui-calendar="vm.calendarConfig" class="calendar" ng-model="vm.calendarEvents"></div>
+        <br>
+    </div>
+    <div class="filter-block">
+
+        <div class="anonymous-filter-title text-center">Demo</div>
+        <div ng-repeat="event in vm.events">
+            <div class="demo-block">
+                <div class="text-center">{{event.eventType.type}}</div>
+                <br>
+                {{event.itagroups[0].title}} in {{event.addressCodeName}}
+                {{event.roomNumber}}
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<footer class="footer" style="background-color: #00A000">
+
+</footer>

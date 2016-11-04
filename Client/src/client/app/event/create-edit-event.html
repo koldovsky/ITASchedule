@@ -10,14 +10,14 @@
                         <div class="container">
                             <div ng-controller="AddEventController"
                                  layout-align="center center">
-                                <div class="row">
-                                    <div class="col-xs-2">
+                                <div class="my-flex-container">
+                                    <div class="my-flex-block">
                                         <md-input-container>
                                             <label>Event Title</label>
                                             <input required="true" ng-model="vm.event.title">
                                         </md-input-container>
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="my-flex-block">
                                         <md-input-container>
                                             <label>Type</label>
                                             <md-select required="true" ng-model="vm.event.type">
@@ -59,20 +59,21 @@
                                         </md-input-container>
                                         <md-datepicker ng-model="vm.date" md-placeholder="Date"></md-datepicker>
                                     </div>
-                                    <div class="col-xs-1">
+                                    <span flex></span>
+                                    <div class="my-flex-block">
                                         <br>
-                                        <md-button ng-disabled="true" class="md-primary">Start Time</md-button>
+                                        <md-button ng-disabled="true" class="md-primary">Start</md-button>
                                     </div>
-                                    <div class="col-xs-1">
+                                    <div class="my-flex-block">
                                         <div uib-timepicker ng-model="vm.startTime" hour-step="vm.timePickerHourStep"
                                              minute-step="vm.timePickerMinuteStep" show-meridian="false">
                                         </div>
                                     </div>
-                                    <div class="col-xs-1">
+                                    <div class="my-flex-block">
                                         <br>
-                                        <md-button ng-disabled="true" class="md-primary">End Time</md-button>
+                                        <md-button ng-disabled="true" class="md-primary">End</md-button>
                                     </div>
-                                    <div class="col-xs-1">
+                                    <div class="my-flex-block">
 
                                         <div uib-timepicker ng-model="vm.endTime" hour-step="vm.timePickerHourStep"
                                              minute-step="vm.timePickerMinuteStep" show-meridian="false"></div>

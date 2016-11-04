@@ -11,6 +11,7 @@
         'app.layout',
         'app.administrator.users',
         'ui.calendar',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'app.anonymous'
     ]);
 })();
