@@ -103,9 +103,6 @@
 
                                             </div>
                                         </div>
-                                        <md-checkbox ng-model="vm.active" aria-label="Active">
-                                            Active
-                                        </md-checkbox>
                                         <div ng-cloak layout-gt-sm="row" layout="column">
                                             <div flex-gt-sm="50" flex >
                                                 <md-content id="availableTeachersListHeader" layout="row">
@@ -160,6 +157,12 @@
                                         </div>
 
                                     </br>
+                                    <div layout="row" layout-align="center center" layout-wrap>
+                                        <md-checkbox ng-model="vm.active" aria-label="Active">
+                                            Set group status "Active"
+                                        </md-checkbox>
+                                    </div>
+
                                     <section layout="row"  layout-align="center center" layout-wrap>
                                         <md-button class="md-raised md-primary md-hue-1" ng-show="vm.passedGroupObject==null" ng-disabled="CreateGroupForm.$invalid" ng-click="vm.createGroup()" id="createButton">Create</md-button>
                                         <md-button class="md-raised md-primary md-hue-1"  ng-show="vm.passedGroupObject!=null" ng-disabled="CreateGroupForm.$invalid" ng-click="vm.updateGroup()" id="updateButton">Update</md-button>
