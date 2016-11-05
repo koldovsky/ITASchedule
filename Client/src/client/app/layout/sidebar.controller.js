@@ -47,9 +47,14 @@
         var userAuthorities = $rootScope.currentUser ? $rootScope.currentUser.authorities : [];
         var stateAuthorities = state.authorities ? state.authorities : [];
         if(state.authenticate) {
-          if(stateAuthorities.includes(userAuthorities)) {
+          if (stateAuthorities.filter(function (authority) {
+            return userAuthorities.indexOf(authority) > -1;
+          }).length == userAuthorities.length && userAuthorities.length > 0) {
             allowedRoutes.push(state);
           }
+         /* if(stateAuthorities.includes(userAuthorities)) {
+            allowedRoutes.push(state);
+          }*/
         } else
         {
           allowedRoutes.push(state);

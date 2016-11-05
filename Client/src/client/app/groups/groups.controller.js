@@ -9,6 +9,7 @@
         .controller('groupsListController',function($scope, logger, $http, $window,
                                                     $state, ITAGroupsService, $mdDialog, $location){
             var vm = this;
+            vm.state=$state;
 
             //=================================== Initialization ===============================
             // array for storing groups, and map for storing groupId -> group_index_in_groupsList relation
@@ -18,7 +19,7 @@
             // pagination variables
             var search = $location.search();
             vm.pageInfo = search.page||0;
-            vm.pageSizeOptions = [1,5,10,20,50,100,500,1000];
+            vm.pageSizeOptions = [3,5,10,20,100];
             vm.pageSize = 5;
             vm.paginationPanelNumbers = [];
 
@@ -26,6 +27,8 @@
             vm.sortByField = "title";
             vm.sortReverse = false;
             vm.searchGroupTitle = '';
+            vm.showOnlyAcitveGroups = false;
+            vm.tableSize = 0;
 
             // functions
             vm.getGroupsForPage = getGroupsForPage;
@@ -83,8 +86,11 @@
             }
 
             // =============== Redirecting to calendar of the group  ============================
-            function showCalendar(id){
-                $state.go('calendar');
+            function showCalendar (groupId) {
+                var groupForCalendar={};
+                groupForCalendar.name=vm.groupsList[vm.groupsIdToArrayIndexMap[groupId]].title;
+                groupForCalendar.id=groupId;
+                vm.state.go('dashboard',{'groups': [groupForCalendar]});
             }
 
             // =============== Calculating pages and button titles for pagination panel ===========

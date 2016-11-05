@@ -31,7 +31,7 @@ public class ITAUserDetailsService implements UserDetailsService {
         boolean isConfirmed = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
-        Set<GrantedAuthority> roles = new HashSet();
+        Set<GrantedAuthority> roles = new HashSet<>();
         user.getRoles().forEach(role -> {
             roles.add(new SimpleGrantedAuthority(role.getAuthority()));
         });
