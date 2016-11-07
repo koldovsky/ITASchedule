@@ -177,21 +177,21 @@
         vm.sendEventOnServer = function () {
             if (vm.isEventValid(vm.builtEvent())) {
                 eventService.createEvent(vm.builtEvent());
-                $mdDialog.hide();
             } else {
                 logger.error('Event is not created!');
             }
+            vm.gotoCalendar();
         };
         vm.sendEditedEventOnServer = function () {
             if (vm.isEventValid(vm.builtEvent())) {
                 eventService.editEvent(vm.builtEvent());
-                $mdDialog.hide();
             } else {
                 logger.error('Event is not created!');
             }
+            vm.gotoCalendar();
         };
-        vm.hideModal = function () {
-            $mdDialog.hide();
+        vm.gotoCalendar = function () {
+            $state.go('dashboard');
         };
 
     }

@@ -215,14 +215,14 @@
                         </div>
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
-                            <md-button class="md-raised md-primary md-hue-1" ng-show="vm.eventToEdit"
+                            <md-button class="md-raised md-primary md-hue-1" ng-show="vm.eventToEdit.id"
                                        ng-click="vm.sendEditedEventOnServer()">Edit
                             </md-button>
-                            <md-button class="md-raised md-primary md-hue-1" ng-hide="vm.eventToEdit"
+                            <md-button class="md-raised md-primary md-hue-1" ng-hide="vm.eventToEdit.id"
                                        ng-click="vm.sendEventOnServer()"
                             >Create
                             </md-button>
-                            <md-button class="md-raised md-warn" id="cancelButton" ng-click="vm.hideModal()">
+                            <md-button class="md-raised md-warn" id="cancelButton" ng-click="vm.gotoCalendar()">
                                 Cancel
                             </md-button>
                         </section>
