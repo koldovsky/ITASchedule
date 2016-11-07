@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class EventController {
     @Autowired
     private EventValidator eventValidator;
 
+    @PreAuthorize("hasAnyRole('ADMINISTRATOR','TEACHER')")
     @RequestMapping(value = "/createEvent",
             method = {RequestMethod.POST,RequestMethod.PUT},
             consumes = MediaType.APPLICATION_JSON_VALUE)

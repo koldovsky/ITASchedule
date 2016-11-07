@@ -15,8 +15,10 @@
             getEventTypes: getEventTypes,
             getCities: getCities,
             getRooms: getRooms,
-            createEvent:createEvent,
-            editEvent:editEvent
+            createEvent: createEvent,
+            editEvent: editEvent,
+            getAddressesForAnonymous: getAddressesForAnonymous,
+            getRoomsForAnonymous:getRoomsForAnonymous
         };
         return service;
 
@@ -119,21 +121,46 @@
             })
         }
 
-        function deleteEvent(event) {
-            $http({
-                url: 'http://localhost:8080/deleteEvent',
-                method: 'DELETE',
-                data: JSON.stringify(event),
-                headers: {'Content-Type': 'application/json'}
-            }).success(function () {
-                logger.info("Event DELETED");
-            }).error(function (response) {
-                var errorMessgage = "";
-                response.forEach(function (item) {
-                    errorMessgage = errorMessgage + item.codes;
+        function getAddressesForAnonymous() {
+            return $http.get('http://localhost:8080/locations?projection=addressAnonymous')
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                var activeAddresses = [];
+                response.data._embedded.addresses.forEach(function (address) {
+                    if (address.active == true) {
+                        activeAddresses.push(address);
+                    }
                 });
-                logger.error("Unable to create new event, error:" + errorMessgage);
-            })
+
+                return activeAddresses;
+            }
+
+            function fail(e) {
+                return exception.catcher("can't to load rooms from data base")(e);
+            }
         }
+
+        function getRoomsForAnonymous() {
+            return $http.get('http://localhost:8080/rooms?projection=roomAnonymous')
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                var activeRooms = [];
+                response.data._embedded.rooms.forEach(function (room) {
+                    if (room.active == true && room.addressActive == true) {
+                        activeRooms.push({name:room.number,addressCodeName:room.addressCodeName});
+                    }
+                });
+
+                return activeRooms;
+            }
+
+            function fail(e) {
+                return exception.catcher("can't to load rooms from data base")(e);
+            }
+        }
+
+
     }
 })();

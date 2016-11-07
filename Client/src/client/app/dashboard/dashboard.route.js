@@ -16,7 +16,7 @@
       {
         state: 'dashboard',
         config: {
-          url: '/',
+          url: '/schedule',
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'CalendarShellController2',
           controllerAs: 'vm',
@@ -29,7 +29,11 @@
             teachers:[],
             rooms:[],
             groups:[]
-          }
+          },
+          authenticate: true,
+          authorities: [
+            'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
+          ]
         }
       }
     ];
