@@ -82,12 +82,19 @@
 
 
         </div>
+        <div      layout-align="end">
+            <div layout="column"  class="legend">
+
+                <p ng-repeat="type in vm.eventTypes" ng-style="{'color':type.color}" class="md-subhead"><span
+                        class="fa fa-stop"></span> {{type.type}}</p>
+
+            </div>
+        </div>
     </div>
 
 </div>
 <div layout="row" layout-align="space-around  center" class="footer">
 
-    <p ng-repeat="type in vm.eventTypes" ng-style="{'color':type.color}" class="md-subhead"><span
-            class="fa fa-stop"></span> {{type.type}}</p>
+     <p>itaSchedule</p>
 
 </div>

@@ -42,7 +42,7 @@
             var today = new Date();
             if (event.eventType.type == "demo" && new Date(event.startTime) > today) {
                 var demo = event;
-                demo.date = moment(event.startTime).format("DD/MM   /YYYY");
+                demo.date = moment(event.startTime).format("DD/MM/YYYY");
                 demo.time = moment(event.startTime).format("HH:mm");
                 vm.demos.push(demo);
             }
@@ -206,7 +206,7 @@
         vm.clearFilter = function () {
             vm.calendarEvents.length = 0;
             vm.calendarEvents.push(vm.convertEventsToCalendar(vm.events));
-        }
+        };
 
         function login() {
             console.log('Hooray');
