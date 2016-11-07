@@ -17,7 +17,7 @@
           console.log('User: ' + $rootScope.currentUser.userName + ' is in the system');
         }
 
-        $rootScope.previousState = typeof fromState !== "undefined" && fromState !== null && fromState.name !== '' ? fromState.name : 'calendarshell.filterpannel';
+        $rootScope.previousState = typeof fromState !== "undefined" && fromState !== null && fromState.name !== '' ? fromState.name : 'dashboard';
         $rootScope.currentState = toState.name;
 
         if (toState.authenticate) {
@@ -66,7 +66,8 @@
               .title('Warning')
               .ok('Ok')
           );
-          $state.go('calendarshell.filterpannel');
+          loginservice.cleanCookies();
+          $state.go('schedule');
         }
       });
     });

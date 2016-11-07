@@ -17,7 +17,7 @@
             {
                 state: 'schedule',
                 config: {
-                    url: '/schedule',
+                    url: '/',
                     templateUrl: 'app/anonymous/anonymous.html',
                     controller: 'AnonymousController',
                     controllerAs: 'vm',
