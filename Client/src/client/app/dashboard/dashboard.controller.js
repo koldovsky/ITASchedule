@@ -25,7 +25,7 @@
     vm.clearFilter = clearFilter;
 
     fetchAll();
-
+    filter();
     function fetchAll() {
       var promises = [getTeachers(), getGroups(), getRooms()];
       return $q.all(promises).then(function () {
