@@ -43,8 +43,9 @@
 
         function showCalendar(room) {
             var roomForCalendar = {};
+            roomForCalendar.name = ''+room.number+" ("+room.codeName+")";
+            roomForCalendar.roomName = room.number;
             roomForCalendar.id = room.id;
-            roomForCalendar.name = room.number;
             vm.state.go('dashboard',{'rooms':[roomForCalendar]});
         }
 
