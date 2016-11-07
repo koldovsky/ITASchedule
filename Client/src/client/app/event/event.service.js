@@ -23,7 +23,7 @@
         return service;
 
         function getEvents() {
-            return $http.get('http://localhost:8080/events?projection=detailed')
+            return $http.get('http://localhost:8080/events?size=1000&?projection=detailed')
                 .then(success)
                 .catch(fail);
             function success(response) {
