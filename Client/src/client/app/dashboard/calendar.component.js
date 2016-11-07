@@ -95,7 +95,6 @@
         });
 
         function filter() {
-            angular.forEach(vm.rooms, function(value){console.log(value.roomName);});
             while ($scope.events.length !== 0) {
                 $scope.events.pop();
             }
