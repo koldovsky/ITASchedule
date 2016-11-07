@@ -16,4 +16,6 @@ public interface GroupShort{
 
     boolean getActive();
 
+
+
 }

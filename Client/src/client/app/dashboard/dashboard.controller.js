@@ -39,7 +39,7 @@
         var roomList = [];
         rooms.forEach(function (room) {
           var elem = {};
-          elem.name = ''+room.number;
+          elem.name = ''+room.number+" ("+room.codeName+")";
           elem.id = room.id;
           roomList.push(elem);
         });
