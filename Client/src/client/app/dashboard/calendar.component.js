@@ -90,52 +90,12 @@
             });
         }
 
-        $rootScope.$on('myCustoEvent', function (event, params) {
-            while ($scope.events.length !== 0) {
-                $scope.events.pop();
-            }
-            var filterArray = [];
-            getEvents().then(function (result) {
-                if (vm.rooms.length===0 && vm.teachers.length===0 && vm.groups.length===0){
-                    for (var i in result) {fillArray(filterArray, result, i);}
-                }
-                for (var j in vm.rooms) {
-                    for (var i in result) {
-                        if (result[i].roomNumber === vm.rooms[j].name) {
-                            fillArray(filterArray, result, i);
-                        }
-                    }
-                }
-                for (var j in vm.teachers) {
-                    for (var i in result) {
-                        for (var k in result[i].users) {
-                            if (result[i].users[k].fullName === vm.teachers[j].name) {
-                                fillArray(filterArray, result, i);
-                            }
-                        }
-                    }
-                }
-                for (var j in vm.groups) {
-                    for (var i in result) {
-                        for (var k in result[i].itagroups) {
-                            if (result[i].itagroups[k].title === vm.groups[j].name) {
-                                fillArray(filterArray, result, i);
-                            }
-                        }
-                    }
-                }
-
-                angular.forEach(filterArray, function (value) {
-                    if (containsId($scope.events, value) === false) {
-                        $scope.events.push(value)
-                    }
-                });
-
-            });
+        $rootScope.$on('filter', function (event, params) {
+            filter();
         });
 
         function filter() {
-
+            angular.forEach(vm.rooms, function(value){console.log(value.roomName);});
             while ($scope.events.length !== 0) {
                 $scope.events.pop();
             }
@@ -146,7 +106,7 @@
                 }
                 for (var j in vm.rooms) {
                     for (var i in result) {
-                        if (result[i].roomNumber === vm.rooms[j].name) {
+                        if (result[i].roomNumber === vm.rooms[j].roomName) {
                             fillArray(filterArray, result, i);
                         }
                     }

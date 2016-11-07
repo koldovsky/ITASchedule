@@ -39,6 +39,7 @@
         rooms.forEach(function (room) {
           var elem = {};
           elem.name = ''+room.number+" ("+room.codeName+")";
+          elem.roomName = room.number;
           elem.id = room.id;
           roomList.push(elem);
         });
@@ -79,14 +80,14 @@
     }
 
     function filter() {
-      $rootScope.$emit('myCustoEvent', {id: 9876});
+      $rootScope.$emit('filter', {id: 9876});
     }
 
     function clearFilter(){
       vm.teacherSelected=[];
       vm.roomSelected = [];
       vm.groupSelected = [];
-      $rootScope.$emit('myCustoEvent', {id: 9876});
+      $rootScope.$emit('filter', {id: 9876});
     }
 
   }
