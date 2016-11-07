@@ -15,7 +15,8 @@
       logout: logout,
       isAuthenticated : isAuthenticated,
       getUserFromToken: getUserFromToken,
-      cleanCookies: cleanCookies
+      cleanCookies: cleanCookies,
+      setTokenExpiry: setTokenExpiry
 
     }
     return service;
@@ -46,6 +47,7 @@
           OAuth
             .getAccessToken({username: vm.user.username, password: vm.user.password})
             .then(function (result) {
+              setTokenExpiry();
               var token = result.data.access_token;
               $rootScope.currentUser = getUserFromToken(token);
               if($rootScope.currentState !== 'schedule') {
@@ -104,6 +106,15 @@
       $cookies.remove('token');
       $cookies.remove('authorities');
       $rootScope.currentUser = undefined;
+    }
+
+    function setTokenExpiry() {
+      var token = $cookies.get('token');
+      var expirationTime = new Date();
+      expirationTime.setMinutes(expirationTime.getMinutes() + 60*3);
+      $cookies.put('token', token, {
+        expires: expirationTime
+      });
     }
 
   }
