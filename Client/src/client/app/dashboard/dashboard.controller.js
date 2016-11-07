@@ -22,6 +22,7 @@
     vm.getRooms = getTeachers;
     vm.getRooms = getGroups;
     vm.filter = filter;
+    vm.clearFilter = clearFilter;
 
     fetchAll();
 
@@ -81,5 +82,13 @@
     function filter() {
       $rootScope.$emit('myCustoEvent', {id: 9876});
     }
+
+    function clearFilter(){
+      vm.teacherSelected=[];
+      vm.roomSelected = [];
+      vm.groupSelected = [];
+      $rootScope.$emit('myCustoEvent', {id: 9876});
+    }
+
   }
 })()
