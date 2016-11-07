@@ -21,10 +21,7 @@
                     controller: 'EventController',
                     controllerAs: 'vm',
                     title: 'event',
-                    settings: {
-                        nav: 4,
-                        content: '<i class="fa fa-wheelchair-alt "></i>Events'
-                    },authenticate: true,
+                    authenticate: true,
                     authorities: [
                         'ROLE_ADMINISTRATOR', 'ROLE_TEACHER'
                     ]
