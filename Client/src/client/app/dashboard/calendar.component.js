@@ -19,6 +19,7 @@
         vm.state = $state;
         vm.filter = filter;
         vm.createEvent = createEvent;
+        vm.clearFilter = clearFilter;
         activate();
 
         function activate() {
@@ -132,6 +133,18 @@
             });
 
         }
+        function clearFilter(){
+            angular.forEach(vm.rooms, function () {
+                vm.rooms.pop();
+            });
+            angular.forEach(vm.teachers, function () {
+                vm.teachers.pop();
+            });
+            angular.forEach(vm.groups, function () {
+                vm.groups.pop();
+            });
+            filter();
+        }
         function containsId (list, obj){
             for (var i = 0; i < list.length; i++) {
                 if (list[i].id === obj.id) {
@@ -152,7 +165,12 @@
                 },
 
                 displayEventTime: false,
+                selectConstraint:{
+                    start: '00:00',
+                    end: '24:00'
+                },
                 timezone: 'local',
+                selectable: true,
                 eventMouseover: hoverIn,
                 eventMouseout: hoverOut,
                 eventClick: function (event) {
@@ -172,6 +190,17 @@
                     if(view.name==="month") {event.startTime=null, event.endTime=null}
                     vm.state.go('editEvent', {"eventToEdit": event});
 
+                },
+                select: function(start,end){
+                    var event = {
+                        title: null,
+                        stick: true, eventType: null,
+                        itagroups: [],
+                        users: [], cityName: null,
+                        addressCodeName: null, roomNumber: null,
+                        startTime:  start, endTime:end
+                    };
+                    vm.state.go('editEvent', {"eventToEdit": event});
                 },
                 eventDrop: $scope.alertOnDrop,
                 eventResize: $scope.alertOnResize,
