@@ -9,27 +9,21 @@
                 teachers: '=teachers',
                 groups: '=groups'
             },
-            controller: calendarController222,
+            controller: calendarController,
             templateUrl: '/app/dashboard/calendar.html'
         });
 
-    function calendarController222(logger, $scope, $compile, uiCalendarConfig, $q, eventService, $state, $http, exception, $rootScope) {
+    function calendarController(logger, $scope, $compile, uiCalendarConfig, $q, eventService, $state, $http, exception, $rootScope) {
         var vm = this;
         vm.title = 'Calendar';
         vm.state = $state;
         vm.filter = filter;
         vm.createEvent = createEvent;
-        vm.clearFilter = clearFilter;
         activate();
 
         function activate() {
             logger.info('Activated Calendar View');
         }
-        /* modal window */
-        $scope.showTabDialog = function (ev) {
-
-            vm.state.go('editEvent', {"eventToEdit": ev});
-        };
         function hoverIn(data, event, view) {
             var title = data.title;
             var startTime = moment(data.startTime).format('HH:mm');
@@ -69,8 +63,6 @@
 
         }
         /* fetching events from database */
-        $scope.events = [];
-        filter();
         function getEvents() {
             return eventService.getEvents().then(function (data) {
                 vm.events = data._embedded.events;
@@ -89,7 +81,8 @@
                 id: result[iterator].id, startTime: result[iterator].startTime, endTime: result[iterator].endTime, color: result[iterator].eventType.color, date: result[iterator].startTime
             });
         }
-
+        $scope.events = [];
+        filter();
         $rootScope.$on('filter', function (event, params) {
             filter();
         });
@@ -136,18 +129,6 @@
                 });
             });
 
-        }
-        function clearFilter(){
-            angular.forEach(vm.rooms, function () {
-                vm.rooms.pop();
-            });
-            angular.forEach(vm.teachers, function () {
-                vm.teachers.pop();
-            });
-            angular.forEach(vm.groups, function () {
-                vm.groups.pop();
-            });
-            filter();
         }
         function containsId (list, obj){
             for (var i = 0; i < list.length; i++) {

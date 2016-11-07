@@ -18,7 +18,7 @@
         config: {
           url: '/schedule',
           templateUrl: 'app/dashboard/dashboard.html',
-          controller: 'CalendarShellController2',
+          controller: 'CalendarShellController',
           controllerAs: 'vm',
           title: 'dashboard',
           settings: {
