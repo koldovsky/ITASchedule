@@ -27,7 +27,7 @@ INSERT INTO room (active, number, address_id) VALUES (true, '4004', 3);
 INSERT INTO room (active, number, address_id) VALUES (true, '4003', 3);
 
 insert into user (active, contact_info, email, full_name, password) values (true, '80631488228', 'konon@gmail.com', 'Kononchuk Bohdan', '12345');
-insert into user (active, contact_info, email, full_name, password) values (true, '80194519923', 'dima@gmail.com', 'Golodniy Dima', '23456');
+insert into user (active, contact_info, email, full_name, password) values (true, '80194519923', 'dima@gmail.com', 'Panasyuk Dima', '23456');
 insert into user (active, contact_info, email, full_name, password) values (true, '80961236549', 'ruslan@gmail.com', 'Cool Ruslan', '34567');
 insert into user (active, contact_info, email, full_name, password) values (true, '80124578951', 'marian@gmail.com', 'Hiroku Marian', '45678');
 insert into user (active, contact_info, email, full_name, password) values (true, '80501234569', 'bodya@gmail.com', 'Zog Bodya', '56789');
@@ -43,17 +43,37 @@ insert into user (active, contact_info, email, full_name, password) values (true
 insert into user (active, contact_info, email, full_name, password) values (true, '80506546456', 'porsche@gmail.com', 'Porsche Cayenne', '');
 
 insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-23', '2016-09-20', 7, 'Java-193', 1);
-insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-25', 6, 'Java-200', 2);
-insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-15', 5, 'Java-228', 3);
-insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-19', '2016-09-10', 8, 'Java-1488', 4);
+insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-25', 6, 'Java-196', 2);
+insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-30', '2016-09-15', 5, 'Java-202', 3);
+insert into itagroup (active, end_date, start_date, students_count, title, creator_id) values (true, '2016-09-19', '2016-09-10', 8, 'Java-204', 4);
 
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-04 15:00:00', '2016-11-04 17:00:00', 'Event 1', 1, 1, 1);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 13:00:00', '2016-11-05 17:00:00', 'Event 2', 1, 1, 2);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 13:00:00', '2016-11-06 15:00:00', 'Event 3', 1, 1, 3);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-07 15:00:00', '2016-11-07 19:00:00', 'Event 4', 2, 1, 4);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 17:00:00', '2016-11-10 19:00:00', 'Demo 1', 3, 2, 5);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 17:00:00', '2016-11-05 19:00:00', 'Event 6', 3, 2, 3);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 17:00:00', '2016-11-06 19:00:00', 'Event 7', 3, 2, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 17:00:00', '2016-11-05 19:00:00', 'Demo 2', 3, 2, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 17:00:00', '2016-11-06 19:00:00', 'Demo 3', 3, 2, 2);
+
+
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-07 17:00:00', '2016-11-07 19:00:00', 'Demo 4', 3, 2, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 15:30:00', '2016-11-10 17:00:00', 'Demo 5', 4, 2, 2);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-15 18:00:00', '2016-11-15 21:00:00', 'Demo 6', 4, 2, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-29 12:00:00', '2016-11-07 29:00:00', 'Demo 3', 5, 2, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-19 14:00:00', '2016-11-19 16:30:00', 'Lesson 1', 5, 3, 3);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 19:00:00', '2016-11-10 19:30:00', 'Lesson 1', 6, 3, 4);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-23 11:00:00', '2016-11-23 12:50:00', 'Lesson 2', 6, 3, 4);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-25 08:00:00', '2016-11-25 08:50:00', 'Lesson 3', 7, 3, 4);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-11 14:00:00', '2016-11-11 18:00:00', 'Lesson 4', 7, 3, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-15 15:30:00', '2016-11-15 17:00:00', 'Lesson 5', 8, 3, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 10:00:00', '2016-11-06 12:00:00', 'Graduation 1', 8, 4, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-13 14:00:00', '2016-11-13 16:00:00', 'Graduation 2', 9, 4, 6);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-27 17:00:00', '2016-11-27 19:00:00', 'Graduation 3', 9, 4, 6);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-23 17:00:00', '2016-11-23 19:00:00', 'Event 5', 10, 1, 6);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 15:00:00', '2016-11-10 17:30:00', 'Event 6', 10, 1, 7);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-15 11:00:00', '2016-11-15 13:00:00', 'Event 7', 11, 1, 7);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-19 12:00:00', '2016-11-19 14:00:00', 'Event 8', 11, 1, 7);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-27 14:00:00', '2016-11-27 16:00:00', 'Event 9', 8, 1, 8);
 
 
 INSERT INTO user_roles (user, role) VALUES (1, 1);
@@ -79,14 +99,53 @@ INSERT INTO event_users (event, user) VALUES (2, 2);
 INSERT INTO event_users (event, user) VALUES (2, 3);
 INSERT INTO event_users (event, user) VALUES (4, 2);
 INSERT INTO event_users (event, user) VALUES (5, 3);
+INSERT INTO event_users (event, user) VALUES (6, 4);
+INSERT INTO event_users (event, user) VALUES (7, 5);
+INSERT INTO event_users (event, user) VALUES (8, 3);
+INSERT INTO event_users (event, user) VALUES (8, 6);
+INSERT INTO event_users (event, user) VALUES (9, 10);
+INSERT INTO event_users (event, user) VALUES (10, 11);
+INSERT INTO event_users (event, user) VALUES (11, 3);
+INSERT INTO event_users (event, user) VALUES (11, 5);
+INSERT INTO event_users (event, user) VALUES (12, 7);
+INSERT INTO event_users (event, user) VALUES (13, 1);
+INSERT INTO event_users (event, user) VALUES (13, 2);
+INSERT INTO event_users (event, user) VALUES (13, 3);
+INSERT INTO event_users (event, user) VALUES (14, 6);
+INSERT INTO event_users (event, user) VALUES (15, 9);
+INSERT INTO event_users (event, user) VALUES (16, 6);
+INSERT INTO event_users (event, user) VALUES (16, 8);
+INSERT INTO event_users (event, user) VALUES (16, 10);
+INSERT INTO event_users (event, user) VALUES (17, 2);
+INSERT INTO event_users (event, user) VALUES (18, 3);
 
 INSERT INTO event_itagroups (event, itagroup) VALUES (1, 1);
 INSERT INTO event_itagroups (event, itagroup) VALUES (1, 2);
 INSERT INTO event_itagroups (event, itagroup) VALUES (1, 3);
 INSERT INTO event_itagroups (event, itagroup) VALUES (2, 1);
 INSERT INTO event_itagroups (event, itagroup) VALUES (2, 3);
+INSERT INTO event_itagroups (event, itagroup) VALUES (3, 3);
 INSERT INTO event_itagroups (event, itagroup) VALUES (4, 1);
 INSERT INTO event_itagroups (event, itagroup) VALUES (5, 2);
+INSERT INTO event_itagroups (event, itagroup) VALUES (6, 4);
+INSERT INTO event_itagroups (event, itagroup) VALUES (6, 2);
+INSERT INTO event_itagroups (event, itagroup) VALUES (7, 2);
+INSERT INTO event_itagroups (event, itagroup) VALUES (8, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (8, 2);
+INSERT INTO event_itagroups (event, itagroup) VALUES (9, 3);
+INSERT INTO event_itagroups (event, itagroup) VALUES (10, 3);
+INSERT INTO event_itagroups (event, itagroup) VALUES (10, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (11, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (12, 4);
+INSERT INTO event_itagroups (event, itagroup) VALUES (12, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (13, 4);
+INSERT INTO event_itagroups (event, itagroup) VALUES (14, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (14, 2);
+INSERT INTO event_itagroups (event, itagroup) VALUES (14, 3);
+INSERT INTO event_itagroups (event, itagroup) VALUES (15, 3);
+INSERT INTO event_itagroups (event, itagroup) VALUES (16, 4);
+INSERT INTO event_itagroups (event, itagroup) VALUES (17, 1);
+INSERT INTO event_itagroups (event, itagroup) VALUES (18, 2);
 
 INSERT INTO itagroup_users (itagroup, user) VALUES (1, 1);
 INSERT INTO itagroup_users (itagroup, user) VALUES (2, 1);
