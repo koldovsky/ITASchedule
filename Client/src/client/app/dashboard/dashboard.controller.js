@@ -29,7 +29,6 @@
     function fetchAll() {
       var promises = [getTeachers(), getGroups(), getRooms()];
       return $q.all(promises).then(function () {
-        // logger.info('Activated Rooms View');
       });
     }
 
@@ -91,4 +90,4 @@
     }
 
   }
-})()
+})();

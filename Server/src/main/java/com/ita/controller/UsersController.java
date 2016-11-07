@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -76,19 +77,21 @@ public class UsersController {
         return userService.findOne(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public User createNewUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("Saving user, sending to service");
         return userService.saveAndFlush(user);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.PATCH)
     public User createNewUser(@RequestBody User user) {
         logger.info("Updating user, sending to service");
         return userService.update(user);
     }
 
-     @RequestMapping(value = "/search-users-pages/", method = RequestMethod.GET)
+    @RequestMapping(value = "/search-users-pages/", method = RequestMethod.GET)
     public ResponseEntity<Page<User>> getAllUsersBySearchParameter (@RequestParam(value = "search", defaultValue = "", required = false) String search,
                                                                     @RequestParam(value = "role", defaultValue = "TEACHER", required = false) String role,
                                                                     @RequestParam(value = "active", defaultValue = "false", required = false) boolean activeOnly,
