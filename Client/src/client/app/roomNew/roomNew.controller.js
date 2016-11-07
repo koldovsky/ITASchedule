@@ -55,17 +55,17 @@
         }
 
         function create(newRoomNew){
-            // if (newRoomNew.id==null) {
-            //     return roomNewService.createRoomNew(newRoomNew)
-            // }else{
+            if (newRoomNew.id==null) {
+                return roomNewService.createRoomNew(newRoomNew);
+            }else{
 
             vm.someObject={
                 "id" : newRoomNew.id,
                 "number" : newRoomNew.number,
                 "active" : newRoomNew.active
             }
-                return roomNewService.updateRoomNew(vm.someObject)
-            // }
+                return roomNewService.updateRoomNew(vm.someObject);
+            }
         }
 
     }

@@ -3,54 +3,62 @@
         <div class="container">
             <div class="row">
                 <div class="widget wviolet">
-                    <div ht-widget-header title="Managing Rooms">
-                    </div>
+
+                    <div ht-widget-header title="Managing Rooms"></div>
+
                     <div class="widget-content user">
                         <div>
-                            <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary" style=" float: right; margin-bottom: 5px;">Create Room</a>
+                            <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary"
+                               style=" float: right; margin-bottom: 5px;">Create Room</a>
                             <form>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-search"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Filter" ng-model="vm.searchRoom">
+                                    <input type="text" class="form-control" placeholder="Filter"
+                                           ng-model="vm.searchRoom">
                                 </div>
                             </form>
                             <div class="text-center">
-                                <table st-table="vm.roomNewList" class="table table-bordered table-hover" style="font-size: medium">
-                                     <thead>
-                                         <tr class="success">
-                                             <th>#</th>
-                                             <th>Room's name</th>
-                                             <th>City</th>
-                                             <th>Address</th>
-                                             <th>Start working hours</th>
-                                             <th>End working hours</th>
-                                             <th>Active</th>
-                                             <th>Edit</th>
-                                             <th>Schedule</th>
-                                        </tr>
+                                <table st-table="vm.roomNewList" class="table table-bordered table-hover"
+                                       style="font-size: medium">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>City</th>
+                                        <th>Address</th>
+                                        <th>Working hours</th>
+                                        <!--<th>End working hours</th>-->
+                                        <th>Active</th>
+                                        <th>Edit</th>
+                                        <th>Schedule</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="roomNew in vm.roomNewList | filter:vm.searchRoom">
-                                            <th scope="row">{{$index+1}}</th>
-                                            <td>{{roomNew.number}}</td>
-                                            <td>{{roomNew.city}}</td>
-                                            <td>{{roomNew.address.address}} | {{roomNew.address.codeName}}</td>
-                                            <td>{{roomNew.address.workingHoursStart}}</td>
-                                            <td>{{roomNew.address.workingHoursEnd}}</td>
-                                            <td ng-bind="roomNew.active ? 'Active' : 'Inactive'"></td>
-                                            <td>
-                                                <button type="button" class="btn btn-info" ng-click="vm.editRoomNew(roomNew)">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button id="scheduleRoomItemButton" class="btn btn-success" ng-click="vm.showCalendar($index)" type="button">
-                                                    <i class="glyphicon glyphicon-calendar"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tr ng-repeat="roomNew in vm.roomNewList | filter:vm.searchRoom">
+                                        <th scope="row">{{$index+1}}</th>
+                                        <td>{{roomNew.number}}</td>
+                                        <td>{{roomNew.city}}</td>
+                                        <td>{{roomNew.address.address}} | {{roomNew.address.codeName}}</td>
+                                        <td>{{roomNew.address.workingHoursStart}} -
+                                            {{roomNew.address.workingHoursEnd}}
+                                        </td>
+                                        <!--<td>{{roomNew.address.workingHoursEnd}}</td>-->
+                                        <td ng-bind="roomNew.active ? 'Active' : 'Inactive'"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-info"
+                                                    ng-click="vm.editRoomNew(roomNew)">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button id="scheduleRoomItemButton" class="btn btn-success"
+                                                    ng-click="vm.showCalendar($index)" type="button">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

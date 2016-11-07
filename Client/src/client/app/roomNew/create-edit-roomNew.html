@@ -24,7 +24,7 @@
 
                                 <!--========================-city-========================-->
 
-                                <md-input-container ng-hide="vm.roomNew.id != null">
+                                <md-input-container  ng-hide="vm.roomNew.id != null">
                                     <label>City</label>
                                     <md-select ng-model="vm.roomNew.city" style="min-width: 200px;">
                                         <!--<md-option><em>None</em></md-option>-->
@@ -41,9 +41,9 @@
 
                                 <md-input-container ng-hide="vm.roomNew.id != null">
                                     <label>Address</label>
-                                    <md-select ng-model="vm.roomNew.address.address" ng-show="vm.roomNew.city != null"
+                                    <md-select ng-model="vm.roomNew.address" ng-show="vm.roomNew.city != null"
                                                style="min-width: 200px;">
-                                        <md-option ng-repeat="item in vm.roomNewList | unique:'address'"
+                                        <md-option ng-repeat="item in vm.roomNewList | filter:vm.roomNew.city | unique:'address'"
                                                    ng-value="item.address.address">
                                             {{item.address.address}}
                                         </md-option>
