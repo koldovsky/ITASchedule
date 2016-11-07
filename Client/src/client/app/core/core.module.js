@@ -11,14 +11,19 @@
       $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState){
 
 
+        $rootScope.previousState = typeof fromState !== "undefined" && fromState !== null && fromState.name !== '' ? fromState.name : 'dashboard';
+        $rootScope.currentState = toState.name;
+
         if(loginservice.isAuthenticated() )
         {
+          if($rootScope.currentState === 'schedule') {
+            event.preventDefault();
+            $state.go('dashboard');
+          }
+
           $rootScope.currentUser = loginservice.getUserFromToken($cookies.get('token'));
           console.log('User: ' + $rootScope.currentUser.userName + ' is in the system');
         }
-
-        $rootScope.previousState = typeof fromState !== "undefined" && fromState !== null && fromState.name !== '' ? fromState.name : 'dashboard';
-        $rootScope.currentState = toState.name;
 
         if (toState.authenticate) {
 
@@ -54,7 +59,15 @@
 
         // Refresh token when a `invalid_token` error occurs.
         if ('invalid_token' === rejection.data.error) {
-          return OAuth.getRefreshToken();
+          OAuth.getRefreshToken()
+            .then(function() {
+              loginservice.setTokenExpiry();
+              $state.reload();
+            })
+            .catch(function(error) {
+              console.log('error', error);
+            });
+
         }
 
         // Redirect to calendar with the `error_reason`.
