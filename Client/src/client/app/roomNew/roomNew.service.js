@@ -32,8 +32,9 @@
         function createRoomNew(roomNewToAdd) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/rooms',
+                url: 'http://localhost:8080/createRoom',
                 data: roomNewToAdd,
+                // data: JSON.stringify(roomNewToAdd),
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
