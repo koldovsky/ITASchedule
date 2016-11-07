@@ -11,7 +11,8 @@
     function groupservice($http, $q, exception, logger) {
         var service = {
             getGroups: getGroups,
-            getActiveGroups: getActiveGroups
+            getActiveGroups: getActiveGroups,
+            getGroupsForAnonymous:getGroupsForAnonymous
         };
         return service;
 
@@ -46,5 +47,24 @@
             }
         }
 
+        function getGroupsForAnonymous() {
+            return $http.get('http://localhost:8080/groups?projection=groupAnonymous')
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                var activeGroups = [];
+                response.data._embedded.iTAGroups.forEach(function (group) {
+                    if(group.active ==true){
+                        activeGroups.push({name:group.title});
+                    }
+                });
+
+                return activeGroups;
+            }
+
+            function fail(e) {
+                return exception.catcher("can't to load rooms from data base")(e);
+            }
+        }
     }
 })();

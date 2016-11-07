@@ -2,11 +2,13 @@
     <div class="md-toolbar-tools ">
 
 
-        <span>ITA Schedule</span>
+        <span><i class="fa fa-calendar"></i> ITA Schedule</span>
         <span flex></span>
-        <md-button class="md-raised pull-right" aria-label="Login">
-            Login
-        </md-button>
+       <div class="col-xs-1">
+           <md-button class="home-button" aria-label="Login">
+               Login
+           </md-button>
+       </div>
 
     </div>
 </md-toolbar>
@@ -16,96 +18,76 @@
     <div class="filter-block">
         <div class="anonymous-filter-title text-center">Search</div>
         <div class="col-xs-12">
-            <md-select ng-model="vm.filter" placeholder="Filter by" class="md-no-underline">
-                <md-option value="group">Group</md-option>
-                <md-option value="teacher">Teacher</md-option>
-                <md-option value="address">Address</md-option>
+            <md-select ng-model="vm.filter" placeholder="Select filter by" class="md-no-underline">
+                <md-option value="group" ng-click="vm.refreshFilters()">Group</md-option>
+                <md-option value="teacher" ng-click="vm.refreshFilters()">Teacher</md-option>
+                <md-option value="address" ng-click="vm.refreshFilters()">Address</md-option>
             </md-select>
-            <md-input-container flex="100">
-                <label>Groups</label>
-                <md-select ng-model="selectedVegetables"
+            <calendar-filter-panel ng-show="vm.filter=='teacher'" list="vm.teachers"
+                                   result="vm.addedTeachers"></calendar-filter-panel>
+            <calendar-filter-panel ng-show="vm.filter=='group'" list="vm.groups"
+                                   result="vm.addedGroups"></calendar-filter-panel>
+            <md-select ng-show="vm.filter=='address'" ng-model="vm.codeName" placeholder="CodeName"
+                       class="md-no-underline">
+                <md-option ng-repeat="address in vm.addresses" value={{address.codeName}}
+                           ng-click="vm.filterRoomsByCodeName(address.codeName)">{{address.codeName}}
+                </md-option>
+            </md-select>
+            <!--<calendar-filter-panel ng-show="vm.codeName" list="vm.filteredRooms"-->
+            <!--result="vm.addedRooms"></calendar-filter-panel>-->
+            <md-input-container ng-show="vm.codeName">
+                <label>Rooms</label>
+                <md-select ng-model="vm.addedRooms"
                            md-on-close="vm.clearSearchTerm()"
                            data-md-container-class="selectdemoSelectHeader"
-                           multiple>
+                           multiple style="width: inherit">
                     <md-select-header class="demo-select-header">
                         <input ng-model="vm.searchTerm"
                                type="search"
-                               placeholder="Type title"
+                               placeholder="select Rooms"
                                class="demo-header-searchbox md-text">
                     </md-select-header>
-                    <md-optgroup label="groups">
-                        <md-option ng-value="group" ng-repeat="group in vm.groups |
-              filter:vm.searchTerm">{{group.title}}
+                    <md-optgroup label="rooms">
+                        <md-option ng-value="room" ng-repeat="room in vm.filteredRooms |
+              filter:vm.searchTerm">{{room.name}}
                         </md-option>
                     </md-optgroup>
                 </md-select>
             </md-input-container>
-            <br>
-            <md-input-container flex="100">
-                <label>Teacher</label>
-                <md-select ng-model="selectedVegetables"
-                           md-on-close="vm.clearSearchTerm()"
-                           data-md-container-class="selectdemoSelectHeader"
-                           multiple>
-                    <md-select-header class="demo-select-header">
-                        <input ng-model="vm.searchTerm"
-                               type="search"
-                               placeholder="Type name"
-                               class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-optgroup label="groups">
-                        <md-option ng-value="teacher" ng-repeat="teacher in vm.teachers |
-              filter:vm.searchTerm">{{teacher.fullName}}
-                        </md-option>
-                    </md-optgroup>
-                </md-select>
-            </md-input-container>
-            <br>
-            <md-input-container flex="100">
-                <label>CodeName</label>
-                <md-select ng-model="selectedVegetables"
-                           md-on-close="vm.clearSearchTerm()"
-                           data-md-container-class="selectdemoSelectHeader"
-                           multiple>
-                    <md-select-header class="demo-select-header">
-                        <input ng-model="vm.searchTerm"
-                               type="search"
-                               placeholder="Type code"
-                               class="demo-header-searchbox md-text">
-                    </md-select-header>
-                    <md-optgroup label="groups">
-                        <md-option ng-value="address" ng-repeat="address in vm.addressess |
-              filter:vm.searchTerm">{{address.codeName}}
-                        </md-option>
-                    </md-optgroup>
-                </md-select>
-            </md-input-container>
-            <br>
-            <md-button class="md-raised md-primary" ng-click="vm.clearSearchTerm">Clean Filter</md-button>
+        </div>
+        <br>
+        <div layout-align="space-around ">
+            <md-button class="home-button" ng-click="vm.refreshCalendar()"
+                       ng-disabled="vm.objectsAddedForSearch()">
+                Search
+            </md-button>
+            <md-button class="home-button" ng-click="vm.clearFilter()" ng-disabled="vm.objectsAddedForSearch()">
+                Show
+                all events
+            </md-button>
         </div>
     </div>
     <div class="calendar-block">
         <br>
         <div ui-calendar="vm.calendarConfig" class="calendar" ng-model="vm.calendarEvents"></div>
         <br>
+
     </div>
     <div class="filter-block">
+        <div class="anonymous-filter-title text-center">Nearest demo</div>
+        <div class="demo-block" ng-repeat="demo in vm.demos | orderBy:'date' |limitTo: 8 ">
 
-        <div class="anonymous-filter-title text-center">Demo</div>
-        <div ng-repeat="event in vm.events">
-            <div class="demo-block">
-                <div class="text-center">{{event.eventType.type}}</div>
-                <br>
-                {{event.itagroups[0].title}} in {{event.addressCodeName}}
-                {{event.roomNumber}}
-            </div>
+            <p class="text-center"> {{demo.date}} at {{demo.time}}</p>
+            <p class="text-center">{{demo.itagroups[0].title}} {{demo.title}} in {{demo.addressCodeName}}  {{demo.roomNumber}} room</p>
 
 
         </div>
-
     </div>
 
 </div>
-<footer class="footer" style="background-color: #00A000">
+<div layout="row" layout-align="space-around  center" class="footer">
 
-</footer>
+    <p ng-repeat="type in vm.eventTypes" ng-style="{'color':type.color}" class="md-subhead"><span
+            class="fa fa-stop"></span> {{type.type}}</p>
+
+</div>

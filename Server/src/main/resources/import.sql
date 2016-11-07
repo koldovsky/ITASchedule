@@ -51,7 +51,7 @@ INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VA
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 13:00:00', '2016-11-05 17:00:00', 'Event 2', 1, 1, 2);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 13:00:00', '2016-11-06 15:00:00', 'Event 3', 1, 1, 3);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-07 15:00:00', '2016-11-07 19:00:00', 'Event 4', 2, 1, 4);
-INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 17:00:00', '2016-11-10 19:00:00', 'Event 5', 3, 2, 5);
+INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-10 17:00:00', '2016-11-10 19:00:00', 'Demo 1', 3, 2, 5);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-05 17:00:00', '2016-11-05 19:00:00', 'Event 6', 3, 2, 3);
 INSERT INTO event (start_time, end_time, title, room_id, type_id, creator_id) VALUES ('2016-11-06 17:00:00', '2016-11-06 19:00:00', 'Event 7', 3, 2, 2);
 

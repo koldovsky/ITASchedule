@@ -27,6 +27,7 @@
                         roomList: rooms,
                         addressList: addressess,
                         groupList : groups,
+                        eventTypes:eventTypes
 
                     },
                     params: {
@@ -45,18 +46,21 @@
     }
 
     function teachers(userservice) {
-        return userservice.getUsersByRole('TEACHER');
+        return userservice.getTeachersForAnonymous();
     }
 
     function rooms(eventService) {
-        return eventService.getRooms();
+        return eventService.getRoomsForAnonymous();
     }
 
     function addressess(eventService) {
-        return eventService.getAllAddresses();
+        return eventService.getAddressesForAnonymous();
     }
     function groups(groupservice) {
-        return groupservice.getGroups();
+        return groupservice.getGroupsForAnonymous();
+    }
+    function eventTypes(eventService) {
+        return eventService.getEventTypes();
     }
 
 })();
