@@ -5,9 +5,9 @@
       .module('app.dashboard')
       .controller('CalendarShellController2', CalendarShellController2);
 
-  CalendarShellController2.$inject = ['$q','userservice','groupservice','roomservice', '$state', '$stateParams'];
+  CalendarShellController2.$inject = ['$q','userservice','groupservice','roomservice', '$state', '$stateParams', '$rootScope'];
   /* @ngInject */
-  function CalendarShellController2($q, userservice, groupservice, roomservice, $state, $stateParams) {
+  function CalendarShellController2($q, userservice, groupservice, roomservice, $state, $stateParams, $rootScope) {
     var vm = this;
     // vm.myList=fetchAllTeachers();
     vm.myList = [];
@@ -21,6 +21,7 @@
     vm.getRooms = getRooms;
     vm.getRooms = getTeachers;
     vm.getRooms = getGroups;
+    vm.filter = filter;
 
     fetchAll();
 
@@ -75,6 +76,10 @@
         vm.myList =teacherList;
         return teacherList;
       });
+    }
+
+    function filter() {
+      $rootScope.$emit('myCustoEvent', {id: 9876});
     }
   }
 })()
