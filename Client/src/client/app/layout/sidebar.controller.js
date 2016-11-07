@@ -52,12 +52,6 @@
           }).length == userAuthorities.length && userAuthorities.length > 0) {
             allowedRoutes.push(state);
           }
-         /* if(stateAuthorities.includes(userAuthorities)) {
-            allowedRoutes.push(state);
-          }*/
-        } else
-        {
-          allowedRoutes.push(state);
         }
       });
       return allowedRoutes;

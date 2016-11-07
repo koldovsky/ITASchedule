@@ -4,13 +4,14 @@
     angular
         .module('app.anonymous')
         .controller('AnonymousController', AnonymousController);
-    AnonymousController.$inject = ['eventList', 'eventTypes', '$mdDialog', 'teacherList', 'groupList', 'logger', 'roomList', 'addressList', '$scope', '$element'];
+    AnonymousController.$inject = ['eventList', 'eventTypes', '$mdDialog', 'teacherList', 'groupList', 'logger', 'roomList', 'addressList', '$scope', '$element', 'loginservice'];
 
     /* @ngInject */
 
-    function AnonymousController(eventList, eventTypes, $mdDialog, teacherList, groupList, logger, roomList, addressList, $scope, $element) {
+    function AnonymousController(eventList, eventTypes, $mdDialog, teacherList, groupList, logger, roomList, addressList, $scope, $element, loginservice) {
 
         var vm = this;
+        vm.login = login;
         vm.calendarConfig = {
             //  defaultView: 'agendaWeek',
             header: {
@@ -207,6 +208,10 @@
             vm.calendarEvents.push(vm.convertEventsToCalendar(vm.events));
         }
 
+        function login() {
+            console.log('Hooray');
+            loginservice.login();
+        }
 
 
     }

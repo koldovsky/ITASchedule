@@ -14,7 +14,8 @@
       login: loginDialog,
       logout: logout,
       isAuthenticated : isAuthenticated,
-      getUserFromToken: getUserFromToken
+      getUserFromToken: getUserFromToken,
+      cleanCookies: cleanCookies
 
     }
     return service;
@@ -47,10 +48,10 @@
             .then(function (result) {
               var token = result.data.access_token;
               $rootScope.currentUser = getUserFromToken(token);
-              if($rootScope.currentState !== 'calendarshell.filterpannel') {
+              if($rootScope.currentState !== 'schedule') {
                 $state.go($rootScope.currentState);
               }else {
-                $state.reload();
+                $state.go('dashboard');
               }
               return $mdDialog.hide();
 
@@ -63,7 +64,7 @@
         }
 
         function handleCancel(){
-          ($rootScope.redirectTo || $rootScope.previousState);
+          $state.go('schedule');
           return $mdDialog.cancel();
         }
 
@@ -83,11 +84,8 @@
         .cancel('No');
 
       $mdDialog.show(confirm).then(function() {
-        $cookies.remove('scheduleUser');
-        $cookies.remove('token');
-        $cookies.remove('authorities');
-        $rootScope.currentUser = undefined;
-        $state.go('calendarshell.filterpannel');
+        cleanCookies();
+        $state.go('schedule');
       }, function() {
         return;
       });
@@ -99,6 +97,13 @@
         userName : decoded.user_name,
         authorities : decoded.authorities
       };
+    }
+
+    function cleanCookies() {
+      $cookies.remove('scheduleUser');
+      $cookies.remove('token');
+      $cookies.remove('authorities');
+      $rootScope.currentUser = undefined;
     }
 
   }
