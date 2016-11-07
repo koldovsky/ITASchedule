@@ -29,7 +29,7 @@ public class RoomDto {
         room.setNumber(number);
         room.setActive(active);
         room.setAddress(addressJpaRepository.findByAddress(address));
-//        use java8 !!! and mb builder
+//        !!! and mb builder
         return room;
     }
 
