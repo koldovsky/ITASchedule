@@ -1,5 +1,6 @@
 package com.ita.config;
 
+import com.ita.handler.UserEventHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,4 +16,10 @@ public class JpaConfiguration {
     public SpelAwareProxyProjectionFactory projectionFactory(){
         return new SpelAwareProxyProjectionFactory();
     }
+
+    @Bean
+    UserEventHandler userEventHandler() {
+        return new UserEventHandler();
+    }
+
 }

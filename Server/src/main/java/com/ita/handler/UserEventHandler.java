@@ -1,6 +1,9 @@
 package com.ita.handler;
 
+import com.ita.controller.UsersController;
 import com.ita.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
@@ -12,8 +15,12 @@ import java.util.regex.Pattern;
 @Component
 @RepositoryEventHandler(User.class)
 public class UserEventHandler {
+
+    private static Logger logger = LoggerFactory.getLogger(UsersController.class);
+
     @HandleBeforeSave
     public void handleBeforeSave(User user) {
+        logger.info("handleBeforeSave");
         if(user.getFullName()==null||user.getFullName().isEmpty()) {
             throw new IllegalArgumentException("Name can't be empty");
         }
@@ -34,6 +41,7 @@ public class UserEventHandler {
 
     @HandleBeforeCreate
     public void handleBeforeCreate(User user) {
+        logger.info("handleBeforeCreate");
         if(user.getFullName()==null||user.getFullName().isEmpty()) {
             throw new IllegalArgumentException("Name can't be empty");
         }

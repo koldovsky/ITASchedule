@@ -3,8 +3,11 @@ package com.ita.serviceTest;
 
 import com.ita.entity.Role;
 import com.ita.entity.User;
+import com.ita.repository.UserRepository;
 import com.ita.service.UserService;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,6 +27,9 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Before
     public void setUpToUserObject() {
@@ -35,7 +43,31 @@ public class UserServiceTest {
         roles.add(teacher);
         testUser.setRoles(roles);
     }
-/*
+
+    @Test
+    public void testCreateUser() {
+        userService.saveAndFlush(testUser);
+        User user = userService.findUserByFullName(TESTFULLNAME);
+        assertTrue("username not expected " + user.getFullName(), TESTFULLNAME.equals(user.getFullName()) );
+        assertTrue("email not expected " + user.getEmail(), testUser.getEmail().equals(user.getEmail()) );
+        assertTrue("contact info expected " + user.getContactInfo(), testUser.getContactInfo().equals(user.getContactInfo()) );
+        assertTrue("status expected " + user.isActive(), testUser.isActive()==user.isActive() );
+    }
+
+    @Test
+    public void userSaveTest() {
+        userService.saveAndFlush(testUser);
+        assertEquals(testUser.getId(), userService.findUserByEmail(testUser.getEmail()).getId());
+    }
+
+    @Test
+    public void testUserNotFound() {
+        User user = userService.findUserByFullName("doesnotexist");
+        assertNull("User must be null", user);
+    }
+
+
+
     public User createUser(String fullName, String email, Boolean active) {
         User tempUser=new User();
         tempUser.setFullName(fullName);
@@ -49,60 +81,10 @@ public class UserServiceTest {
         return tempUser;
     }
 
-
-*//*    @Test
-    public void testFindUserByUsername() {
-        User user = userService.findUserByName(TESTFULLNAME);
-        assertNotNull("User is mandatory",user);
-        assertTrue("Unexpected user " + user.getFullName(), user.getFullName().equals(TESTFULLNAME));
-    }*//*
-
-    @Test
-    public void testUserNotFound() {
-        User user = userService.findUserByName("doesnotexist");
-        assertNull("User must be null", user);
+    @After
+    public void deleteUser() {
+        userService.delete(testUser);
     }
 
-    @Test
-    public void testCreateValidUser() {
-        userService.saveAndFlush(testUser);
-        User user = userService.findUserByName(TESTFULLNAME);
-
-        assertTrue("username not expected " + user.getFullName(), TESTFULLNAME.equals(user.getFullName()) );
-        assertTrue("email not expected " + user.getEmail(), testUser.getEmail().equals(user.getEmail()) );
-        assertTrue("contact info expected " + user.getContactInfo(), testUser.getContactInfo().equals(user.getContactInfo()) );
-        assertTrue("status expected " + user.isActive(), testUser.isActive()==user.isActive() );
-//        assertTrue("role expected " + user.getRoles(), testUser.getRoles().contains(user.getRoles()));
-    }
-
-    @Test*//*(expected = IllegalArgumentException.class)*//*
-    public void testBlankUser() {
-        userService.saveAndFlush(createUser("", "test@gmail.com",true));
-        User user = userService.findUserByEmail(testUser.getEmail());
-        assertFalse("failed creating a user with blank name", testUser.getEmail().equals(user.getEmail()) );
-
-    }*/
-
-/*    @Test(expected = IllegalArgumentException.class)
-    public void testUsernameLength() {
-        userService.saveAndFlush(createUser("test", "test@gmail.com",true));
-    }*/
-
-/*
-    @Test(expected = IllegalArgumentException.class)
-    public void testUsernameAvailable() {
-        userService.saveAndFlush(testUser);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testBlankEmail() {
-        userService.saveAndFlush(createUser("test001","", true));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidEmail() {
-        userService.saveAndFlush(createUser("test001", "test",true));
-    }
-*/
 
 }

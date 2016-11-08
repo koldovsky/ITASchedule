@@ -1,10 +1,9 @@
 package com.ita.controllerTest;
 
 
-import com.google.gson.Gson;
-import com.ita.service.UserService;
 import com.ita.entity.Role;
 import com.ita.entity.User;
+import com.ita.service.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,14 +19,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -102,47 +97,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.fullName").value("Kononchuk Bohdan"));
     }
 
-/*    @Test
-    public void updateUserTest() throws Exception {
-        this.mockMvc.perform(patch("/user/1")
-                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(jsonPath("$.fullName").value("Kononchuk Bohdan"));
-    }*/
 
-
-    @Test
-    public void userSaveTest() {
-        userService.saveAndFlush(user);
-        assertEquals(user.getId(), userService.findUserByEmail(user.getEmail()).getId());
-    }
-
-    @Test
-    public void userSaveRepoTest() throws Exception {
-        System.out.println("testSaveRepoTest started");
-        String userStr = new Gson().toJson(user);
-        System.out.println("userStr created - " + userStr);
-        System.out.println("perfoming mockMvc ....");
-        this.mockMvc.perform(post("/user/")
-                .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
-                .content(this.json(user))
-        )
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"));
-//                .andExpect(content().json(userStr));
-        System.out.println("AssertEquals....");
-        assertEquals(user.getId(), userService.findUserByEmail(user.getEmail()).getId());
-        System.out.println("The end....");
-
-    }
-
-
-    private String json(Object o) throws IOException {
-        MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
-        this.mappingJackson2HttpMessageConverter.write( o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
-        return mockHttpOutputMessage.getBodyAsString();
-    }
 
     @After
     public void afterTest(){

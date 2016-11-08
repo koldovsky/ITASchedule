@@ -22,10 +22,12 @@ public interface UserService {
 
     List<User>findUsersByRoleIsActive(List<Role> roles);
 
-    public void delete (User user);
+    void delete (User user);
 
     List<User>findUsersByRole(List<Role> roles);
 
     Page <User> getAllUsersBySearchParameterPage (boolean activeOnly, Role r, String search, Pageable p);
 
-}
+    public User findUserByFullName(String name);
+
+ }

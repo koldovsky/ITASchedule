@@ -23,6 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @RestResource(path = "findByName", rel = "findByName")
     public User findByFullName(String fullName);
 
+    public User findById(Long Id);
+
     @RestResource(path = "findByEmail", rel = "findByEmail")
     public User findByEmail(String email);
     public List<User> findByEmailIn(List<String> emails);

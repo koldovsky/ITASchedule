@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sdub on 13.10.2016.
- */
-//@RequestMapping(value="/users/")
+
 @RestController
 public class UsersController {
     @Autowired
@@ -77,7 +74,7 @@ public class UsersController {
         return userService.findOne(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+   @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public User createNewUser(@PathVariable Long id, @RequestBody User user) {
         logger.info("Saving user, sending to service");
