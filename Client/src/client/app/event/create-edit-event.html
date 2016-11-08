@@ -85,7 +85,7 @@
                                     <div class="col-xs-6">
                                         <div ng-cloak layout-gt-sm="row" layout="column">
                                             <div flex-gt-sm="50" flex>
-                                                <md-content layout="row" style="background-color: #5bc0de;">
+                                                <md-content layout="row" class="table-title">
                                                     <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
                                                         teachers</label>
                                                 </md-content>
@@ -116,7 +116,7 @@
                                             </div>
                                             <md-divider></md-divider>
                                             <div flex-gt-sm="50" flex>
-                                                <md-content layout="row" style="background-color: #5bc0de;">
+                                                <md-content layout="row" class="table-title">
                                                     <label class="md-body-1" style="margin: 10px 10px; color: white;">Teachers,
                                                         added to the group</label>
                                                 </md-content>
@@ -150,7 +150,7 @@
                                     <div class="col-xs-6">
                                         <div ng-cloak layout-gt-sm="row" layout="column">
                                             <div flex-gt-sm="50" flex>
-                                                <md-content layout="row" style="background-color: #faa632;">
+                                                <md-content layout="row" class="table-title">
                                                     <label class="md-body-1" style="margin: 10px 10px; color: white;">Available
                                                         Groups</label>
                                                 </md-content>
@@ -180,7 +180,7 @@
                                             </div>
                                             <md-divider></md-divider>
                                             <div flex-gt-sm="50" flex>
-                                                <md-content layout="row" style="background-color: #faa632;">
+                                                <md-content layout="row" class="table-title">
                                                     <label class="md-body-1" style="margin: 10px 10px; color: white;">Added
                                                         Group/Groups</label>
                                                 </md-content>
@@ -215,10 +215,12 @@
                         </div>
                         <br>
                         <section layout="row" layout-align="center center" layout-wrap>
-                            <md-button class="md-raised md-primary md-hue-1" ng-show="vm.eventToEdit.id"
+                            <md-button class="md-raised md-primary md-hue-1" style="background-color: #58b65b"
+                                       ng-show="vm.eventToEdit.id"
                                        ng-click="vm.sendEditedEventOnServer()">Edit
                             </md-button>
-                            <md-button class="md-raised md-primary md-hue-1" ng-hide="vm.eventToEdit.id"
+                            <md-button class="md-raised md-primary md-hue-1" style="background-color: #58b65b"
+                                       ng-hide="vm.eventToEdit.id"
                                        ng-click="vm.sendEventOnServer()"
                             >Create
                             </md-button>
