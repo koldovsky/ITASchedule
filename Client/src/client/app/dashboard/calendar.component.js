@@ -148,7 +148,6 @@
                     center: 'title',
                     right: 'today prev,next'
                 },
-                defaultView: 'agendaWeek',
                 displayEventTime: false,
                 selectConstraint:{
                     start: '00:00',
