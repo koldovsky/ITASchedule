@@ -9,27 +9,21 @@
                 teachers: '=teachers',
                 groups: '=groups'
             },
-            controller: calendarController222,
+            controller: calendarController,
             templateUrl: '/app/dashboard/calendar.html'
         });
 
-    function calendarController222(logger, $scope, $compile, uiCalendarConfig, $q, eventService, $state, $http, exception, $rootScope) {
+    function calendarController(logger, $scope, $compile, uiCalendarConfig, $q, eventService, $state, $http, exception, $rootScope) {
         var vm = this;
         vm.title = 'Calendar';
         vm.state = $state;
         vm.filter = filter;
         vm.createEvent = createEvent;
-        vm.clearFilter = clearFilter;
         activate();
 
         function activate() {
             logger.info('Activated Calendar View');
         }
-        /* modal window */
-        $scope.showTabDialog = function (ev) {
-
-            vm.state.go('editEvent', {"eventToEdit": ev});
-        };
         function hoverIn(data, event, view) {
             var title = data.title;
             var startTime = moment(data.startTime).format('HH:mm');
@@ -69,8 +63,6 @@
 
         }
         /* fetching events from database */
-        $scope.events = [];
-        filter();
         function getEvents() {
             return eventService.getEvents().then(function (data) {
                 vm.events = data._embedded.events;
@@ -86,10 +78,11 @@
                 itagroups: result[iterator].itagroups,
                 users: result[iterator].users, cityName: result[iterator].cityName,
                 addressCodeName: result[iterator].addressCodeName, roomNumber: result[iterator].roomNumber,
-                id: result[iterator].id, startTime: result[iterator].startTime, endTime: result[iterator].endTime, color: result[iterator].eventType.color
+                id: result[iterator].id, startTime: result[iterator].startTime, endTime: result[iterator].endTime, color: result[iterator].eventType.color, date: result[iterator].startTime
             });
         }
-
+        $scope.events = [];
+        filter();
         $rootScope.$on('filter', function (event, params) {
             filter();
         });
@@ -137,18 +130,6 @@
             });
 
         }
-        function clearFilter(){
-            angular.forEach(vm.rooms, function () {
-                vm.rooms.pop();
-            });
-            angular.forEach(vm.teachers, function () {
-                vm.teachers.pop();
-            });
-            angular.forEach(vm.groups, function () {
-                vm.groups.pop();
-            });
-            filter();
-        }
         function containsId (list, obj){
             for (var i = 0; i < list.length; i++) {
                 if (list[i].id === obj.id) {
@@ -167,7 +148,7 @@
                     center: 'title',
                     right: 'today prev,next'
                 },
-
+                defaultView: 'agendaWeek',
                 displayEventTime: false,
                 selectConstraint:{
                     start: '00:00',
@@ -182,36 +163,21 @@
                     vm.state.go('editEvent', {"eventToEdit": event});
 
                 },
-                dayClick: function (date, jsevent, view) {
+                select: function(start,end, jsevent, view){
                     var event = {
                         title: null,
                         stick: true, eventType: null,
                         itagroups: [],
                         users: [], cityName: null,
                         addressCodeName: null, roomNumber: null,
-                        startTime:  date, endTime:date
+                        startTime:  start, endTime:end, date: start
                     };
-                    if(view.name==="month") {event.startTime=null, event.endTime=null}
-                    vm.state.go('editEvent', {"eventToEdit": event});
-
-                },
-                select: function(start,end){
-                    var event = {
-                        title: null,
-                        stick: true, eventType: null,
-                        itagroups: [],
-                        users: [], cityName: null,
-                        addressCodeName: null, roomNumber: null,
-                        startTime:  start, endTime:end
-                    };
+                    if(view.name==="month") {event.startTime=null, event.endTime=null, event.date=start}
                     vm.state.go('editEvent', {"eventToEdit": event});
                 },
-                eventDrop: $scope.alertOnDrop,
-                eventResize: $scope.alertOnResize,
                 eventRender: $scope.eventRender
             }
         };
-
         /* event sources array*/
         $scope.eventSources = [$scope.events];
 

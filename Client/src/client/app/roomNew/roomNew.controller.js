@@ -9,6 +9,7 @@
     roomNewListController.$inject = ['$q', 'roomNewService', 'logger', '$stateParams', '$state'];
     function roomNewListController($q, roomNewService, logger, $stateParams, $state) {
         var vm = this;
+        vm.state=$state;
         vm.someObject = {};
         vm.roomNew={};
         vm.roomNew=$stateParams.roomNew;
@@ -16,6 +17,7 @@
         vm.submit=submit;
         vm.create=create;
         vm.editRoomNew=editRoomNew;
+        vm.showCalendar = showCalendar;
         vm.searchRoom ='';
 
 
@@ -30,19 +32,27 @@
 
         vm.createRoomNew = function() {
             $state.go('createRoomNew', {"roomNewObject": null});
-        }
+        };
         vm.cancelCreation = function(){
             $state.go('listRoomNew');
-        }
-        vm.showCalendar = function($index){
-            $state.go('calendar');
-        }
+        };
 
+        /*vm.showCalendar = function($index){
+            $state.go('calendar');
+        }*/
+
+        function showCalendar(room) {
+            var roomForCalendar = {};
+            roomForCalendar.name = ''+room.number+" ("+room.codeName+")";
+            roomForCalendar.roomName = room.number;
+            roomForCalendar.id = room.id;
+            vm.state.go('dashboard',{'rooms':[roomForCalendar]});
+        }
 
         function editRoomNew (roomNew) {
             $state.go('createRoomNew',{"roomNew": roomNew});
 
-        };
+        }
 
         function submit(){
             var promises = [create(vm.roomNew)];
@@ -63,7 +73,7 @@
                 "id" : newRoomNew.id,
                 "number" : newRoomNew.number,
                 "active" : newRoomNew.active
-            }
+            };
                 return roomNewService.updateRoomNew(vm.someObject);
             }
         }

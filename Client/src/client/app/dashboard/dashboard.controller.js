@@ -3,11 +3,11 @@
 
   angular
       .module('app.dashboard')
-      .controller('CalendarShellController2', CalendarShellController2);
+      .controller('CalendarShellController', CalendarShellController);
 
-  CalendarShellController2.$inject = ['$q','userservice','groupservice','roomservice', '$state', '$stateParams', '$rootScope'];
+  CalendarShellController.$inject = ['$q','userservice','groupservice','roomservice', '$state', '$stateParams', '$rootScope'];
   /* @ngInject */
-  function CalendarShellController2($q, userservice, groupservice, roomservice, $state, $stateParams, $rootScope) {
+  function CalendarShellController($q, userservice, groupservice, roomservice, $state, $stateParams, $rootScope) {
     var vm = this;
     // vm.myList=fetchAllTeachers();
     vm.myList = [];

@@ -30,9 +30,6 @@
                         eventTypes:eventTypes
 
                     },
-                    params: {
-                        parasos: 'a'
-                    },
                     settings: {
                         nav: 9,
                         content: '<i class="fa fa-calendar"></i> Anonymous'

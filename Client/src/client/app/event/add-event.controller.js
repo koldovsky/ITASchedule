@@ -94,7 +94,7 @@
                 vm.addedTeachers.push(teacher);
             });
             vm.event.type = vm.eventToEdit.eventType;
-            vm.date = new Date(vm.eventToEdit.startTime);
+            vm.date = moment(vm.eventToEdit.date).toDate();
             vm.startTime = moment(vm.eventToEdit.startTime).toDate();
             vm.endTime = moment(vm.eventToEdit.endTime).toDate();
             vm.city = vm.eventToEdit.cityName;
