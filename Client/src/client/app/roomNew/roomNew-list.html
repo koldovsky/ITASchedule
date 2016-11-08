@@ -2,73 +2,88 @@
     <section class="matter">
         <div class="container">
             <div class="row">
-                <div class="widget wviolet">
-
-                    <div ht-widget-header title="Managing Rooms"></div>
-
-                    <div class="widget-content user">
-                        <div>
-                            <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary"
-                               style=" float: right; margin-bottom: 5px;">Create Room</a>
-                            <form>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-search"></i>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Filter"
-                                           ng-model="vm.searchRoom">
-                                </div>
-                            </form>
-                            <div class="text-center">
-                                <table st-table="vm.roomNewList" class="table table-bordered table-hover"
-                                       style="font-size: medium">
-                                    <thead>
-                                    <tr class="success">
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>City</th>
-                                        <th>Address</th>
-                                        <th>Working hours</th>
-                                        <!--<th>End working hours</th>-->
-                                        <th>Active</th>
-                                        <th>Edit</th>
-                                        <th>Schedule</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr ng-repeat="roomNew in vm.roomNewList | filter:vm.searchRoom">
-                                        <th scope="row">{{$index+1}}</th>
-                                        <td>{{roomNew.number}}</td>
-                                        <td>{{roomNew.city}}</td>
-                                        <td>{{roomNew.address.address}} | {{roomNew.address.codeName}}</td>
-                                        <td>{{roomNew.address.workingHoursStart}} -
-                                            {{roomNew.address.workingHoursEnd}}
-                                        </td>
-                                        <!--<td>{{roomNew.address.workingHoursEnd}}</td>-->
-                                        <td ng-bind="roomNew.active ? 'Active' : 'Inactive'"></td>
-                                        <td>
-                                            <button type="button" class="btn btn-info"
-                                                    ng-click="vm.editRoomNew(roomNew)">
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button id="scheduleRoomItemButton" class="btn btn-success"
-                                                    ng-click="vm.showCalendar(roomNew)" type="button">
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
+                <md-toolbar class="md-hue-2">
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>Rooms</span>
+                        </h2>
+                        <span flex></span>
+                        <a id="createButton" ng-click="vm.createRoomNew()" class="btn btn-primary">Create Room</a>
                     </div>
+                </md-toolbar>
+                <div>
+                    <table st-safe-src="vm.roomNewList" st-table="displayedRooms" class="table table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>
+                                <md-checkbox ng-model="vm.activeStatus">
+                                    Active only
+                                </md-checkbox>
+                            </th>
+                            <th>
+                                <label>per page:</label>
+                                <md-input-container>
+                                    <md-select ng-model="itemsByPage" >
+                                        <md-optgroup label="size">
+                                            <md-option ng-value="3">3</md-option>
+                                            <md-option ng-value="5">5</md-option>
+                                            <md-option ng-value="10">10</md-option>
+                                            <md-option ng-value="20">20</md-option>
+                                            <md-option ng-value="100">100</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </th>
+                            <th colspan="1">
+                                <input ng-model="vm.searchText" st-search placeholder="search" class="input-sm form-control" type="search"/>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th st-sort='name'>Name</th>
+                            <th st-sort='city'>Email</th>
+                            <th st-sort="address">Address</th>
+                            <th st-sort="hours">Working hours</th>
+                            <th st-sort='active' class="tdcenter">Status</th>
+                            <th class="tdcenter">Edit</th>
+                            <th class="tdcenter">Schedule</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="roomNew in displayedRooms | filter:(!vm.activeStatus ? '' : {active: 'true'}) ">
+                            <td>{{roomNew.number}}</td>
+                            <td>{{roomNew.city}}</td>
+                            <td>{{roomNew.address.address}} | {{roomNew.address.codeName}}</td>
+                            <td>{{roomNew.address.workingHoursStart}} -
+                                {{roomNew.address.workingHoursEnd}}
+                            </td>
+
+                            <td class="tdcenter">
+                                <i ng-show="roomNew.active" class="glyphicon glyphicon-ok green"></i>
+                                <i ng-show="!roomNew.active" class="glyphicon glyphicon-remove red"></i>
+                            </td>
+
+                            <td class="tdcenter">
+                                <button type="button" ng-click="vm.editRoomNew(roomNew)" class="btn btn-sm btn-info">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+
+                            </td>
+                            <td class="tdcenter">
+                                <button ng-click="vm.showCalendar(roomNew)" class="btn btn-sm btn-success" type="button">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <div class="row">
+                                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

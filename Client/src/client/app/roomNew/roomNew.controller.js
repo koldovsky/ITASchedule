@@ -18,8 +18,9 @@
         vm.create=create;
         vm.editRoomNew=editRoomNew;
         vm.showCalendar = showCalendar;
-        vm.searchRoom ='';
-
+        vm.searchRoom ="";
+        vm.activeStatus = false;
+        vm.searchText = "";
 
         getRoomNew();
         
@@ -36,10 +37,6 @@
         vm.cancelCreation = function(){
             $state.go('listRoomNew');
         };
-
-        /*vm.showCalendar = function($index){
-            $state.go('calendar');
-        }*/
 
         function showCalendar(room) {
             var roomForCalendar = {};
@@ -58,6 +55,7 @@
             var promises = [create(vm.roomNew)];
             return $q.all(promises).then(function() {
                     logger.info('Good job!');
+                    $state.go('listRoomNew', {}, {reload:true});
                 }, function(){
                     logger.info('Can not update a room!');
                 }
@@ -77,6 +75,7 @@
                 return roomNewService.updateRoomNew(vm.someObject);
             }
         }
+
 
     }
     //================filter=======================

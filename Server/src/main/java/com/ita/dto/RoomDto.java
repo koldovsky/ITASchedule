@@ -23,14 +23,5 @@ public class RoomDto {
     @NotNull
     private String address;
 
-    public Room buildRoom(AddressJpaRepository addressJpaRepository){
-        Room room = new Room();
-        room.setId(id);
-        room.setNumber(number);
-        room.setActive(active);
-        room.setAddress(addressJpaRepository.findByAddress(address));
-//        !!! and mb builder
-        return room;
-    }
 
 }
