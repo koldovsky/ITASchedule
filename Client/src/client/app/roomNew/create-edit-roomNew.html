@@ -27,7 +27,6 @@
                                 <md-input-container  ng-hide="vm.roomNew.id != null">
                                     <label>City</label>
                                     <md-select ng-model="vm.roomNew.city" style="min-width: 200px;">
-                                        <!--<md-option><em>None</em></md-option>-->
                                         <md-option ng-repeat="item in vm.roomNewList | unique:'city'"
                                                    ng-value="item.city">
                                             {{item.city}}
@@ -35,7 +34,6 @@
                                     </md-select>
                                 </md-input-container>
                                 <br/>
-
 
                                 <!--==================add address list===========================-->
 
@@ -62,21 +60,6 @@
                                 </md-input-container>
                                 <br/>
 
-
-                                <!--====================capacity========================-->
-
-
-                                <md-input-container class="md-block">
-                                    <label>Capacity of the room</label>
-                                    <input name="capacityInput" ng-model="vm.capacity"
-                                           required ng-pattern="/^[0-9]{1,2}$/" md-maxlength="2">
-
-                                </md-input-container>
-
-
-                                <!--====================buttons==============================-->
-
-
                                 </br>
                                 <section layout="row" layout-align="center center" layout-wrap>
                                     <md-button class="md-raised md-primary md-hue-1"
@@ -92,7 +75,6 @@
                                 </section>
                             </form>
                         </div>
-
 
                         <div class="widget-foot">
                             <div class="clearfix"></div>

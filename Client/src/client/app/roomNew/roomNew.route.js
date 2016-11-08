@@ -44,10 +44,6 @@
                     authorities: [
                         'ROLE_ADMINISTRATOR'
                     ]
-                    /*settings: {
-                        nav: null,
-                        content: '<i class="fa fa-university"></i> Create RoomNew'
-                    }*/
                 }
             }];
     }

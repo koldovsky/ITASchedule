@@ -30,4 +30,39 @@ public class Room {
     public Room() {
     }
 
+    public static BuilderRoom newBuilderRoom() {
+        return   new Room().new BuilderRoom();
+    }
+
+    public class BuilderRoom{
+        private BuilderRoom(){}
+
+        public BuilderRoom setId(Long id){
+            Room.this.id = id;
+            return this;
+        }
+
+        public BuilderRoom setNumber(String number){
+            Room.this.number = number;
+            return this;
+        }
+
+        public BuilderRoom setActive(boolean active){
+            Room.this.active = active;
+            return this;
+        }
+
+
+        public BuilderRoom setAddress(Address address){
+            Room.this.address = address;
+            return this;
+        }
+
+        public Room build(){
+            return Room.this;
+        }
+
+
+    }
+
 }
