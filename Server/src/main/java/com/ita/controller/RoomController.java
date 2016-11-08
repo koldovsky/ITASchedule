@@ -5,15 +5,13 @@ import com.ita.entity.Room;
 import com.ita.repository.AddressJpaRepository;
 import com.ita.repository.CityRepository;
 import com.ita.repository.RoomRepository;
+import com.ita.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,20 +27,19 @@ public class RoomController {
     @Autowired
     CityRepository cityRepository;
 
-   /* @Autowired
-    RoomService roomService;*/
+    @Autowired
+    private RoomService roomService;
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @RequestMapping(value = "/createRoom",
             method = {RequestMethod.POST},
-            consumes = MediaType.APPLICATION_JSON_VALUE)//try without it
-    public ResponseEntity createRoom(@RequestBody @Valid RoomDto roomDto, BindingResult bindingResult){
-        System.out.println(roomDto.getNumber());
-        System.out.println(roomDto.getAddress());
-        Room room = roomDto.buildRoom(addressJpaRepository);
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity createRoom(@RequestBody @Valid RoomDto roomDto){
+        Room room = roomService.buildRoom(roomDto);
 
         roomRepository.save(room);
-//        return new ResponseEntity<>(HttpStatus.OK);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }
