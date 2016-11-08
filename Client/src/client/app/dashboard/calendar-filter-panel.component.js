@@ -6,7 +6,8 @@
         .component('calendarFilterPanel', {
             bindings   : {
                 elementList: '=list',
-                selectedElements: '=result'
+                selectedElements: '=result',
+                name:'=name'
             },
             controller: filterPanelController,
             templateUrl: '/app/dashboard/calendar-filter-panel.html'

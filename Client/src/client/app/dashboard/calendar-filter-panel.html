@@ -9,10 +9,9 @@
             md-item-text="element.name"
             md-removable="true"
             md-min-length="0"
-            placeholder="Search for a element">
+            placeholder="Search for a {{$ctrl.name}}">
         <span md-highlight-text="$ctrl.searchTextElement">{{element.name}}</span>
     </md-autocomplete>
-
     <md-chip-template>
         <div class="pannel-text">
             {{$chip.name}}

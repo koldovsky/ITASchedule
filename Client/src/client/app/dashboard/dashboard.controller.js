@@ -23,6 +23,10 @@
     vm.getRooms = getGroups;
     vm.filter = filter;
     vm.clearFilter = clearFilter;
+    vm.isFilter=isFilter;
+    vm.nameRoom="Room";
+    vm.nameTeacher="Teacher";
+    vm.nameGroup="Group";
 
     fetchAll();
     filter();
@@ -88,6 +92,10 @@
       vm.roomSelected = [];
       vm.groupSelected = [];
       $rootScope.$emit('filter', {id: 9876});
+    }
+    
+    function isFilter() {
+        return (vm.teacherSelected.length==0)&(vm.groupSelected.length==0)&(vm.roomSelected.length==0);
     }
 
   }

@@ -16,6 +16,10 @@ import java.util.List;
 @RepositoryRestResource(path = "users")
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    String searchQueryConst = "Select u From User u where (LOWER(u.fullName) LIKE LOWER(CONCAT('%',:searchParam,'%'))" +
+            " OR LOWER(u.email) LIKE LOWER(CONCAT('%',:searchParam,'%'))" +
+            " OR LOWER(u.contactInfo) LIKE LOWER(CONCAT('%',:searchParam,'%')))";
+
     @RestResource(path = "findByName", rel = "findByName")
     public User findByFullName(String fullName);
 
@@ -24,12 +28,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public List<User> findByEmailIn(List<String> emails);
 
     public List<User> findByIdIn(List<Long> ids);
-
-
-
-    String searchQueryConst = "Select u From User u where (LOWER(u.fullName) LIKE LOWER(CONCAT('%',:searchParam,'%'))" +
-            " OR LOWER(u.email) LIKE LOWER(CONCAT('%',:searchParam,'%'))" +
-            " OR LOWER(u.contactInfo) LIKE LOWER(CONCAT('%',:searchParam,'%')))";
 
     @Query(searchQueryConst + "AND (:r MEMBER OF u.roles) ")
     Page<User> getAllUsersBySearchParameterPage(@Param("r") Role r, @Param("searchParam")String searchParam, Pageable p);

@@ -1,7 +1,5 @@
 <section class="mainbar">
-    <section class="matter">
         <div class="container">
-            <div class="row">
                 <md-toolbar class="md-hue-2">
                     <div class="md-toolbar-tools">
                         <h2>
@@ -12,21 +10,23 @@
                     </div>
                 </md-toolbar>
                 <div layout="row">
-
                         <div flex="20">
                             <br>
-                            <div class="filter-title">Rooms:</div>
-                            <calendar-filter-panel list="vm.roomList" result="vm.roomSelected"></calendar-filter-panel>
-                            <div class="filter-title">Teachers:</div>
-                            <calendar-filter-panel list="vm.teacherList" result="vm.teacherSelected"></calendar-filter-panel>
-                            <div class="filter-title">Groups:</div>
-                            <calendar-filter-panel list="vm.groupList" result="vm.groupSelected"></calendar-filter-panel>
-                            <div style="text-align: right">
-                                <md-button class="md-primary md-raised" ng-click="vm.filter()">
-                                    Filter
+                            <div class="filter-title text-center">Filters</div>
+                            <!--<div class="filter-title">Rooms:</div>-->
+                            <calendar-filter-panel list="vm.roomList" result="vm.roomSelected" name="vm.nameRoom"></calendar-filter-panel>
+                            <!--<div class="filter-title">Teachers:</div>-->
+                            <calendar-filter-panel list="vm.teacherList" result="vm.teacherSelected" name="vm.nameTeacher"></calendar-filter-panel>
+                            <!--<div class="filter-title">Groups:</div>-->
+                            <calendar-filter-panel list="vm.groupList" result="vm.groupSelected" name="vm.nameGroup"></calendar-filter-panel>
+                             <div layout-align="space-around ">
+                                <md-button class="home-button" ng-click="vm.filter()"
+                                           ng-disabled="vm.isFilter()">
+                                    Search
                                 </md-button>
-                                <md-button class="md-primary md-raised" ng-click="vm.clearFilter()">
-                                    Clear filters
+                                <md-button class="home-button" ng-click="vm.clearFilter()" ng-disabled="vm.isFilter()">
+                                    Show
+                                    all events
                                 </md-button>
                             </div>
                         </div>
@@ -37,10 +37,7 @@
                 <div class="widget-foot">
                     <div class="clearfix"></div>
                 </div>
-            </div>
         </div>
-        </div>
-    </section>
 </section>
 
 
